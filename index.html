@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nurdaulet Bolat — Security & DevSecOps Engineer</title>
-  <meta name="description" content="Security Engineer, DevSecOps & Cloud Architect. Kubernetes, Go, CI/CD, Threat Detection, Penetration Testing.">
-  <meta property="og:title" content="Nurdaulet Bolat — Security & DevSecOps Engineer">
-  <meta property="og:description" content="Security Engineer specializing in DevSecOps, Cloud Security, and Go development. Kubernetes, CI/CD, threat detection, and penetration testing.">
+  <title>Nurdaulet Bolat — DevOps & Platform Engineer</title>
+  <meta name="description" content="DevOps, Platform & Golang Engineer. Kubernetes, CI/CD, Terraform, Go, monitoring, and DevSecOps.">
+  <meta property="og:title" content="Nurdaulet Bolat — DevOps & Platform Engineer">
+  <meta property="og:description" content="Building secure, observable infrastructure with Kubernetes, Go, and Infrastructure as Code.">
   <meta property="og:url" content="https://nvimq.github.io">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nurdaulet Bolat — Security & DevSecOps Engineer">
-  <meta name="twitter:description" content="Security Engineer specializing in DevSecOps, Cloud Security, and Go development.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡</text></svg>">
+  <meta name="twitter:title" content="Nurdaulet Bolat — DevOps & Platform Engineer">
+  <meta name="twitter:description" content="Building secure, observable infrastructure with Kubernetes, Go, and Infrastructure as Code.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⎈</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -52,7 +52,6 @@
     }
     .container { max-width: 920px; margin: 0 auto; padding: 5rem 2rem; }
 
-    /* Hero */
     .hero { margin-bottom: 5rem; animation: up 0.7s ease; }
     .hero h1 {
       font-size: clamp(2.2rem, 5vw, 3.8rem);
@@ -73,15 +72,7 @@
       font-size: 0.95rem;
       line-height: 1.7;
     }
-    .hero .bio a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border 0.2s;
-    }
-    .hero .bio a:hover { border-color: var(--accent); }
 
-    /* Sections */
     .section { margin-bottom: 4.5rem; }
     .section-title {
       font-size: 0.8rem;
@@ -92,7 +83,6 @@
       margin-bottom: 1.25rem;
     }
 
-    /* Tags */
     .tag-list {
       display: flex;
       flex-wrap: wrap;
@@ -118,7 +108,6 @@
     }
     .tag img { width: 16px; height: 16px; flex-shrink: 0; border-radius: 2px; }
 
-    /* Projects */
     .proj-list { display: flex; flex-direction: column; gap: 1rem; }
     .proj {
       display: flex;
@@ -148,7 +137,6 @@
     .proj-body h3 { font-size: 0.95rem; font-weight: 550; margin-bottom: 0.2rem; }
     .proj-body p { font-size: 0.85rem; color: var(--text-dim); }
 
-    /* Contact */
     .contact { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .contact a {
       display: inline-flex;
@@ -170,7 +158,6 @@
     }
     .contact a svg { width: 17px; height: 17px; fill: currentColor; }
 
-    /* Footer */
     .footer {
       margin-top: 4rem;
       padding-top: 2rem;
@@ -180,7 +167,6 @@
       text-align: center;
     }
 
-    /* Animations */
     @keyframes up {
       from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
@@ -214,92 +200,67 @@
   <div class="container">
     <section class="hero">
       <h1>Nurdaulet Bolat</h1>
-      <p class="subtitle">Security Engineer &middot; DevSecOps &middot; Cloud &amp; AI</p>
+      <p class="subtitle">DevOps &amp; Platform Engineer &middot; Golang Developer</p>
       <p class="bio">
-        Building secure, resilient infrastructure. SOC threat detection, penetration testing, 
-        Kubernetes hardening, and automated security in CI/CD.
-        <a href="https://github.com/nvimq">GitHub</a>
+        Infrastructure as Code, Kubernetes, CI/CD, and observability-first platforms.
+        Building secure, scalable systems with Go and cloud-native tooling.
       </p>
     </section>
 
     <section class="section">
-      <h2 class="section-title">SOC &amp; Threat Detection</h2>
+      <h2 class="section-title">DevOps &amp; Cloud</h2>
       <div class="tag-list">
-        <a class="tag" href="https://elastic.co/elk-stack"><img src="https://cdn.simpleicons.org/elastic" alt="">ELK Stack</a>
-        <a class="tag" href="https://splunk.com"><img src="https://cdn.simpleicons.org/splunk" alt="">Splunk</a>
-        <a class="tag" href="https://wireshark.org"><img src="https://cdn.simpleicons.org/wireshark" alt="">Wireshark</a>
-        <a class="tag" href="https://suricata.io"><img src="https://cdn.simpleicons.org/suricata" alt="">Suricata</a>
-        <a class="tag" href="https://zeek.org"><img src="https://cdn.simpleicons.org/zeek" alt="">Zeek</a>
-        <a class="tag" href="https://wazuh.com"><img src="https://cdn.simpleicons.org/wazuh" alt="">Wazuh</a>
-        <a class="tag" href="https://attack.mitre.org"><img src="https://cdn.simpleicons.org/mitre" alt="">MITRE ATT&amp;CK</a>
-        <a class="tag" href="https://volatilityfoundation.org"><img src="https://cdn.simpleicons.org/volatility" alt="">Volatility</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">Penetration Testing</h2>
-      <div class="tag-list">
-        <a class="tag" href="https://kali.org"><img src="https://cdn.simpleicons.org/kalilinux" alt="">Kali Linux</a>
-        <a class="tag" href="https://nmap.org"><img src="https://cdn.simpleicons.org/nmap" alt="">Nmap</a>
-        <a class="tag" href="https://metasploit.com"><img src="https://cdn.simpleicons.org/metasploit" alt="">Metasploit</a>
-        <a class="tag" href="https://portswigger.net/burp"><img src="https://cdn.simpleicons.org/burpsuite" alt="">Burp Suite</a>
-        <a class="tag" href="https://zaproxy.org"><img src="https://cdn.simpleicons.org/owasp" alt="">OWASP ZAP</a>
-        <a class="tag" href="https://shodan.io"><img src="https://cdn.simpleicons.org/shodan" alt="">Shodan</a>
-        <a class="tag" href="https://sqlmap.org"><img src="https://cdn.simpleicons.org/sqlmap" alt="">SQLmap</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">DevSecOps &amp; Cloud</h2>
-      <div class="tag-list">
-        <a class="tag" href="https://kubernetes.io"><img src="https://cdn.simpleicons.org/kubernetes" alt="">Kubernetes</a>
+        <a class="tag" href="https://kernel.org"><img src="https://cdn.simpleicons.org/linux" alt="">Linux</a>
+        <a class="tag" href="https://gnu.org/software/bash"><img src="https://cdn.simpleicons.org/gnubash" alt="">Bash</a>
         <a class="tag" href="https://docker.com"><img src="https://cdn.simpleicons.org/docker" alt="">Docker</a>
-        <a class="tag" href="https://terraform.io"><img src="https://cdn.simpleicons.org/terraform" alt="">Terraform</a>
-        <a class="tag" href="https://aws.amazon.com"><img src="https://cdn.simpleicons.org/amazonaws" alt="">AWS</a>
+        <a class="tag" href="https://kubernetes.io"><img src="https://cdn.simpleicons.org/kubernetes" alt="">Kubernetes</a>
         <a class="tag" href="https://helm.sh"><img src="https://cdn.simpleicons.org/helm" alt="">Helm</a>
-        <a class="tag" href="https://argoproj.github.io/cd"><img src="https://cdn.simpleicons.org/argo" alt="">ArgoCD</a>
-        <a class="tag" href="https://prometheus.io"><img src="https://cdn.simpleicons.org/prometheus" alt="">Prometheus</a>
-        <a class="tag" href="https://grafana.com"><img src="https://cdn.simpleicons.org/grafana" alt="">Grafana</a>
+        <a class="tag" href="https://werf.io"><img src="https://cdn.simpleicons.org/helm" alt="">werf</a>
+        <a class="tag" href="https://docs.gitlab.com/ee/ci"><img src="https://cdn.simpleicons.org/gitlab" alt="">GitLab CI</a>
         <a class="tag" href="https://github.com/features/actions"><img src="https://cdn.simpleicons.org/githubactions" alt="">GitHub Actions</a>
+        <a class="tag" href="https://terraform.io"><img src="https://cdn.simpleicons.org/terraform" alt="">Terraform</a>
         <a class="tag" href="https://ansible.com"><img src="https://cdn.simpleicons.org/ansible" alt="">Ansible</a>
+        <a class="tag" href="https://argoproj.github.io/cd"><img src="https://cdn.simpleicons.org/argo" alt="">ArgoCD</a>
       </div>
     </section>
 
     <section class="section">
-      <h2 class="section-title">Security Tooling</h2>
-      <div class="tag-list">
-        <a class="tag" href="https://snyk.io"><img src="https://cdn.simpleicons.org/snyk" alt="">Snyk</a>
-        <a class="tag" href="https://trivy.dev"><img src="https://cdn.simpleicons.org/aquasecurity" alt="">Trivy</a>
-        <a class="tag" href="https://codeql.github.com"><img src="https://cdn.simpleicons.org/github" alt="">CodeQL</a>
-        <a class="tag" href="https://semgrep.dev"><img src="https://cdn.simpleicons.org/semgrep" alt="">Semgrep</a>
-        <a class="tag" href="https://vaultproject.io"><img src="https://cdn.simpleicons.org/vault" alt="">HashiCorp Vault</a>
-        <a class="tag" href="https://gitguardian.com"><img src="https://cdn.simpleicons.org/gitguardian" alt="">GitGuardian</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">Backend &mdash; Go</h2>
+      <h2 class="section-title">Go Backend</h2>
       <div class="tag-list">
         <a class="tag" href="https://golang.org"><img src="https://cdn.simpleicons.org/go" alt="">Go</a>
-        <a class="tag" href="https://python.org"><img src="https://cdn.simpleicons.org/python" alt="">Python</a>
         <a class="tag" href="https://gin-gonic.com"><img src="https://cdn.simpleicons.org/go" alt="">Gin</a>
-        <a class="tag" href="https://gofiber.io"><img src="https://cdn.simpleicons.org/go" alt="">Fiber</a>
         <a class="tag" href="https://grpc.io"><img src="https://cdn.simpleicons.org/grpc" alt="">gRPC</a>
+        <a class="tag" href="https://protobuf.dev"><img src="https://cdn.simpleicons.org/protobuf" alt="">Protobuf</a>
         <a class="tag" href="https://postgresql.org"><img src="https://cdn.simpleicons.org/postgresql" alt="">PostgreSQL</a>
         <a class="tag" href="https://redis.io"><img src="https://cdn.simpleicons.org/redis" alt="">Redis</a>
-        <a class="tag" href="https://kafka.apache.org"><img src="https://cdn.simpleicons.org/apachekafka" alt="">Kafka</a>
+        <a class="tag" href="https://github.com/golang-migrate/migrate"><img src="https://cdn.simpleicons.org/go" alt="">golang-migrate</a>
       </div>
     </section>
 
     <section class="section">
-      <h2 class="section-title">AI Engineering</h2>
+      <h2 class="section-title">Monitoring &amp; Platform</h2>
       <div class="tag-list">
-        <a class="tag" href="https://platform.openai.com"><img src="https://cdn.simpleicons.org/openai" alt="">OpenAI</a>
-        <a class="tag" href="https://anthropic.com"><img src="https://cdn.simpleicons.org/anthropic" alt="">Claude</a>
-        <a class="tag" href="https://ollama.ai"><img src="https://cdn.simpleicons.org/ollama" alt="">Ollama</a>
-        <a class="tag" href="https://langchain.com"><img src="https://cdn.simpleicons.org/langchain" alt="">LangChain</a>
-        <a class="tag" href="https://huggingface.co"><img src="https://cdn.simpleicons.org/huggingface" alt="">HuggingFace</a>
-        <a class="tag" href="https://qdrant.tech"><img src="https://cdn.simpleicons.org/qdrant" alt="">Qdrant</a>
+        <a class="tag" href="https://prometheus.io"><img src="https://cdn.simpleicons.org/prometheus" alt="">Prometheus</a>
+        <a class="tag" href="https://grafana.com"><img src="https://cdn.simpleicons.org/grafana" alt="">Grafana</a>
+        <a class="tag" href="https://elastic.co/elk-stack"><img src="https://cdn.simpleicons.org/elastic" alt="">ELK Stack</a>
+        <a class="tag" href="https://grafana.com/oss/loki"><img src="https://cdn.simpleicons.org/grafana" alt="">Loki</a>
+        <a class="tag" href="https://opentelemetry.io"><img src="https://cdn.simpleicons.org/opentelemetry" alt="">OpenTelemetry</a>
+        <a class="tag" href="https://jaegertracing.io"><img src="https://cdn.simpleicons.org/jaeger" alt="">Jaeger</a>
+        <a class="tag" href="https://backstage.io"><img src="https://cdn.simpleicons.org/backstage" alt="">Backstage</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">DevSecOps</h2>
+      <div class="tag-list">
+        <a class="tag" href="https://trivy.dev"><img src="https://cdn.simpleicons.org/aquasecurity" alt="">Trivy</a>
+        <a class="tag" href="https://sonarqube.org"><img src="https://cdn.simpleicons.org/sonarqube" alt="">SonarQube</a>
+        <a class="tag" href="https://vaultproject.io"><img src="https://cdn.simpleicons.org/vault" alt="">Vault</a>
+        <a class="tag" href="https://splunk.com"><img src="https://cdn.simpleicons.org/splunk" alt="">Splunk / SIEM</a>
+        <a class="tag" href="https://cloudflare.com/waf"><img src="https://cdn.simpleicons.org/cloudflare" alt="">Cloudflare WAF</a>
+        <a class="tag" href="https://modsecurity.org"><img src="https://cdn.simpleicons.org/owasp" alt="">ModSecurity</a>
+        <a class="tag" href="https://kubernetes.io/docs/concepts/services-networking/network-policies"><img src="https://cdn.simpleicons.org/kubernetes" alt="">K8s Network Policies</a>
+        <a class="tag" href="https://kubernetes.io/docs/reference/access-authn-authz/rbac"><img src="https://cdn.simpleicons.org/kubernetes" alt="">RBAC</a>
       </div>
     </section>
 
@@ -311,8 +272,8 @@
             <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zM4 16.5V8.5l8-4 8 4v8l-8 4-8-4z"/></svg>
           </div>
           <div class="proj-body">
-            <h3>Cybersecurity Lab</h3>
-            <p>Pentesting lab with DVWA, Juice Shop, Mutillidae — Docker Compose + Kali</p>
+            <h3>Kubernetes Zero to Hero</h3>
+            <p>Production-grade K8s setup with Helm, werf, GitLab CI, and monitoring</p>
           </div>
         </a>
         <a class="proj" href="https://github.com/nvimq">
@@ -321,7 +282,7 @@
           </div>
           <div class="proj-body">
             <h3>DevSecOps Pipeline</h3>
-            <p>GitHub Actions with Snyk, Trivy, Semgrep — automated SAST/DAST in CI/CD</p>
+            <p>GitHub Actions + Trivy + SonarQube + Vault — shift-left security in CI/CD</p>
           </div>
         </a>
         <a class="proj" href="https://github.com/nvimq">
@@ -329,8 +290,8 @@
             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
           </div>
           <div class="proj-body">
-            <h3>Graphic Design Assets</h3>
-            <p>Figma &amp; Canva wallpapers, UI components, and design resources</p>
+            <h3>Go Microservices Kit</h3>
+            <p>gRPC + Gin + PostgreSQL + Redis — template for cloud-native Go services</p>
           </div>
         </a>
       </div>
@@ -356,7 +317,7 @@
     </section>
 
     <footer class="footer">
-      <p>Security is not a product, but a process.</p>
+      <p>infrastructure as code · security by design · observability first</p>
     </footer>
   </div>
 </body>
