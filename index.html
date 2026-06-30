@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nurdaulet Bolat — Security & DevSecOps Engineer</title>
+  <meta name="description" content="Security Engineer, DevSecOps & Cloud Architect. Kubernetes, Go, CI/CD, Threat Detection, Penetration Testing.">
+  <meta property="og:title" content="Nurdaulet Bolat — Security & DevSecOps Engineer">
+  <meta property="og:description" content="Security Engineer specializing in DevSecOps, Cloud Security, and Go development. Kubernetes, CI/CD, threat detection, and penetration testing.">
+  <meta property="og:url" content="https://nvimq.github.io">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nurdaulet Bolat — Security & DevSecOps Engineer">
+  <meta name="twitter:description" content="Security Engineer specializing in DevSecOps, Cloud Security, and Go development.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: rgba(20, 20, 20, 0.6);
+      --text: #e0e0e0;
+      --text-dim: #8a8a8a;
+      --text-muted: #666;
+      --accent: #00ADD8;
+      --accent-glow: rgba(0, 173, 216, 0.12);
+      --border: rgba(255, 255, 255, 0.08);
+      --radius: 10px;
+      --radius-sm: 8px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #fafafa;
+        --bg-card: rgba(255, 255, 255, 0.8);
+        --text: #1a1a1a;
+        --text-dim: #555;
+        --text-muted: #999;
+        --accent: #0077A8;
+        --border: rgba(0, 0, 0, 0.1);
+        --accent-glow: rgba(0, 119, 168, 0.08);
+      }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .container { max-width: 920px; margin: 0 auto; padding: 5rem 2rem; }
+
+    /* Hero */
+    .hero { margin-bottom: 5rem; animation: up 0.7s ease; }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 650;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      font-weight: 350;
+      margin-bottom: 1rem;
+    }
+    .hero .bio {
+      max-width: 620px;
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .hero .bio a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border 0.2s;
+    }
+    .hero .bio a:hover { border-color: var(--accent); }
+
+    /* Sections */
+    .section { margin-bottom: 4.5rem; }
+    .section-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Tags */
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.85rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .tag img { width: 16px; height: 16px; flex-shrink: 0; border-radius: 2px; }
+
+    /* Projects */
+    .proj-list { display: flex; flex-direction: column; gap: 1rem; }
+    .proj {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.25s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .proj:hover {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+    }
+    .proj-icon {
+      width: 38px; height: 38px;
+      background: var(--accent-glow);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .proj-icon svg { width: 18px; height: 18px; fill: var(--accent); }
+    .proj-body h3 { font-size: 0.95rem; font-weight: 550; margin-bottom: 0.2rem; }
+    .proj-body p { font-size: 0.85rem; color: var(--text-dim); }
+
+    /* Contact */
+    .contact { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .contact a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .contact a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-glow);
+    }
+    .contact a svg { width: 17px; height: 17px; fill: currentColor; }
+
+    /* Footer */
+    .footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Animations */
+    @keyframes up {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .tag, .proj { opacity: 0; animation: up 0.5s ease forwards; }
+    .tag:nth-child(1) { animation-delay: 0.05s; }
+    .tag:nth-child(2) { animation-delay: 0.1s; }
+    .tag:nth-child(3) { animation-delay: 0.15s; }
+    .tag:nth-child(4) { animation-delay: 0.2s; }
+    .tag:nth-child(5) { animation-delay: 0.25s; }
+    .tag:nth-child(6) { animation-delay: 0.3s; }
+    .tag:nth-child(7) { animation-delay: 0.35s; }
+    .tag:nth-child(8) { animation-delay: 0.4s; }
+    .tag:nth-child(9) { animation-delay: 0.45s; }
+    .tag:nth-child(10) { animation-delay: 0.5s; }
+    .tag:nth-child(11) { animation-delay: 0.55s; }
+    .tag:nth-child(12) { animation-delay: 0.6s; }
+    .proj:nth-child(1) { animation-delay: 0.1s; }
+    .proj:nth-child(2) { animation-delay: 0.2s; }
+    .proj:nth-child(3) { animation-delay: 0.3s; }
+
+    @media (max-width: 640px) {
+      .container { padding: 2.5rem 1.25rem; }
+      .tag-list { gap: 0.4rem; }
+      .tag { font-size: 0.78rem; padding: 0.35rem 0.7rem; }
+      .contact a { font-size: 0.8rem; padding: 0.5rem 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <h1>Nurdaulet Bolat</h1>
+      <p class="subtitle">Security Engineer &middot; DevSecOps &middot; Cloud &amp; AI</p>
+      <p class="bio">
+        Building secure, resilient infrastructure. SOC threat detection, penetration testing, 
+        Kubernetes hardening, and automated security in CI/CD.
+        <a href="https://github.com/nvimq">GitHub</a>
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">SOC &amp; Threat Detection</h2>
+      <div class="tag-list">
+        <a class="tag" href="https://elastic.co/elk-stack"><img src="https://cdn.simpleicons.org/elastic" alt="">ELK Stack</a>
+        <a class="tag" href="https://splunk.com"><img src="https://cdn.simpleicons.org/splunk" alt="">Splunk</a>
+        <a class="tag" href="https://wireshark.org"><img src="https://cdn.simpleicons.org/wireshark" alt="">Wireshark</a>
+        <a class="tag" href="https://suricata.io"><img src="https://cdn.simpleicons.org/suricata" alt="">Suricata</a>
+        <a class="tag" href="https://zeek.org"><img src="https://cdn.simpleicons.org/zeek" alt="">Zeek</a>
+        <a class="tag" href="https://wazuh.com"><img src="https://cdn.simpleicons.org/wazuh" alt="">Wazuh</a>
+        <a class="tag" href="https://attack.mitre.org"><img src="https://cdn.simpleicons.org/mitre" alt="">MITRE ATT&amp;CK</a>
+        <a class="tag" href="https://volatilityfoundation.org"><img src="https://cdn.simpleicons.org/volatility" alt="">Volatility</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Penetration Testing</h2>
+      <div class="tag-list">
+        <a class="tag" href="https://kali.org"><img src="https://cdn.simpleicons.org/kalilinux" alt="">Kali Linux</a>
+        <a class="tag" href="https://nmap.org"><img src="https://cdn.simpleicons.org/nmap" alt="">Nmap</a>
+        <a class="tag" href="https://metasploit.com"><img src="https://cdn.simpleicons.org/metasploit" alt="">Metasploit</a>
+        <a class="tag" href="https://portswigger.net/burp"><img src="https://cdn.simpleicons.org/burpsuite" alt="">Burp Suite</a>
+        <a class="tag" href="https://zaproxy.org"><img src="https://cdn.simpleicons.org/owasp" alt="">OWASP ZAP</a>
+        <a class="tag" href="https://shodan.io"><img src="https://cdn.simpleicons.org/shodan" alt="">Shodan</a>
+        <a class="tag" href="https://sqlmap.org"><img src="https://cdn.simpleicons.org/sqlmap" alt="">SQLmap</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">DevSecOps &amp; Cloud</h2>
+      <div class="tag-list">
+        <a class="tag" href="https://kubernetes.io"><img src="https://cdn.simpleicons.org/kubernetes" alt="">Kubernetes</a>
+        <a class="tag" href="https://docker.com"><img src="https://cdn.simpleicons.org/docker" alt="">Docker</a>
+        <a class="tag" href="https://terraform.io"><img src="https://cdn.simpleicons.org/terraform" alt="">Terraform</a>
+        <a class="tag" href="https://aws.amazon.com"><img src="https://cdn.simpleicons.org/amazonaws" alt="">AWS</a>
+        <a class="tag" href="https://helm.sh"><img src="https://cdn.simpleicons.org/helm" alt="">Helm</a>
+        <a class="tag" href="https://argoproj.github.io/cd"><img src="https://cdn.simpleicons.org/argo" alt="">ArgoCD</a>
+        <a class="tag" href="https://prometheus.io"><img src="https://cdn.simpleicons.org/prometheus" alt="">Prometheus</a>
+        <a class="tag" href="https://grafana.com"><img src="https://cdn.simpleicons.org/grafana" alt="">Grafana</a>
+        <a class="tag" href="https://github.com/features/actions"><img src="https://cdn.simpleicons.org/githubactions" alt="">GitHub Actions</a>
+        <a class="tag" href="https://ansible.com"><img src="https://cdn.simpleicons.org/ansible" alt="">Ansible</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Security Tooling</h2>
+      <div class="tag-list">
+        <a class="tag" href="https://snyk.io"><img src="https://cdn.simpleicons.org/snyk" alt="">Snyk</a>
+        <a class="tag" href="https://trivy.dev"><img src="https://cdn.simpleicons.org/aquasecurity" alt="">Trivy</a>
+        <a class="tag" href="https://codeql.github.com"><img src="https://cdn.simpleicons.org/github" alt="">CodeQL</a>
+        <a class="tag" href="https://semgrep.dev"><img src="https://cdn.simpleicons.org/semgrep" alt="">Semgrep</a>
+        <a class="tag" href="https://vaultproject.io"><img src="https://cdn.simpleicons.org/vault" alt="">HashiCorp Vault</a>
+        <a class="tag" href="https://gitguardian.com"><img src="https://cdn.simpleicons.org/gitguardian" alt="">GitGuardian</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Backend &mdash; Go</h2>
+      <div class="tag-list">
+        <a class="tag" href="https://golang.org"><img src="https://cdn.simpleicons.org/go" alt="">Go</a>
+        <a class="tag" href="https://python.org"><img src="https://cdn.simpleicons.org/python" alt="">Python</a>
+        <a class="tag" href="https://gin-gonic.com"><img src="https://cdn.simpleicons.org/go" alt="">Gin</a>
+        <a class="tag" href="https://gofiber.io"><img src="https://cdn.simpleicons.org/go" alt="">Fiber</a>
+        <a class="tag" href="https://grpc.io"><img src="https://cdn.simpleicons.org/grpc" alt="">gRPC</a>
+        <a class="tag" href="https://postgresql.org"><img src="https://cdn.simpleicons.org/postgresql" alt="">PostgreSQL</a>
+        <a class="tag" href="https://redis.io"><img src="https://cdn.simpleicons.org/redis" alt="">Redis</a>
+        <a class="tag" href="https://kafka.apache.org"><img src="https://cdn.simpleicons.org/apachekafka" alt="">Kafka</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">AI Engineering</h2>
+      <div class="tag-list">
+        <a class="tag" href="https://platform.openai.com"><img src="https://cdn.simpleicons.org/openai" alt="">OpenAI</a>
+        <a class="tag" href="https://anthropic.com"><img src="https://cdn.simpleicons.org/anthropic" alt="">Claude</a>
+        <a class="tag" href="https://ollama.ai"><img src="https://cdn.simpleicons.org/ollama" alt="">Ollama</a>
+        <a class="tag" href="https://langchain.com"><img src="https://cdn.simpleicons.org/langchain" alt="">LangChain</a>
+        <a class="tag" href="https://huggingface.co"><img src="https://cdn.simpleicons.org/huggingface" alt="">HuggingFace</a>
+        <a class="tag" href="https://qdrant.tech"><img src="https://cdn.simpleicons.org/qdrant" alt="">Qdrant</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Projects</h2>
+      <div class="proj-list">
+        <a class="proj" href="https://github.com/nvimq">
+          <div class="proj-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zM4 16.5V8.5l8-4 8 4v8l-8 4-8-4z"/></svg>
+          </div>
+          <div class="proj-body">
+            <h3>Cybersecurity Lab</h3>
+            <p>Pentesting lab with DVWA, Juice Shop, Mutillidae — Docker Compose + Kali</p>
+          </div>
+        </a>
+        <a class="proj" href="https://github.com/nvimq">
+          <div class="proj-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+          </div>
+          <div class="proj-body">
+            <h3>DevSecOps Pipeline</h3>
+            <p>GitHub Actions with Snyk, Trivy, Semgrep — automated SAST/DAST in CI/CD</p>
+          </div>
+        </a>
+        <a class="proj" href="https://github.com/nvimq">
+          <div class="proj-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+          </div>
+          <div class="proj-body">
+            <h3>Graphic Design Assets</h3>
+            <p>Figma &amp; Canva wallpapers, UI components, and design resources</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="contact">
+      <a href="mailto:nvimgolang@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Email
+      </a>
+      <a href="https://github.com/nvimq">
+        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://t.me/nvimq">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        Telegram
+      </a>
+      <a href="https://www.linkedin.com/in/nurdauletbolat">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-11 5v9h2.5v-4.5h.5v-4.5H8zm-1-2h12v1H7zm13 0h-1v1h1zm-1 3h-1v1h1zm-1 3h-1v1h1z"/></svg>
+        LinkedIn
+      </a>
+    </section>
+
+    <footer class="footer">
+      <p>Security is not a product, but a process.</p>
+    </footer>
+  </div>
+</body>
+</html>
