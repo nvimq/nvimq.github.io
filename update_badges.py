@@ -166,6 +166,11 @@ user_json_str = """[
     "title": "First Blood",
     "url": "https://app.letsdefend.io/my-rewards/detail/d6353f1a-eb02-4524-88e5-204e68eb346e",
     "img": "https://app-ld-img.s3.amazonaws.com/badge/first-badge-6529e305-65c7-41fe-a929-c728f1bee986.png"
+  },
+  {
+    "title": "MemLoot",
+    "url": "https://app.letsdefend.io/my-rewards/detail/e271b31b-f73e-408a-925f-f226d019d417",
+    "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/MemLoot-challenge-badge.png"
   }
 ]"""
 
