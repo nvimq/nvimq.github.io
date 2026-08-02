@@ -881,40 +881,12 @@ a,button,input,textarea{cursor:none}
 
 <section id="certifications" class="reveal" style="max-width: 1100px; margin: 6rem auto; padding: 0 2rem; position: relative; z-index: 1;">
   <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> certifications</div>
-  <div class="cert-grid">
-    <a class="cert-card" href="./certifications/owasp-top10-snyk.pdf" target="_blank">
-      <div class="cert-card-top">
-        <img src="https://cdn.simpleicons.org/owasp">
-        <span class="cert-issuer">Snyk</span>
-      </div>
-      <div class="cert-name">OWASP Top 10</div>
-      <span class="cert-link">view credential &rarr;</span>
-    </a>
-    <a class="cert-card" href="https://www.credly.com/badges/72dc398d-25b3-42bd-b47b-aab5e3806a51/" target="_blank">
-      <div class="cert-card-top">
-        <img src="https://cdn.simpleicons.org/cilium">
-        <span class="cert-issuer">Isovalent &middot; Credly</span>
-      </div>
-      <div class="cert-name">Cilium AI/ML Security</div>
-      <span class="cert-link">view credential &rarr;</span>
-    </a>
-    <a class="cert-card" href="https://courses.academy.tigera.io/certificates/6dbe730cb475457d950ab4b835ffe808" target="_blank">
-      <div class="cert-card-top">
-        <img src="https://cdn.simpleicons.org/kubernetes">
-        <span class="cert-issuer">Tigera Academy</span>
-      </div>
-      <div class="cert-name">Certified Calico Operator</div>
-      <span class="cert-link">view credential &rarr;</span>
-    </a>
-    <a class="cert-card" href="https://certification.gremlin.com/credentials/2cb26774-b77a-48f7-8324-a3bd2c2d0dba" target="_blank">
-      <div class="cert-card-top">
-        <img src="https://cdn.simpleicons.org/linux">
-        <span class="cert-issuer">Gremlin</span>
-      </div>
-      <div class="cert-name">Chaos Engineering</div>
-      <span class="cert-link">view credential &rarr;</span>
-    </a>
+  <div class="labs-stats" id="certs-stats"></div>
+  <div class="labs-controls">
+    <div class="labs-filter-tabs" id="certs-filter-tabs"></div>
+    <input id="certs-search" type="text" placeholder="Search certifications..." autocomplete="off" spellcheck="false">
   </div>
+  <div class="cert-grid" id="certs-grid" data-items='[{"name": "OWASP Top 10", "issuer": "Snyk", "href": "./certifications/owasp-top10-snyk.pdf", "img": "https://cdn.simpleicons.org/owasp"}, {"name": "Cilium AI/ML Security", "issuer": "Isovalent", "href": "https://www.credly.com/badges/72dc398d-25b3-42bd-b47b-aab5e3806a51/", "img": "https://cdn.simpleicons.org/cilium"}, {"name": "Certified Calico Operator", "issuer": "Tigera", "href": "https://courses.academy.tigera.io/certificates/6dbe730cb475457d950ab4b835ffe808", "img": "https://cdn.simpleicons.org/kubernetes"}, {"name": "Chaos Engineering", "issuer": "Gremlin", "href": "https://certification.gremlin.com/credentials/2cb26774-b77a-48f7-8324-a3bd2c2d0dba", "img": "https://cdn.simpleicons.org/linux"}]'></div>
 </section>
 
 <section id="skills" class="reveal" style="max-width: 700px; margin: 7rem auto; padding: 0 2rem; position: relative; z-index: 1;">
@@ -1568,6 +1540,60 @@ const isMobile = window.innerWidth < 768;
 })();
 
 (function(){
+  const grid=document.getElementById('certs-grid');
+  const statsEl=document.getElementById('certs-stats');
+  const tabsEl=document.getElementById('certs-filter-tabs');
+  const searchEl=document.getElementById('certs-search');
+  if(!grid||!statsEl||!tabsEl||!searchEl) return;
+
+  const items=JSON.parse(grid.dataset.items);
+  const issuers=[...new Set(items.map(i=>i.issuer))];
+  const counts={};
+  issuers.forEach(iss=>counts[iss]=items.filter(i=>i.issuer===iss).length);
+
+  statsEl.innerHTML=`
+    <div class="labs-stat"><span class="n">${items.length}</span><span class="l">Total Certs</span></div>
+    <div class="labs-stat"><span class="n">${issuers.length}</span><span class="l">Issuers</span></div>
+    ${issuers.map(iss=>`<div class="labs-stat"><span class="n">${counts[iss]}</span><span class="l">${iss}</span></div>`).join('')}
+  `;
+
+  let activeTab='All';
+  function renderTabs(){
+    tabsEl.innerHTML=`<div class="labs-tab${activeTab==='All'?' active':''}" data-p="All">All <span class="c">${items.length}</span></div>` +
+      issuers.map(iss=>`<div class="labs-tab${activeTab===iss?' active':''}" data-p="${iss}">${iss} <span class="c">${counts[iss]}</span></div>`).join('');
+    tabsEl.querySelectorAll('.labs-tab').forEach(tab=>{
+      tab.addEventListener('click', ()=>{ activeTab=tab.dataset.p; renderTabs(); renderGrid(); });
+    });
+  }
+
+  function renderGrid(){
+    const q=searchEl.value.trim().toLowerCase();
+    const filtered=items.filter(i=>
+      (activeTab==='All'||i.issuer===activeTab) &&
+      (!q||i.name.toLowerCase().includes(q)||i.issuer.toLowerCase().includes(q))
+    );
+    if(!filtered.length){
+      grid.innerHTML='<div class="labs-empty">No matches</div>';
+      return;
+    }
+    grid.innerHTML=filtered.map(i=>`
+      <a class="cert-card" href="${i.href}" target="_blank">
+        <div class="cert-card-top">
+          <img src="${i.img}">
+          <span class="cert-issuer">${i.issuer}</span>
+        </div>
+        <div class="cert-name">${i.name}</div>
+        <span class="cert-link">view credential &rarr;</span>
+      </a>
+    `).join('');
+  }
+
+  renderTabs();
+  renderGrid();
+  searchEl.addEventListener('input', renderGrid);
+})();
+
+(function(){
   const trigger=document.getElementById('search-trigger');
   const overlay=document.getElementById('search-overlay');
   const input=document.getElementById('search-input');
@@ -1625,11 +1651,12 @@ const isMobile = window.innerWidth < 768;
         items.push({text:`${i.name} (${i.platform})`,group:'cyber labs',href:i.href,img:i.img});
       });
     }
-    document.querySelectorAll('.cert-card').forEach(card=>{
-      const name=card.querySelector('.cert-name').textContent.trim();
-      const issuer=card.querySelector('.cert-issuer').textContent.trim();
-      items.push({text:`${name} (${issuer})`,group:'certifications',href:card.getAttribute('href'),img:card.querySelector('img')?card.querySelector('img').src:null});
-    });
+    const certsGrid=document.getElementById('certs-grid');
+    if(certsGrid){
+      JSON.parse(certsGrid.dataset.items).forEach(i=>{
+        items.push({text:`${i.name} (${i.issuer})`,group:'certifications',href:i.href,img:i.img});
+      });
+    }
     return items;
   }
   const index=buildIndex();
