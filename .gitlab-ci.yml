@@ -4,6 +4,7 @@ pages:
   script:
     - mkdir -p public
     - cp index.html 404.html robots.txt .nojekyll _headers public/
+    - cp manifest.webmanifest sw.js icon-192.png icon-512.png apple-touch-icon.png public/
     - cp -r certifications public/
   artifacts:
     paths:
