@@ -45,13 +45,12 @@ canvas#cursorCanvas{
 a,button,input,textarea{cursor:none}
 
 #hero{
-  min-height:100vh;
-  min-height:100dvh;
   width:100%;
   position:relative;
   overflow:hidden;
   display:flex;
   align-items:center;
+  padding:9rem 2rem 4rem;
   background:
     radial-gradient(ellipse 34% 30% at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 65%),
     radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 60%),
@@ -868,7 +867,7 @@ a,button,input,textarea{cursor:none}
 </div>
 
 <section id="hero">
-  <div class="orbit-sections-wrapper" style="justify-content:center;">
+  <div class="orbit-sections-wrapper" style="justify-content:center;min-height:auto;padding:0;">
 
     <div class="hero-center">
       <h1 class="hero-name font-flip" style="font-family: Rajdhani, sans-serif;">
