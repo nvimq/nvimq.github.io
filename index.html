@@ -734,7 +734,7 @@ a,button,input,textarea{cursor:none}
 .labs-tab.active{color:#fff;background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.3)}
 .labs-tab.active .c{color:#ccc}
 
-#labs-search{
+#labs-search,#certs-search{
   flex:1 1 220px;max-width:280px;
   background:rgba(255,255,255,0.02);
   border:1px solid rgba(255,255,255,0.1);
@@ -743,8 +743,8 @@ a,button,input,textarea{cursor:none}
   font-family:'JetBrains Mono',monospace;font-size:0.75rem;
   color:#fff;outline:0;
 }
-#labs-search::placeholder{color:#555}
-#labs-search:focus{border-color:rgba(255,255,255,0.25)}
+#labs-search::placeholder,#certs-search::placeholder{color:#555}
+#labs-search:focus,#certs-search:focus{border-color:rgba(255,255,255,0.25)}
 
 .labs-grid{
   display:grid;
@@ -783,7 +783,7 @@ a,button,input,textarea{cursor:none}
 }
 @media(max-width:700px){
   .labs-controls{flex-direction:column;align-items:stretch}
-  #labs-search{max-width:none}
+  #labs-search,#certs-search{max-width:none}
   .labs-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
 }
 
