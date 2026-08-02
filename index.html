@@ -1606,44 +1606,8 @@ const isMobile = window.innerWidth < 768;
 
   function buildIndex(){
     const items=[];
-    document.querySelectorAll('.orbit-section').forEach(section=>{
-      const label=section.querySelector('.orbit-label');
-      const group=label ? label.textContent.replace('//','').trim() : 'section';
-      section.querySelectorAll('.orbit-tag').forEach(tag=>{
-        const text=tag.textContent.trim();
-        if(!text) return;
-        items.push({
-          text,
-          group,
-          href:tag.getAttribute('href')||null,
-          img:tag.querySelector('img')?tag.querySelector('img').src:null
-        });
-      });
-    });
     document.querySelectorAll('.contact-link').forEach(link=>{
       items.push({text:link.querySelector('span').textContent.trim(),group:'contact',href:link.getAttribute('href'),img:null});
-    });
-    const sigilWrap=document.querySelector('.sigil-wrap');
-    if(sigilWrap){
-      JSON.parse(sigilWrap.dataset.skills).forEach(s=>{
-        items.push({text:`${s.name} ${s.pct}%`,group:'core',href:'#skills',img:null});
-      });
-    }
-    document.querySelectorAll('#stack .skill-row').forEach(row=>{
-      const name=row.querySelector('.skill-head span:first-child').textContent.trim();
-      const pct=row.querySelector('.pct').textContent.trim();
-      const img=row.querySelector('.skill-head img');
-      items.push({text:`${name} ${pct}`,group:'full stack',href:'#stack',img:img?img.src:null});
-      row.querySelectorAll('.mini-tag').forEach(tag=>{
-        const text=tag.textContent.trim();
-        if(!text) return;
-        items.push({
-          text,
-          group:name,
-          href:tag.getAttribute('href')||null,
-          img:tag.querySelector('img')?tag.querySelector('img').src:null
-        });
-      });
     });
     const labsGrid=document.getElementById('labs-grid');
     if(labsGrid){
