@@ -675,6 +675,118 @@ a,button,input,textarea{cursor:none}
   .mini-tag{font-size:0.65rem;padding:0.35rem 0.7rem}
 }
 
+.labs-meta{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:0.5rem;
+  margin-top:1.5rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.7rem;
+}
+.labs-meta a,.labs-meta span{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  padding:0.35rem 0.8rem;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:999px;
+  color:#888;text-decoration:none;
+}
+.labs-meta a img{width:12px;height:12px;filter:grayscale(1) brightness(0.7)}
+.labs-meta a:hover{color:#fff;border-color:rgba(255,255,255,0.2)}
+
+.labs-stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+  gap:1px;
+  background:rgba(255,255,255,0.07);
+  margin:2.5rem 0 0;
+  border:1px solid rgba(255,255,255,0.07);
+}
+.labs-stat{
+  background:#050505;
+  padding:1.25rem 1rem;
+  text-align:center;
+}
+.labs-stat .n{
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.8rem;color:#fff;font-weight:500;
+  display:block;
+}
+.labs-stat .l{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:#666;
+  margin-top:0.35rem;display:block;
+}
+
+.labs-controls{
+  display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;
+  margin-top:2rem;
+}
+.labs-filter-tabs{display:flex;flex-wrap:wrap;gap:0.4rem}
+.labs-tab{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  padding:0.4rem 0.85rem;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:999px;
+  font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+  color:#888;cursor:pointer;transition:all 0.2s ease;
+}
+.labs-tab .c{color:#555}
+.labs-tab:hover{color:#fff;border-color:rgba(255,255,255,0.2)}
+.labs-tab.active{color:#fff;background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.3)}
+.labs-tab.active .c{color:#ccc}
+
+#labs-search{
+  flex:1 1 220px;max-width:280px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:999px;
+  padding:0.5rem 1rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.75rem;
+  color:#fff;outline:0;
+}
+#labs-search::placeholder{color:#555}
+#labs-search:focus{border-color:rgba(255,255,255,0.25)}
+
+.labs-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:1rem;
+  margin-top:2rem;
+}
+.lab-card{
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
+  padding:1rem 0.75rem;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.07);
+  text-decoration:none;text-align:center;
+  transition:all 0.25s ease;
+}
+.lab-card:hover{
+  border-color:rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.05);
+  transform:translateY(-2px);
+}
+.lab-card img{
+  width:44px;height:44px;object-fit:contain;
+  filter:grayscale(1) contrast(1.1) brightness(0.85);
+  transition:filter 0.25s ease;
+}
+.lab-card:hover img{filter:grayscale(0) brightness(1)}
+.lab-card .lab-name{
+  font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#aaa;line-height:1.3;
+}
+.lab-card .lab-platform{
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:#555;
+}
+.labs-empty{
+  grid-column:1/-1;text-align:center;padding:2rem;color:#555;
+  font-family:'JetBrains Mono',monospace;font-size:0.8rem;
+}
+@media(max-width:700px){
+  .labs-controls{flex-direction:column;align-items:stretch}
+  #labs-search{max-width:none}
+  .labs-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+}
+
 .cert-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));
@@ -1227,175 +1339,19 @@ a,button,input,textarea{cursor:none}
   </div>
 </section>
 
-<section id="battlegrounds" class="reveal" style="max-width: 1800px; margin: 6rem auto; padding: 0 2rem; position: relative; z-index: 1;">
-  <div class="orbit-sections-wrapper">
-    <div class="zone-left">
-      <div class="orbit-section">
-        <div class="orbit-label"><span>//</span> HTB</div>
-        <div class="orbit-tags">
-          <a class="orbit-tag" href="https://app.hackthebox.com/profile/019c9f3e-4b5a-7146-b937-c33ec584d620" target="_blank">
-            <img src="https://cdn.simpleicons.org/hackthebox">HTB Profile // Apprentice
-          </a>
-          <a class="orbit-tag"><img src="https://cdn.simpleicons.org/hackthebox">Level 30</a>
-          <a class="orbit-tag"><img src="https://cdn.simpleicons.org/hackthebox">Active Member</a>
-          <a class="orbit-tag" href="https://labs.hackthebox.com/achievement/sherlock/2541400/631" target="_blank">
-            <img src="https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9103-d723-4062-b57f-0a001833056e.png">Brutus
-          </a>
-          <a class="orbit-tag" href="https://labs.hackthebox.com/achievement/sherlock/2541400/750" target="_blank">
-            <img src="https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-1318-436f-a707-ff8e40f40c1b.png">CrownJewel-2
-          </a>
-          <a class="orbit-tag" href="https://labs.hackthebox.com/achievement/sherlock/2541400/751" target="_blank">
-            <img src="https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-0f4d-4320-a1a6-25845ed6169f.png">CrownJewel-1
-          </a>
-          <a class="orbit-tag" href="https://labs.hackthebox.com/achievement/sherlock/2541400/749" target="_blank">
-            <img src="https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-16e3-4140-8ebd-fa81702141af.png">Reaper
-          </a>
-          <a class="orbit-tag" href="https://labs.hackthebox.com/achievement/sherlock/2541400/747" target="_blank">
-            <img src="https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-1ea9-40f3-b4a7-7879c7533528.png">Noxious
-          </a>
-          <a class="orbit-tag" href="https://labs.hackthebox.com/achievement/sherlock/2541400/736" target="_blank">
-            <img src="https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-4ab6-4804-99ce-2bfbbb9887e4.png">Campfire-2
-          </a>
-          <a class="orbit-tag" href="https://labs.hackthebox.com/achievement/sherlock/2541400/737" target="_blank">
-            <img src="https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-46a7-4efb-918c-01ca0f1e2458.png">Campfire-1
-          </a>
-          <a class="orbit-tag" href="https://labs.hackthebox.com/achievement/sherlock/2541400/632" target="_blank">
-            <img src="https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9103-d28e-4dba-b313-ac6255362411.png">Unit42
-          </a>
-          <a class="orbit-tag" href="https://labs.hackthebox.com/achievement/sherlock/2541400/1033" target="_blank">
-            <img src="https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/a04499c1-f635-4b8b-bf18-3b12f35498b0.png">SecretPictures
-          </a>
-        </div>
-      </div>
-
-      <div class="orbit-section">
-        <div class="orbit-label"><span>//</span> isovalent</div>
-        <div class="orbit-tags">
-          <a class="orbit-tag" href="https://www.credly.com/badges/f9969ae4-5b35-47dc-a1f6-f58b58f1fb4b/public_url" target="_blank">
-            <img src="https://images.credly.com/images/d54799eb-d613-4113-affa-e89770b53689/tempfile20250605-59-ip94pl.png">Discovery: SecOps Engineer
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-center">
-      <h1 class="hero-name" style="font-size: 3.6rem;">
-        Cyber
-        <span class="last">Labs</span>
-      </h1>
-      <p class="hero-sub">HackTheBox <span>&#8901;</span> LetsDefend</p>
-    </div>
-
-            <div class="zone-right">
-      <div class="orbit-section" style="max-height: 800px; overflow-y: auto;">
-        <div class="orbit-label"><span>//</span> letsdefend</div>
-        <div class="orbit-tags">
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/18803afa-8fa3-458e-a382-364b1de7f748" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/web-attacks-badge-2f7551ca-00ea-49e0-ae0c-a508c3c00552.png">Web Attack Investigator
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/82d6fe7a-4012-48ca-8b61-ef5dd6089e8a" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/badge-linux-101-01963665-e81b-45f9-aae0-f1a1b63392cb.png">Linux Fan
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/6c157f07-3efe-4e49-9c8b-cf8fdbc62fe5" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/brute-force-badge-48517643-fe50-4a92-b328-506c4208a6b1.png">Brute Force
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/a2715868-c227-4da6-b4c0-bfb2dc4e00c1" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/hacked-analysis-badge-avatar-4c433f26-e83b-4e2a-8401-3fb32b1fa093.png">Web Server Analyzer
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/4e8c5258-9dbb-4579-a7af-baa76f480c63" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/mitre-badge-2-f8edfcce-62c1-4170-95cf-af5fd56562d0.png">MITRE ATT&CK
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/c8bfcf77-dd9b-461c-b225-d479d7b01551" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/web-attacks-2-badge-5ab868c5-0140-4000-b386-f15e747614cf.png">Web Hunter
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/2b757cc6-1847-4078-8050-e7436a56ddd0" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/go-badge-avatar-f8a039ef-d328-49b1-89ad-2e2b4493cacc.png">Go Writer
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/f20a34c4-c220-4361-9490-55d413992012" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/secure-network-design-badge-8d746f5e-9ec2-4790-9227-f1c48207b21a.png">Secure Network Designer
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/fbb234b2-556f-40c0-85db-979215f32f2f" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/jwt-badge-38239eae-8bed-451b-911f-449144eafc7f.png">JWT Attacks and Detection
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/56a1ee10-4e59-4464-9dd2-f5d8cc4173f8" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-cloudwatch-badge.png">AWS CloudWatch
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/853bd553-4d60-4752-b551-7252b911ad3e" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/physical-sec-badge.png">Physical Security
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/5e3fb8a7-288b-4b4d-8c5a-7251bef11561" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/red-team-tools-2-858e0eea-5707-460d-b176-3912fdd86aa4.png">Red Team Hunter - 2
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/0726055f-bf06-497a-b6f0-f87708821244" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/pdf-avatar-9a8f2e62-86dd-4032-a2d5-90ef42f5b04a.png">PDF Analyzer
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/05a90ca0-4aa3-4a7b-8474-11f9b10fa4ad" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/suspicious-browser-extension-badge-cd7872ab-e178-4a1e-91ee-92eccd0cf809.png">Browser Extension Analyzer
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/08923c86-d885-47ab-afe8-4c1fd91fe1e0" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/phishing-challenge-avatart_vQ1645S-19e4e4cb-4f19-45ef-bb63-01c5260c8547.png">Phishing Analyzer
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/5c2aff9c-45e1-48b3-abf9-b620e54b5f9a" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/aws-badge-b665787c-af28-4502-bf99-8d88dd146e90.png">AWS Responder
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/f81ee85b-afc8-43cf-80b1-bf7a102ffae1" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/aws-persestence-badge-c5c8649b-0c46-46fd-a78d-34b87f8833e5.png">AWS Incident Handler
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/dd2691a6-f489-413c-8715-09cfbc0fb568" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/docker-badge-62df3f55-0589-4bb6-ba71-b344ceced720.png">Docker Forensics
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/b36770ac-0b58-49fd-a490-5603290c3caf" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/macos-malware-badge.png">macOS Malware
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/51f72b7f-b714-45b9-a434-c20533c6cc12" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/discord-badge.png">Discord Forensics
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/183d448f-a4aa-4703-8700-33dc415dec3f" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/go-ransom-badge.png">Golang Ransomware
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/fa25e80e-f523-46c8-872a-0ceb06d8ee97" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-bucketware-badge.png">AWS Bucketware
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/7a43febd-d543-4d2c-9a7b-16f778e6ca8d" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-stacked-badge.png">AWS Stacked
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/b636a9e8-8fa4-4dc6-a9cf-a875877d4d42" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/voip-challenge-badge.png">VoIP
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/dc19c44e-3f48-45aa-85c1-95e482aafa2b" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/usb-forensics-challenge-badge.png">USB Forensics
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/0601442e-6392-4fd2-b756-bd4d0a830866" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/TinyTurla+Backdoor-badge.png">TinyTurla Backdoor
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/602e042c-481a-46bb-849b-9694e1d482a1" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/samba-spy-badge.png">Samba Spy
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/681cea81-e89f-4243-afc7-76c07f0dc678" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/mac+backdoor-challenge-badge.png">Mac Backdoor
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/60b652ed-5bb1-4a78-a387-3e126e1aa538" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Hidden+Backdoor-challenge-badge.png">Hidden Backdoor
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/e34cb954-5320-44a7-8ae2-3cc3428cdb31" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Google+Cloud+Compromise-badge.png">Google Cloud Compromise
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/46da6361-1397-49d6-b65a-3274f697f3c1" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Promptlock+Ransomware-badge.png">Promptlock Ransomware
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/ae4ae87a-809c-46c6-8ee3-9a6afa62f167" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Learn+Sigma-challenge-badge.png">Learn Sigma
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/d6353f1a-eb02-4524-88e5-204e68eb346e" target="_blank">
-            <img src="https://app-ld-img.s3.amazonaws.com/badge/first-badge-6529e305-65c7-41fe-a929-c728f1bee986.png">First Blood
-          </a>
-          <a class="orbit-tag" href="https://app.letsdefend.io/my-rewards/detail/e271b31b-f73e-408a-925f-f226d019d417" target="_blank">
-            <img src="https://app-ld-img.s3.us-east-2.amazonaws.com/badge/MemLoot-challenge-badge.png">MemLoot
-          </a>
-</div>
-    </div>
-</div>
+<section id="battlegrounds" class="reveal" style="max-width: 1200px; margin: 6rem auto; padding: 0 2rem; position: relative; z-index: 1;">
+  <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> cyber labs</div>
+  <div class="labs-meta">
+    <a href="https://app.hackthebox.com/profile/019c9f3e-4b5a-7146-b937-c33ec584d620" target="_blank"><img src="https://cdn.simpleicons.org/hackthebox">HTB Profile // Apprentice</a>
+    <span>Level 30</span>
+    <span>Active Member</span>
   </div>
+  <div class="labs-stats" id="labs-stats"></div>
+  <div class="labs-controls">
+    <div class="labs-filter-tabs" id="labs-filter-tabs"></div>
+    <input id="labs-search" type="text" placeholder="Search labs..." autocomplete="off" spellcheck="false">
+  </div>
+  <div class="labs-grid" id="labs-grid" data-items='[{"name": "Brutus", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/631", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9103-d723-4062-b57f-0a001833056e.png", "platform": "HTB"}, {"name": "CrownJewel-2", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/750", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-1318-436f-a707-ff8e40f40c1b.png", "platform": "HTB"}, {"name": "CrownJewel-1", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/751", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-0f4d-4320-a1a6-25845ed6169f.png", "platform": "HTB"}, {"name": "Reaper", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/749", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-16e3-4140-8ebd-fa81702141af.png", "platform": "HTB"}, {"name": "Noxious", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/747", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-1ea9-40f3-b4a7-7879c7533528.png", "platform": "HTB"}, {"name": "Campfire-2", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/736", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-4ab6-4804-99ce-2bfbbb9887e4.png", "platform": "HTB"}, {"name": "Campfire-1", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/737", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-46a7-4efb-918c-01ca0f1e2458.png", "platform": "HTB"}, {"name": "Unit42", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/632", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9103-d28e-4dba-b313-ac6255362411.png", "platform": "HTB"}, {"name": "SecretPictures", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/1033", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/a04499c1-f635-4b8b-bf18-3b12f35498b0.png", "platform": "HTB"}, {"name": "Discovery: SecOps Engineer", "href": "https://www.credly.com/badges/f9969ae4-5b35-47dc-a1f6-f58b58f1fb4b/public_url", "img": "https://images.credly.com/images/d54799eb-d613-4113-affa-e89770b53689/tempfile20250605-59-ip94pl.png", "platform": "Isovalent"}, {"name": "Web Attack Investigator", "href": "https://app.letsdefend.io/my-rewards/detail/18803afa-8fa3-458e-a382-364b1de7f748", "img": "https://app-ld-img.s3.amazonaws.com/badge/web-attacks-badge-2f7551ca-00ea-49e0-ae0c-a508c3c00552.png", "platform": "LetsDefend"}, {"name": "Linux Fan", "href": "https://app.letsdefend.io/my-rewards/detail/82d6fe7a-4012-48ca-8b61-ef5dd6089e8a", "img": "https://app-ld-img.s3.amazonaws.com/badge/badge-linux-101-01963665-e81b-45f9-aae0-f1a1b63392cb.png", "platform": "LetsDefend"}, {"name": "Brute Force", "href": "https://app.letsdefend.io/my-rewards/detail/6c157f07-3efe-4e49-9c8b-cf8fdbc62fe5", "img": "https://app-ld-img.s3.amazonaws.com/badge/brute-force-badge-48517643-fe50-4a92-b328-506c4208a6b1.png", "platform": "LetsDefend"}, {"name": "Web Server Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/a2715868-c227-4da6-b4c0-bfb2dc4e00c1", "img": "https://app-ld-img.s3.amazonaws.com/badge/hacked-analysis-badge-avatar-4c433f26-e83b-4e2a-8401-3fb32b1fa093.png", "platform": "LetsDefend"}, {"name": "MITRE ATT&CK", "href": "https://app.letsdefend.io/my-rewards/detail/4e8c5258-9dbb-4579-a7af-baa76f480c63", "img": "https://app-ld-img.s3.amazonaws.com/badge/mitre-badge-2-f8edfcce-62c1-4170-95cf-af5fd56562d0.png", "platform": "LetsDefend"}, {"name": "Web Hunter", "href": "https://app.letsdefend.io/my-rewards/detail/c8bfcf77-dd9b-461c-b225-d479d7b01551", "img": "https://app-ld-img.s3.amazonaws.com/badge/web-attacks-2-badge-5ab868c5-0140-4000-b386-f15e747614cf.png", "platform": "LetsDefend"}, {"name": "Go Writer", "href": "https://app.letsdefend.io/my-rewards/detail/2b757cc6-1847-4078-8050-e7436a56ddd0", "img": "https://app-ld-img.s3.amazonaws.com/badge/go-badge-avatar-f8a039ef-d328-49b1-89ad-2e2b4493cacc.png", "platform": "LetsDefend"}, {"name": "Secure Network Designer", "href": "https://app.letsdefend.io/my-rewards/detail/f20a34c4-c220-4361-9490-55d413992012", "img": "https://app-ld-img.s3.amazonaws.com/badge/secure-network-design-badge-8d746f5e-9ec2-4790-9227-f1c48207b21a.png", "platform": "LetsDefend"}, {"name": "JWT Attacks and Detection", "href": "https://app.letsdefend.io/my-rewards/detail/fbb234b2-556f-40c0-85db-979215f32f2f", "img": "https://app-ld-img.s3.amazonaws.com/badge/jwt-badge-38239eae-8bed-451b-911f-449144eafc7f.png", "platform": "LetsDefend"}, {"name": "AWS CloudWatch", "href": "https://app.letsdefend.io/my-rewards/detail/56a1ee10-4e59-4464-9dd2-f5d8cc4173f8", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-cloudwatch-badge.png", "platform": "LetsDefend"}, {"name": "Physical Security", "href": "https://app.letsdefend.io/my-rewards/detail/853bd553-4d60-4752-b551-7252b911ad3e", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/physical-sec-badge.png", "platform": "LetsDefend"}, {"name": "Red Team Hunter - 2", "href": "https://app.letsdefend.io/my-rewards/detail/5e3fb8a7-288b-4b4d-8c5a-7251bef11561", "img": "https://app-ld-img.s3.amazonaws.com/badge/red-team-tools-2-858e0eea-5707-460d-b176-3912fdd86aa4.png", "platform": "LetsDefend"}, {"name": "PDF Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/0726055f-bf06-497a-b6f0-f87708821244", "img": "https://app-ld-img.s3.amazonaws.com/badge/pdf-avatar-9a8f2e62-86dd-4032-a2d5-90ef42f5b04a.png", "platform": "LetsDefend"}, {"name": "Browser Extension Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/05a90ca0-4aa3-4a7b-8474-11f9b10fa4ad", "img": "https://app-ld-img.s3.amazonaws.com/badge/suspicious-browser-extension-badge-cd7872ab-e178-4a1e-91ee-92eccd0cf809.png", "platform": "LetsDefend"}, {"name": "Phishing Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/08923c86-d885-47ab-afe8-4c1fd91fe1e0", "img": "https://app-ld-img.s3.amazonaws.com/badge/phishing-challenge-avatart_vQ1645S-19e4e4cb-4f19-45ef-bb63-01c5260c8547.png", "platform": "LetsDefend"}, {"name": "AWS Responder", "href": "https://app.letsdefend.io/my-rewards/detail/5c2aff9c-45e1-48b3-abf9-b620e54b5f9a", "img": "https://app-ld-img.s3.amazonaws.com/badge/aws-badge-b665787c-af28-4502-bf99-8d88dd146e90.png", "platform": "LetsDefend"}, {"name": "AWS Incident Handler", "href": "https://app.letsdefend.io/my-rewards/detail/f81ee85b-afc8-43cf-80b1-bf7a102ffae1", "img": "https://app-ld-img.s3.amazonaws.com/badge/aws-persestence-badge-c5c8649b-0c46-46fd-a78d-34b87f8833e5.png", "platform": "LetsDefend"}, {"name": "Docker Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/dd2691a6-f489-413c-8715-09cfbc0fb568", "img": "https://app-ld-img.s3.amazonaws.com/badge/docker-badge-62df3f55-0589-4bb6-ba71-b344ceced720.png", "platform": "LetsDefend"}, {"name": "macOS Malware", "href": "https://app.letsdefend.io/my-rewards/detail/b36770ac-0b58-49fd-a490-5603290c3caf", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/macos-malware-badge.png", "platform": "LetsDefend"}, {"name": "Discord Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/51f72b7f-b714-45b9-a434-c20533c6cc12", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/discord-badge.png", "platform": "LetsDefend"}, {"name": "Golang Ransomware", "href": "https://app.letsdefend.io/my-rewards/detail/183d448f-a4aa-4703-8700-33dc415dec3f", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/go-ransom-badge.png", "platform": "LetsDefend"}, {"name": "AWS Bucketware", "href": "https://app.letsdefend.io/my-rewards/detail/fa25e80e-f523-46c8-872a-0ceb06d8ee97", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-bucketware-badge.png", "platform": "LetsDefend"}, {"name": "AWS Stacked", "href": "https://app.letsdefend.io/my-rewards/detail/7a43febd-d543-4d2c-9a7b-16f778e6ca8d", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-stacked-badge.png", "platform": "LetsDefend"}, {"name": "VoIP", "href": "https://app.letsdefend.io/my-rewards/detail/b636a9e8-8fa4-4dc6-a9cf-a875877d4d42", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/voip-challenge-badge.png", "platform": "LetsDefend"}, {"name": "USB Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/dc19c44e-3f48-45aa-85c1-95e482aafa2b", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/usb-forensics-challenge-badge.png", "platform": "LetsDefend"}, {"name": "TinyTurla Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/0601442e-6392-4fd2-b756-bd4d0a830866", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/TinyTurla+Backdoor-badge.png", "platform": "LetsDefend"}, {"name": "Samba Spy", "href": "https://app.letsdefend.io/my-rewards/detail/602e042c-481a-46bb-849b-9694e1d482a1", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/samba-spy-badge.png", "platform": "LetsDefend"}, {"name": "Mac Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/681cea81-e89f-4243-afc7-76c07f0dc678", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/mac+backdoor-challenge-badge.png", "platform": "LetsDefend"}, {"name": "Hidden Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/60b652ed-5bb1-4a78-a387-3e126e1aa538", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Hidden+Backdoor-challenge-badge.png", "platform": "LetsDefend"}, {"name": "Google Cloud Compromise", "href": "https://app.letsdefend.io/my-rewards/detail/e34cb954-5320-44a7-8ae2-3cc3428cdb31", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Google+Cloud+Compromise-badge.png", "platform": "LetsDefend"}, {"name": "Promptlock Ransomware", "href": "https://app.letsdefend.io/my-rewards/detail/46da6361-1397-49d6-b65a-3274f697f3c1", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Promptlock+Ransomware-badge.png", "platform": "LetsDefend"}, {"name": "Learn Sigma", "href": "https://app.letsdefend.io/my-rewards/detail/ae4ae87a-809c-46c6-8ee3-9a6afa62f167", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Learn+Sigma-challenge-badge.png", "platform": "LetsDefend"}, {"name": "First Blood", "href": "https://app.letsdefend.io/my-rewards/detail/d6353f1a-eb02-4524-88e5-204e68eb346e", "img": "https://app-ld-img.s3.amazonaws.com/badge/first-badge-6529e305-65c7-41fe-a929-c728f1bee986.png", "platform": "LetsDefend"}, {"name": "MemLoot", "href": "https://app.letsdefend.io/my-rewards/detail/e271b31b-f73e-408a-925f-f226d019d417", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/MemLoot-challenge-badge.png", "platform": "LetsDefend"}]'></div>
 </section>
 
 <section id="contact">
@@ -1563,6 +1519,55 @@ const isMobile = window.innerWidth < 768;
 })();
 
 (function(){
+  const grid=document.getElementById('labs-grid');
+  const statsEl=document.getElementById('labs-stats');
+  const tabsEl=document.getElementById('labs-filter-tabs');
+  const searchEl=document.getElementById('labs-search');
+  if(!grid||!statsEl||!tabsEl||!searchEl) return;
+
+  const items=JSON.parse(grid.dataset.items);
+  const platforms=[...new Set(items.map(i=>i.platform))];
+  const counts={};
+  platforms.forEach(p=>counts[p]=items.filter(i=>i.platform===p).length);
+
+  statsEl.innerHTML=`
+    <div class="labs-stat"><span class="n">${items.length}</span><span class="l">Total Badges</span></div>
+    <div class="labs-stat"><span class="n">${platforms.length}</span><span class="l">Platforms</span></div>
+    ${platforms.map(p=>`<div class="labs-stat"><span class="n">${counts[p]}</span><span class="l">${p}</span></div>`).join('')}
+  `;
+
+  let activeTab='All';
+  function renderTabs(){
+    tabsEl.innerHTML=`<div class="labs-tab${activeTab==='All'?' active':''}" data-p="All">All <span class="c">${items.length}</span></div>` +
+      platforms.map(p=>`<div class="labs-tab${activeTab===p?' active':''}" data-p="${p}">${p} <span class="c">${counts[p]}</span></div>`).join('');
+    tabsEl.querySelectorAll('.labs-tab').forEach(tab=>{
+      tab.addEventListener('click', ()=>{ activeTab=tab.dataset.p; renderTabs(); renderGrid(); });
+    });
+  }
+
+  function renderGrid(){
+    const q=searchEl.value.trim().toLowerCase();
+    const filtered=items.filter(i=>
+      (activeTab==='All'||i.platform===activeTab) &&
+      (!q||i.name.toLowerCase().includes(q))
+    );
+    if(!filtered.length){
+      grid.innerHTML='<div class="labs-empty">No matches</div>';
+      return;
+    }
+    grid.innerHTML=filtered.map(i=>{
+      const tag=i.href?`<a class="lab-card" href="${i.href}" target="_blank">`:'<div class="lab-card">';
+      const closeTag=i.href?'</a>':'</div>';
+      return `${tag}<img src="${i.img}" loading="lazy"><span class="lab-name">${i.name}</span><span class="lab-platform">${i.platform}</span>${closeTag}`;
+    }).join('');
+  }
+
+  renderTabs();
+  renderGrid();
+  searchEl.addEventListener('input', renderGrid);
+})();
+
+(function(){
   const trigger=document.getElementById('search-trigger');
   const overlay=document.getElementById('search-overlay');
   const input=document.getElementById('search-input');
@@ -1614,6 +1619,12 @@ const isMobile = window.innerWidth < 768;
         });
       });
     });
+    const labsGrid=document.getElementById('labs-grid');
+    if(labsGrid){
+      JSON.parse(labsGrid.dataset.items).forEach(i=>{
+        items.push({text:`${i.name} (${i.platform})`,group:'cyber labs',href:i.href,img:i.img});
+      });
+    }
     document.querySelectorAll('.cert-card').forEach(card=>{
       const name=card.querySelector('.cert-name').textContent.trim();
       const issuer=card.querySelector('.cert-issuer').textContent.trim();
