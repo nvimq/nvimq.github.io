@@ -614,6 +614,45 @@ a,button,input,textarea{cursor:none}
 @media(max-width:700px){
   .skills-grid{grid-template-columns:1fr;gap:1.75rem}
 }
+
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));
+  gap:1.25rem;
+  margin-top:2rem;
+}
+.cert-card{
+  display:flex;flex-direction:column;gap:0.75rem;
+  padding:1.25rem;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.08);
+  text-decoration:none;
+  transition:all 0.25s ease;
+}
+.cert-card:hover{
+  border-color:rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.04);
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,0.35);
+}
+.cert-card-top{
+  display:flex;align-items:center;gap:0.65rem;
+}
+.cert-card-top img{width:22px;height:22px;filter:grayscale(1) brightness(0.85)}
+.cert-issuer{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#666;
+}
+.cert-name{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.9rem;color:#eee;line-height:1.4;
+}
+.cert-link{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;color:#666;letter-spacing:0.05em;
+  margin-top:auto;
+}
+.cert-card:hover .cert-link{color:#aaa}
 </style>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -1075,25 +1114,41 @@ a,button,input,textarea{cursor:none}
   </div>
 </section>
 
-<section id="certifications" class="reveal" style="max-width: 1800px; margin: 6rem auto; padding: 0 2rem; position: relative; z-index: 1;">
-  <div class="orbit-sections-wrapper" style="justify-content: center;">
-    <div class="orbit-section" style="text-align: center;">
-      <div class="orbit-label" style="justify-content: center;"><span>//</span> certifications</div>
-      <div class="orbit-tags" style="justify-content: center;">
-        <a class="orbit-tag" href="./certifications/owasp-top10-snyk.pdf" target="_blank">
-          <img src="https://cdn.simpleicons.org/owasp">OWASP Top 10
-        </a>
-        <a class="orbit-tag" href="https://www.credly.com/badges/72dc398d-25b3-42bd-b47b-aab5e3806a51/" target="_blank">
-          <img src="https://cdn.simpleicons.org/cilium">Cilium AI/ML Security
-        </a>
-        <a class="orbit-tag" href="https://courses.academy.tigera.io/certificates/6dbe730cb475457d950ab4b835ffe808" target="_blank">
-          <img src="https://cdn.simpleicons.org/kubernetes">Certified Calico Operator
-        </a>
-        <a class="orbit-tag" href="https://certification.gremlin.com/credentials/2cb26774-b77a-48f7-8324-a3bd2c2d0dba" target="_blank">
-          <img src="https://cdn.simpleicons.org/linux">Gremlin Chaos Engineering
-        </a>
+<section id="certifications" class="reveal" style="max-width: 1100px; margin: 6rem auto; padding: 0 2rem; position: relative; z-index: 1;">
+  <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> certifications</div>
+  <div class="cert-grid">
+    <a class="cert-card" href="./certifications/owasp-top10-snyk.pdf" target="_blank">
+      <div class="cert-card-top">
+        <img src="https://cdn.simpleicons.org/owasp">
+        <span class="cert-issuer">Snyk</span>
       </div>
-    </div>
+      <div class="cert-name">OWASP Top 10</div>
+      <span class="cert-link">view credential &rarr;</span>
+    </a>
+    <a class="cert-card" href="https://www.credly.com/badges/72dc398d-25b3-42bd-b47b-aab5e3806a51/" target="_blank">
+      <div class="cert-card-top">
+        <img src="https://cdn.simpleicons.org/cilium">
+        <span class="cert-issuer">Isovalent &middot; Credly</span>
+      </div>
+      <div class="cert-name">Cilium AI/ML Security</div>
+      <span class="cert-link">view credential &rarr;</span>
+    </a>
+    <a class="cert-card" href="https://courses.academy.tigera.io/certificates/6dbe730cb475457d950ab4b835ffe808" target="_blank">
+      <div class="cert-card-top">
+        <img src="https://cdn.simpleicons.org/kubernetes">
+        <span class="cert-issuer">Tigera Academy</span>
+      </div>
+      <div class="cert-name">Certified Calico Operator</div>
+      <span class="cert-link">view credential &rarr;</span>
+    </a>
+    <a class="cert-card" href="https://certification.gremlin.com/credentials/2cb26774-b77a-48f7-8324-a3bd2c2d0dba" target="_blank">
+      <div class="cert-card-top">
+        <img src="https://cdn.simpleicons.org/linux">
+        <span class="cert-issuer">Gremlin</span>
+      </div>
+      <div class="cert-name">Chaos Engineering</div>
+      <span class="cert-link">view credential &rarr;</span>
+    </a>
   </div>
 </section>
 
@@ -1474,6 +1529,11 @@ const isMobile = window.innerWidth < 768;
       const name=row.querySelector('.skill-head span').textContent.trim();
       const pct=row.querySelector('.pct').textContent.trim();
       items.push({text:`${name} ${pct}`,group:'skills',href:'#skills',img:null});
+    });
+    document.querySelectorAll('.cert-card').forEach(card=>{
+      const name=card.querySelector('.cert-name').textContent.trim();
+      const issuer=card.querySelector('.cert-issuer').textContent.trim();
+      items.push({text:`${name} (${issuer})`,group:'certifications',href:card.getAttribute('href'),img:card.querySelector('img')?card.querySelector('img').src:null});
     });
     return items;
   }
