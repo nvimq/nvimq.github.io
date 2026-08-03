@@ -3,8 +3,8 @@ pages:
   stage: deploy
   script:
     - mkdir -p public
-    - cp index.html 404.html robots.txt sitemap.xml .nojekyll _headers public/
-    - cp manifest.webmanifest sw.js icon-192.png icon-512.png apple-touch-icon.png public/
+    - cp index.html 404.html robots.txt sitemap.xml llms.txt .nojekyll _headers public/
+    - cp manifest.webmanifest sw.js icon-192.png icon-512.png apple-touch-icon.png secops-discovery-badge.webp public/
     - cp google*.html public/ 2>/dev/null || true
     - cp -r certifications public/
   artifacts:

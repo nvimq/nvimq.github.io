@@ -1,0 +1,15 @@
+# Nurdaulet Bolat
+
+> Personal site and portfolio of Nurdaulet Bolat (Нурдаулет Болат), a Senior DevOps / Platform Engineer.
+
+Nurdaulet Bolat works with Linux, Kubernetes, Cloud infrastructure, IaC, CI/CD, observability, and security. This site lists certifications, skills, and hands-on cybersecurity lab writeups.
+
+## Pages
+
+- [Home](https://nvimq.gitlab.io/): certifications, skills, and lab achievements.
+
+## Profiles
+
+- [GitHub](https://github.com/nvimq)
+- [LinkedIn](https://www.linkedin.com/in/nurdauletbolat)
+- [GitLab](https://gitlab.com/nvimq)
