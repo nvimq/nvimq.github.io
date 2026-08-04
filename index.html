@@ -1556,7 +1556,7 @@ const isMobile = window.innerWidth < 768;
     grid.innerHTML=filtered.map(i=>{
       const tag=i.href?`<a class="lab-card" href="${i.href}" target="_blank">`:'<div class="lab-card">';
       const closeTag=i.href?'</a>':'</div>';
-      const desc = i.desc ? `<span class="lab-desc" style="display:block; font-size:0.85rem; color:#aaa; margin-top:0.3rem;">${i.desc}</span>` : '';
+      const desc = i.desc ? `<span class="lab-desc" style="display:block; font-family:'JetBrains Mono',monospace; font-size:0.55rem; color:#555; margin-top:0.4rem; letter-spacing:0.05em;">${i.desc}</span>` : '';
       return `${tag}<img src="${i.img}" loading="lazy" alt=""><span class="lab-name">${i.name}${desc}</span><span class="lab-platform">${i.platform}</span>${closeTag}`;
     }).join('');
   }
