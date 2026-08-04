@@ -1774,5 +1774,242 @@ if('serviceWorker' in navigator){
   window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})});
 }
 </script>
+<style>
+/* AI Chat Widget */
+#ai-chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  font-family: inherit;
+}
+#ai-chat-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #000;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,255,170,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+#ai-chat-btn:hover {
+  transform: scale(1.1);
+}
+#ai-chat-btn svg {
+  width: 28px;
+  height: 28px;
+}
+#ai-chat-panel {
+  display: none;
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 320px;
+  height: 400px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  flex-direction: column;
+  overflow: hidden;
+}
+#ai-chat-panel.show {
+  display: flex;
+}
+.chat-header {
+  background: var(--surface-light);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--surface-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+#ai-chat-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+#ai-chat-close:hover {
+  color: var(--text);
+}
+.chat-body {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chat-body::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-body::-webkit-scrollbar-thumb {
+  background: var(--surface-border);
+  border-radius: 3px;
+}
+.chat-msg {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  max-width: 85%;
+  word-wrap: break-word;
+}
+.chat-msg.ai {
+  background: var(--surface-light);
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+.chat-msg.user {
+  background: var(--primary);
+  color: #000;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+.chat-footer {
+  padding: 12px;
+  border-top: 1px solid var(--surface-border);
+  display: flex;
+  gap: 8px;
+  background: var(--surface);
+}
+#ai-chat-input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--surface-border);
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
+}
+#ai-chat-input:focus {
+  border-color: var(--primary);
+}
+#ai-chat-send {
+  background: var(--primary);
+  color: #000;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#ai-chat-send svg {
+  width: 18px;
+  height: 18px;
+}
+@media (max-width: 400px) {
+  #ai-chat-panel {
+    width: 280px;
+    height: 350px;
+  }
+}
+</style>
+
+<div id="ai-chat-widget">
+  <div id="ai-chat-panel">
+    <div class="chat-header">
+      <span>AI Assistant</span>
+      <button id="ai-chat-close">&times;</button>
+    </div>
+    <div class="chat-body" id="ai-chat-body">
+      <div class="chat-msg ai">Hi! I'm Nurdaulet's AI assistant. Ask me anything about his skills, experience, or projects.</div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="ai-chat-input" placeholder="Type a message..." autocomplete="off">
+      <button id="ai-chat-send" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+  </div>
+  <button id="ai-chat-btn" aria-label="Open AI Assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+  </button>
+</div>
+
+<script>
+(function(){
+  // TODO: Replace with your deployed Cloudflare Worker URL
+  const CF_WORKER_URL = 'https://ai-assistant.YOUR-SUBDOMAIN.workers.dev/';
+
+  const chatBtn = document.getElementById('ai-chat-btn');
+  const chatPanel = document.getElementById('ai-chat-panel');
+  const chatClose = document.getElementById('ai-chat-close');
+  const chatInput = document.getElementById('ai-chat-input');
+  const chatSend = document.getElementById('ai-chat-send');
+  const chatBody = document.getElementById('ai-chat-body');
+
+  chatBtn.addEventListener('click', () => {
+    chatPanel.classList.toggle('show');
+    if (chatPanel.classList.contains('show')) {
+      chatInput.focus();
+    }
+  });
+
+  chatClose.addEventListener('click', () => {
+    chatPanel.classList.remove('show');
+  });
+
+  async function sendMessage() {
+    const text = chatInput.value.trim();
+    if(!text) return;
+    chatInput.value = '';
+    
+    const uMsg = document.createElement('div');
+    uMsg.className = 'chat-msg user';
+    uMsg.textContent = text;
+    chatBody.appendChild(uMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    
+    const loadMsg = document.createElement('div');
+    loadMsg.className = 'chat-msg ai';
+    loadMsg.textContent = 'Thinking...';
+    chatBody.appendChild(loadMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    try {
+      if (CF_WORKER_URL.includes('YOUR-SUBDOMAIN')) {
+        throw new Error('Please update CF_WORKER_URL in index.html first.');
+      }
+
+      const res = await fetch(CF_WORKER_URL, {
+        method: 'POST',
+        body: JSON.stringify({ message: text }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      
+      const data = await res.json();
+      loadMsg.innerHTML = (data.reply || "Sorry, I couldn't understand that.").replace(/\n/g, '<br>');
+    } catch(e) {
+      console.error(e);
+      if (e.message.includes('YOUR-SUBDOMAIN')) {
+        loadMsg.innerHTML = 'Oops! Please setup your Cloudflare Worker and paste the URL in the <code>CF_WORKER_URL</code> variable inside index.html.';
+      } else {
+        loadMsg.textContent = 'Error: The assistant is currently offline or unreachable.';
+      }
+    }
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  chatSend.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keypress', (e) => {
+    if(e.key === 'Enter') sendMessage();
+  });
+})();
+</script>
 </body>
 </html>
