@@ -1983,8 +1983,11 @@ if('serviceWorker' in navigator){
     }
   });
 
-  chatClose.addEventListener('click', () => {
+  chatClose.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
     chatPanel.classList.remove('show');
+    chatPanel.classList.remove('keyboard-open');
+    chatInput.blur();
   });
 
   chatInput.addEventListener('focus', () => {
@@ -1994,6 +1997,15 @@ if('serviceWorker' in navigator){
   chatInput.addEventListener('blur', () => {
     chatPanel.classList.remove('keyboard-open');
   });
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+      // If viewport grows to nearly full screen, keyboard is closed
+      if (window.visualViewport.height > window.innerHeight * 0.8) {
+        chatInput.blur();
+      }
+    });
+  }
 
   async function sendMessage() {
     const text = chatInput.value.trim();
