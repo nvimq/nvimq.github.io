@@ -1921,10 +1921,16 @@ if('serviceWorker' in navigator){
   width: 18px;
   height: 18px;
 }
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   #ai-chat-panel {
-    width: 280px;
-    height: 350px;
+    position: fixed;
+    top: 20px;
+    bottom: auto;
+    left: 20px;
+    right: 20px;
+    width: auto;
+    height: 400px;
+    max-height: 50vh;
   }
 }
 </style>
