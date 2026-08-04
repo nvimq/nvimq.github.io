@@ -577,35 +577,6 @@ a,button,input,textarea{cursor:none}
 #offline-indicator .dot{width:6px;height:6px;border-radius:50%;background:#ff5050;animation:pulseDot 1.4s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:0.3}}
 
-#pwa-install{
-  position:fixed;
-  bottom:1.25rem;right:1.25rem;
-  z-index:9998;
-  display:none;align-items:center;gap:0.75rem;
-  padding:0.75rem 1rem;
-  background:rgba(10,10,10,0.95);
-  border:1px solid rgba(255,255,255,0.15);
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.75rem;color:#aaa;
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-#pwa-install.show{display:flex}
-#pwa-install button{
-  font-family:'JetBrains Mono',monospace;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.2);
-  color:#fff;
-  padding:0.4rem 0.8rem;
-  font-size:0.7rem;letter-spacing:0.05em;text-transform:uppercase;
-  cursor:pointer;transition:all 0.2s ease;
-}
-#pwa-install button:hover{background:rgba(255,255,255,0.12)}
-#pwa-install .dismiss{background:transparent;border-color:transparent;color:#555;padding:0.4rem 0.5rem}
-#pwa-install .dismiss:hover{color:#999;background:transparent}
-@media(max-width:768px){
-  #pwa-install{left:1rem;right:1rem;bottom:1rem}
-}
-
 .sigil-wrap{
   display:flex;justify-content:center;
   margin-top:2.5rem;
@@ -879,11 +850,7 @@ a,button,input,textarea{cursor:none}
 
 <div id="offline-indicator"><span class="dot"></span><span>Offline &mdash; cached view</span></div>
 
-<div id="pwa-install">
-  <span>Install this site as an app</span>
-  <button id="pwa-install-btn">Install</button>
-  <button class="dismiss" id="pwa-dismiss-btn">&times;</button>
-</div>
+
 
 <main>
 <section id="hero">
@@ -1362,6 +1329,10 @@ a,button,input,textarea{cursor:none}
       <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       <span>Email</span>
     </a>
+    <a class="contact-link" id="pwa-install-btn" style="display: none; cursor: pointer;">
+      <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      <span>Install App</span>
+    </a>
   </div>
 
 </section>
@@ -1738,30 +1709,24 @@ const isMobile = window.innerWidth < 768;
 })();
 
 (function(){
-  const banner=document.getElementById('pwa-install');
   const installBtn=document.getElementById('pwa-install-btn');
-  const dismissBtn=document.getElementById('pwa-dismiss-btn');
-  if(!banner||!installBtn||!dismissBtn) return;
-  if(localStorage.getItem('pwa-install-dismissed')==='1') return;
+  if(!installBtn) return;
 
   let deferredPrompt=null;
   window.addEventListener('beforeinstallprompt', e=>{
     e.preventDefault();
     deferredPrompt=e;
-    banner.classList.add('show');
+    if(isMobile) installBtn.style.display='flex';
   });
-  installBtn.addEventListener('click', async ()=>{
+  installBtn.addEventListener('click', async (e)=>{
+    e.preventDefault();
     if(!deferredPrompt) return;
-    banner.classList.remove('show');
     deferredPrompt.prompt();
     await deferredPrompt.userChoice;
     deferredPrompt=null;
+    installBtn.style.display='none';
   });
-  dismissBtn.addEventListener('click', ()=>{
-    banner.classList.remove('show');
-    localStorage.setItem('pwa-install-dismissed','1');
-  });
-  window.addEventListener('appinstalled', ()=>{ banner.classList.remove('show'); });
+  window.addEventListener('appinstalled', ()=>{ installBtn.style.display='none'; });
 })();
 
 })();
