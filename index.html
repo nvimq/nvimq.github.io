@@ -1944,7 +1944,7 @@ if('serviceWorker' in navigator){
 <script>
 (function(){
   // TODO: Replace with your deployed Cloudflare Worker URL
-  const CF_WORKER_URL = 'https://ai-assistant.YOUR-SUBDOMAIN.workers.dev/';
+  const CF_WORKER_URL = 'https://ai-assistant.nvimgolang.workers.dev/';
 
   const chatBtn = document.getElementById('ai-chat-btn');
   const chatPanel = document.getElementById('ai-chat-panel');
@@ -1982,10 +1982,6 @@ if('serviceWorker' in navigator){
     chatBody.scrollTop = chatBody.scrollHeight;
 
     try {
-      if (CF_WORKER_URL.includes('YOUR-SUBDOMAIN')) {
-        throw new Error('Please update CF_WORKER_URL in index.html first.');
-      }
-
       const res = await fetch(CF_WORKER_URL, {
         method: 'POST',
         body: JSON.stringify({ message: text }),
