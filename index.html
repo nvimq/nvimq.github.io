@@ -1784,25 +1784,32 @@ if('serviceWorker' in navigator){
   font-family: inherit;
 }
 #ai-chat-btn {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--primary);
+  height: 50px;
+  padding: 0 20px;
+  border-radius: 25px;
+  background: #fff;
   color: #000;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,255,170,0.3);
+  box-shadow: 0 4px 12px rgba(255,255,255,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+  gap: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 #ai-chat-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(255,255,255,0.3);
 }
 #ai-chat-btn svg {
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
+}
+.ai-chat-btn-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
 }
 #ai-chat-panel {
   display: none;
@@ -1938,6 +1945,7 @@ if('serviceWorker' in navigator){
   </div>
   <button id="ai-chat-btn" aria-label="Open AI Assistant">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    <span class="ai-chat-btn-text">AI assistant</span>
   </button>
 </div>
 
