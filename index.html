@@ -1858,6 +1858,7 @@ if('serviceWorker' in navigator){
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-height: 0;
 }
 .chat-body::-webkit-scrollbar {
   width: 6px;
@@ -1924,13 +1925,18 @@ if('serviceWorker' in navigator){
 @media (max-width: 600px) {
   #ai-chat-panel {
     position: fixed;
-    top: 20px;
-    bottom: auto;
+    bottom: 80px;
+    top: auto;
     left: 20px;
     right: 20px;
     width: auto;
-    height: 400px;
-    max-height: 50vh;
+    height: 380px;
+    max-height: 60vh;
+  }
+  #ai-chat-panel.keyboard-open {
+    bottom: auto;
+    top: 20px;
+    max-height: 40vh;
   }
 }
 </style>
@@ -1978,6 +1984,14 @@ if('serviceWorker' in navigator){
 
   chatClose.addEventListener('click', () => {
     chatPanel.classList.remove('show');
+  });
+
+  chatInput.addEventListener('focus', () => {
+    chatPanel.classList.add('keyboard-open');
+  });
+  
+  chatInput.addEventListener('blur', () => {
+    chatPanel.classList.remove('keyboard-open');
   });
 
   async function sendMessage() {
