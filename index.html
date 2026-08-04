@@ -562,6 +562,7 @@ a,button,input,textarea{cursor:none}
   position:fixed;
   bottom:1.25rem;left:50%;
   transform:translate(-50%,150%);
+  opacity:0;pointer-events:none;
   z-index:9998;
   display:inline-flex;align-items:center;gap:0.5rem;
   padding:0.5rem 1rem;
@@ -570,9 +571,9 @@ a,button,input,textarea{cursor:none}
   color:#ff8080;
   font-family:'JetBrains Mono',monospace;
   font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
-  transition:transform 0.35s ease;
+  transition:transform 0.35s ease, opacity 0.35s ease;
 }
-#offline-indicator.show{transform:translate(-50%,0)}
+#offline-indicator.show{transform:translate(-50%,0);opacity:1;pointer-events:auto;}
 #offline-indicator .dot{width:6px;height:6px;border-radius:50%;background:#ff5050;animation:pulseDot 1.4s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:0.3}}
 
