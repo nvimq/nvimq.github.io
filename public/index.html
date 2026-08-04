@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Nurdaulet Bolat - Portfolio</title>
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="nvimq">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="description" content="DevOps & Platform Engineer. Linux, Kubernetes, Cloud, IaC, CI/CD, Observability, Security.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@300;400;500&family=Orbitron:wght@700;900&family=Chakra+Petch:wght@700&family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:#000;overflow-x:hidden}
+body{
+  font-family:'JetBrains Mono',monospace;
+  background:#000;
+  color:#aaa;
+  min-height:100vh;
+  min-height:100dvh;
+  overflow-x:hidden;
+  cursor:none;
+}
+::selection{background:rgba(255,255,255,0.15);color:#fff}
+
+canvas#noise{
+  position:fixed;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:9997;opacity:0.04;mix-blend-mode:overlay;
+}
+canvas#cursorCanvas{
+  position:fixed;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:9999;
+}
+a,button,input,textarea{cursor:none}
+
+#hero{
+  width:100%;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  padding:9rem 2rem 4rem;
+  background:
+    radial-gradient(ellipse 34% 30% at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 30% 70%, rgba(255,255,255,0.02) 0%, transparent 50%),
+    radial-gradient(ellipse 30% 40% at 70% 30%, rgba(255,255,255,0.015) 0%, transparent 40%);
+}
+
+.orbit-sections-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(2rem,5vw,5rem);
+  max-width:1600px;
+  margin:0 auto;
+  padding:7rem 2rem;
+  min-height:100vh;
+  min-height:100dvh;
+}
+
+.zone-left,.zone-right{
+  display:flex;
+  flex-direction:column;
+  gap:1.75rem;
+  flex:1 1 0;
+  max-width:420px;
+}
+.zone-right{ align-items:flex-start }
+.zone-left{ align-items:flex-end }
+.zone-left .orbit-section{ text-align:right }
+.zone-left .orbit-tags{ justify-content:flex-end }
+.zone-left .orbit-label{ justify-content:flex-end }
+
+.hero-center{
+  flex:0 0 auto;
+  position:relative;
+  z-index:5;
+  text-align:center;
+  pointer-events:none;
+  padding:0 0.5rem;
+}
+.hero-name{
+  font-size:clamp(2.8rem,7.5vw,6rem);
+  line-height:0.95;
+  letter-spacing:0.02em;
+  color:#fff;
+  display:inline-block;
+  transition:font-family 0s;
+}
+.hero-name.font-flip{
+  animation: fontGlitch 0.18s steps(2,end) 1;
+}
+
+@keyframes fontGlitch{
+  0%   { transform:translate(0,0); filter:none; opacity:1; }
+  25%  { transform:translate(-3px,1px); filter:brightness(2.4); opacity:0.6;
+         text-shadow:2px 0 #fff,-2px 0 #fff; }
+  50%  { transform:translate(3px,-1px); filter:brightness(2); opacity:0.85; }
+  75%  { transform:translate(-1px,0); filter:brightness(1.4); opacity:1; }
+  100% { transform:translate(0,0); filter:none; opacity:1; }
+}
+.hero-name .last{
+  display:block;
+  color:transparent;
+  -webkit-text-stroke:2px rgba(255,255,255,0.5);
+  text-stroke:2px rgba(255,255,255,0.5);
+  margin-top:-0.06em;
+}
+.hero-sub{
+  font-size:clamp(0.6rem,1vw,0.85rem);
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:#777;
+  margin-top:0.75rem;
+  font-weight:300;
+}
+.hero-sub span{color:#fff}
+
+.orbit-section{
+  transition: filter 0.15s;
+}
+.orbit-section:hover .orbit-tags,
+.orbit-section:hover .orbit-label{
+  animation: glitchFlicker 0.35s steps(2,end) 1;
+}
+
+@keyframes glitchFlicker{
+  0%   { transform:translate(0,0); filter:none; opacity:1; }
+  10%  { transform:translate(-2px,1px); filter:brightness(2.2); opacity:0.7; text-shadow:2px 0 #fff,-2px 0 #fff; }
+  20%  { transform:translate(2px,-1px); opacity:1; filter:brightness(1.8); }
+  30%  { transform:translate(-1px,0); opacity:0.6; }
+  40%  { transform:translate(1px,1px); filter:brightness(2.5); text-shadow:-2px 0 #fff,2px 0 #fff; }
+  55%  { transform:translate(0,0); opacity:1; filter:brightness(1.2); }
+  70%  { transform:translate(1px,-1px); filter:brightness(1.6); }
+  100% { transform:translate(0,0); filter:none; opacity:1; }
+}
+
+.orbit-label{
+  font-size:0.55rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:#666;
+  margin-bottom:0.4rem;
+  font-weight:400;
+}
+.orbit-label span{color:rgba(255,255,255,0.25)}
+
+.orbit-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.3rem;
+}
+.orbit-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:0.4rem;
+  padding:0.45rem 0.9rem;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:999px;
+  font-size:0.78rem;
+  color:#888;
+  text-decoration:none;
+  transition:all 0.25s ease;
+  font-family:'JetBrains Mono',monospace;
+  white-space:nowrap;
+}
+.orbit-tag:hover{
+  animation: tagFlash 0.25s steps(1,end);
+  color:#fff;
+  border-color:rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.06);
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(255,255,255,0.04);
+}
+
+@keyframes tagFlash{
+  0%,100%{ box-shadow:0 0 0 rgba(255,255,255,0); }
+  50%{ box-shadow:0 0 14px 2px rgba(255,255,255,0.25), 0 0 4px 1px rgba(255,255,255,0.15); }
+}
+
+.orbit-tag img{width:15px;height:15px;filter:grayscale(1) brightness(0.7)}
+
+#contact{
+  padding:6rem 2rem;
+  position:relative;
+}
+#contact::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
+}
+.contact-grid{
+  display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;margin-bottom:2rem;
+}
+.contact-link{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.6rem 1.25rem;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  color:#888;text-decoration:none;
+  font-size:0.75rem;transition:all 0.3s ease;position:relative;overflow:hidden;
+}
+.contact-link::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.04),transparent 50%);
+  opacity:0;transition:opacity 0.3s ease;
+}
+.contact-link:hover{color:#fff;border-color:rgba(255,255,255,0.15)}
+.contact-link:hover::before{opacity:1}
+.contact-link svg{width:14px;height:14px;fill:currentColor;position:relative;z-index:1}
+.contact-link span{position:relative;z-index:1}
+.footer-note{
+  text-align:center;
+  font-size:0.6rem;
+  color:#444;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  font-weight:300;
+}
+
+@media(max-width:900px){
+  .orbit-sections-wrapper{
+    display:flex;
+    flex-direction:column;
+    gap:1.5rem;
+    padding:8rem 1rem 4rem;
+    min-height:auto;
+  }
+  .zone-left,.zone-right{
+    max-width:none;
+    width:100%;
+    align-items:stretch;
+  }
+  .zone-left .orbit-section{ text-align:left }
+  .zone-left .orbit-tags{ justify-content:flex-start }
+  .zone-left .orbit-label{ justify-content:space-between }
+  .hero-center{ order:-1; margin-bottom:2rem; }
+  .hero-name{font-size:clamp(2.5rem,10vw,4rem)}
+  .hero-name .last{-webkit-text-stroke:1.5px rgba(255,255,255,0.4)}
+  .orbit-section{
+    padding:0.75rem;
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .orbit-label{
+    font-size:0.65rem;
+    margin-bottom:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    cursor:pointer;
+    padding:0.25rem 0;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .orbit-label::after{
+    content:'+';
+    font-family:'Archivo Black',sans-serif;
+    color:rgba(255,255,255,0.35);
+    font-size:0.9rem;
+    transition:transform 0.25s ease;
+  }
+  .orbit-section.open .orbit-label::after{
+    content:'\2212';
+  }
+  .orbit-tags{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease, margin-top 0.3s ease;
+    margin-top:0;
+  }
+  .orbit-section.open .orbit-tags{
+    max-height:4000px;
+    margin-top:0.6rem;
+  }
+  .orbit-tag{font-size:0.7rem;padding:0.4rem 0.8rem}
+  .orbit-tag img{width:13px;height:13px}
+  body{cursor:auto}
+  canvas#cursorCanvas{display:none}
+  a,button,input,textarea{cursor:auto}
+  *{-webkit-tap-highlight-color:transparent}
+  a,button,input,textarea{touch-action:manipulation}
+  .hero-sub{font-size:clamp(0.7rem,3vw,0.9rem)}
+  .orbit-tag{min-height:40px;align-items:center;flex:0 1 auto}
+  .contact-link{padding:0.8rem 1.25rem}
+  #contact{
+    padding-left:env(safe-area-inset-left);
+    padding-right:env(safe-area-inset-right);
+    padding-bottom:calc(3rem + env(safe-area-inset-bottom));
+  }
+  .footer-note{padding-bottom:env(safe-area-inset-bottom)}
+}
+
+/* BATTLEGROUNDS & LABS SECTION */
+.cyber-labs-section {
+  max-width: 1400px;
+  margin: 3rem auto 2rem auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+.cyber-labs-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cyber-labs-title span { color: rgba(255, 255, 255, 0.3); }
+.labs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%,320px), 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.cyber-card {
+  background: rgba(8, 8, 8, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cyber-card:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+.card-header {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.85rem;
+  color: #888;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.cyber-badge-link {
+  display: block;
+  text-decoration: none;
+}
+.cyber-badge {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  filter: grayscale(100%) contrast(120%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px;
+}
+.cyber-badge-link:hover .cyber-badge {
+  filter: grayscale(0%) contrast(100%);
+  opacity: 1;
+  border-color: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+.card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: #aaa;
+}
+.card-stats span {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.3rem 0.6rem;
+}
+.badge-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #bbb;
+}
+.badge-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.badge-list code {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.2rem 0.4rem;
+  font-size: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.terminal-accordion {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(5, 5, 5, 0.9);
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+.terminal-accordion summary {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.85rem;
+  color: #aaa;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  outline: none;
+  border-bottom: 1px solid transparent;
+}
+.terminal-accordion[open] summary {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.terminal-accordion pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: #999;
+  padding: 1.2rem;
+  margin: 0;
+  overflow-x: auto;
+  line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .cyber-labs-section {
+    margin: 2rem auto 1rem auto;
+    padding: 0 1rem;
+  }
+}
+
+#search-trigger{
+  position:fixed;
+  top:1.5rem;right:1.5rem;
+  z-index:9998;
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.5rem 0.85rem;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:999px;
+  color:#777;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.05em;
+  text-decoration:none;
+  transition:all 0.25s ease;
+}
+#search-trigger:hover{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06)}
+#search-trigger kbd{
+  font-family:'JetBrains Mono',monospace;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:4px;
+  padding:0.1rem 0.35rem;
+  font-size:0.65rem;
+  color:#ccc;
+}
+@media(max-width:768px){ #search-trigger{ top:1rem;right:1rem; padding:0.5rem; } #search-trigger .search-label{ display:none } #search-input{ font-size:16px; } }
+
+#search-overlay{
+  position:fixed;inset:0;
+  z-index:10000;
+  background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(4px);
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding:10vh 1.5rem 2rem;
+}
+#search-overlay.open{display:flex}
+#search-box{
+  width:100%;max-width:620px;
+  background:#0a0a0a;
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  font-family:'JetBrains Mono',monospace;
+}
+#search-input-row{
+  display:flex;align-items:center;gap:0.75rem;
+  padding:1rem 1.1rem;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+#search-input-row span{color:rgba(255,255,255,0.3);font-size:0.9rem}
+#search-input{
+  flex:1;background:transparent;border:0;outline:0;
+  color:#fff;font-family:'JetBrains Mono',monospace;font-size:0.95rem;
+}
+#search-input::placeholder{color:#555}
+#search-results{
+  max-height:50vh;overflow-y:auto;
+}
+.search-group-label{
+  padding:0.6rem 1.1rem 0.3rem;
+  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#555;
+}
+.search-result{
+  display:flex;align-items:center;gap:0.6rem;
+  padding:0.6rem 1.1rem;
+  color:#999;text-decoration:none;
+  font-size:0.85rem;
+  cursor:pointer;
+}
+.search-result img{width:14px;height:14px;filter:grayscale(1) brightness(0.8)}
+.search-result .rk{color:#444;font-size:0.7rem;margin-left:auto}
+.search-result:hover,.search-result.active{background:rgba(255,255,255,0.06);color:#fff}
+.search-result.active .rk{color:#888}
+#search-empty{padding:1.5rem 1.1rem;color:#555;font-size:0.8rem}
+#search-footer{
+  display:flex;gap:1rem;
+  padding:0.6rem 1.1rem;
+  border-top:1px solid rgba(255,255,255,0.08);
+  font-size:0.65rem;color:#555;
+}
+#search-footer kbd{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+  border-radius:3px;padding:0.05rem 0.3rem;color:#999;margin-right:0.25rem;
+}
+
+#offline-indicator{
+  position:fixed;
+  bottom:1.25rem;left:50%;
+  transform:translate(-50%,150%);
+  z-index:9998;
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.5rem 1rem;
+  background:rgba(10,10,10,0.95);
+  border:1px solid rgba(255,80,80,0.35);
+  color:#ff8080;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
+  transition:transform 0.35s ease;
+}
+#offline-indicator.show{transform:translate(-50%,0)}
+#offline-indicator .dot{width:6px;height:6px;border-radius:50%;background:#ff5050;animation:pulseDot 1.4s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:0.3}}
+
+#pwa-install{
+  position:fixed;
+  bottom:1.25rem;right:1.25rem;
+  z-index:9998;
+  display:none;align-items:center;gap:0.75rem;
+  padding:0.75rem 1rem;
+  background:rgba(10,10,10,0.95);
+  border:1px solid rgba(255,255,255,0.15);
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem;color:#aaa;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+#pwa-install.show{display:flex}
+#pwa-install button{
+  font-family:'JetBrains Mono',monospace;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.2);
+  color:#fff;
+  padding:0.4rem 0.8rem;
+  font-size:0.7rem;letter-spacing:0.05em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.2s ease;
+}
+#pwa-install button:hover{background:rgba(255,255,255,0.12)}
+#pwa-install .dismiss{background:transparent;border-color:transparent;color:#555;padding:0.4rem 0.5rem}
+#pwa-install .dismiss:hover{color:#999;background:transparent}
+@media(max-width:768px){
+  #pwa-install{left:1rem;right:1rem;bottom:1rem}
+}
+
+.sigil-wrap{
+  display:flex;justify-content:center;
+  margin-top:2.5rem;
+}
+#skill-sigil{
+  width:100%;max-width:520px;height:auto;overflow:visible;
+}
+.sigil-rings{
+  transform-origin:220px 220px;
+  animation:sigilSpin 60s linear infinite;
+}
+@keyframes sigilSpin{ to{ transform:rotate(360deg); } }
+.sigil-ring{ fill:none; stroke:rgba(255,255,255,0.07); stroke-width:1; }
+.sigil-axis{ stroke:rgba(255,255,255,0.07); stroke-width:1; }
+.sigil-fill{
+  fill:rgba(255,255,255,0.06);
+  stroke:#fff;stroke-width:1.4;
+  filter:drop-shadow(0 0 10px rgba(255,255,255,0.45));
+  transform-origin:220px 220px;
+  transform:scale(0);
+  transition:transform 1.5s cubic-bezier(.16,1,.3,1);
+}
+.sigil-fill.animate{ transform:scale(1); }
+.sigil-dot{ fill:#fff; }
+.sigil-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  fill:#888;
+}
+.sigil-pct{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  fill:#555;
+}
+@media(max-width:700px){
+  #skill-sigil{max-width:380px}
+  .sigil-label{font-size:9px}
+}
+
+.skills-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:2.25rem;
+  margin-top:2.5rem;
+}
+.skill-head{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.85rem;color:#ccc;letter-spacing:0.02em;
+  margin-bottom:0.6rem;
+}
+.skill-head span:first-child{display:flex;align-items:center;gap:0.5rem}
+.skill-head img{width:16px;height:16px;filter:grayscale(1) brightness(0.85)}
+.skill-head .pct{color:#fff;font-variant-numeric:tabular-nums}
+.skill-track{
+  height:2px;
+  background:rgba(255,255,255,0.08);
+  position:relative;overflow:hidden;
+  margin-bottom:0.85rem;
+}
+.skill-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,rgba(255,255,255,0.35),#fff);
+  transition:width 1.6s cubic-bezier(.16,1,.3,1);
+}
+.skill-tags{
+  display:flex;flex-wrap:wrap;gap:0.3rem;
+}
+.mini-tag{
+  display:inline-flex;align-items:center;gap:0.35rem;
+  padding:0.3rem 0.65rem;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:999px;
+  font-size:0.68rem;
+  color:#777;
+  text-decoration:none;
+  font-family:'JetBrains Mono',monospace;
+  white-space:nowrap;
+  transition:all 0.2s ease;
+}
+.mini-tag:hover{color:#fff;border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.06)}
+.mini-tag img{width:12px;height:12px;filter:grayscale(1) brightness(0.7)}
+@media(max-width:700px){
+  .skills-grid{gap:1.75rem}
+  .mini-tag{font-size:0.65rem;padding:0.35rem 0.7rem}
+}
+
+.labs-meta{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:0.5rem;
+  margin-top:1.5rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.7rem;
+}
+.labs-meta a,.labs-meta span{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  padding:0.35rem 0.8rem;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:999px;
+  color:#888;text-decoration:none;
+}
+.labs-meta a img{width:12px;height:12px;filter:grayscale(1) brightness(0.7)}
+.labs-meta a:hover{color:#fff;border-color:rgba(255,255,255,0.2)}
+
+.labs-stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+  gap:1px;
+  background:rgba(255,255,255,0.07);
+  margin:2.5rem 0 0;
+  border:1px solid rgba(255,255,255,0.07);
+}
+.labs-stat{
+  background:#050505;
+  padding:1.25rem 1rem;
+  text-align:center;
+}
+.labs-stat .n{
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.8rem;color:#fff;font-weight:500;
+  display:block;
+}
+.labs-stat .l{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:#666;
+  margin-top:0.35rem;display:block;
+}
+
+.labs-controls{
+  display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;
+  margin-top:2rem;
+}
+.labs-filter-tabs{display:flex;flex-wrap:wrap;gap:0.4rem}
+.labs-tab{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  padding:0.4rem 0.85rem;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:999px;
+  font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+  color:#888;cursor:pointer;transition:all 0.2s ease;
+}
+.labs-tab .c{color:#555}
+.labs-tab:hover{color:#fff;border-color:rgba(255,255,255,0.2)}
+.labs-tab.active{color:#fff;background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.3)}
+.labs-tab.active .c{color:#ccc}
+
+#labs-search,#certs-search{
+  flex:1 1 220px;max-width:280px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:999px;
+  padding:0.5rem 1rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.75rem;
+  color:#fff;outline:0;
+}
+#labs-search::placeholder,#certs-search::placeholder{color:#555}
+#labs-search:focus,#certs-search:focus{border-color:rgba(255,255,255,0.25)}
+
+.labs-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:1rem;
+  margin-top:2rem;
+}
+.lab-card{
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
+  padding:1rem 0.75rem;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.07);
+  text-decoration:none;text-align:center;
+  transition:all 0.25s ease;
+}
+.lab-card:hover{
+  border-color:rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.05);
+  transform:translateY(-2px);
+}
+.lab-card img{
+  width:44px;height:44px;object-fit:contain;
+  filter:grayscale(1) contrast(1.1) brightness(0.85);
+  transition:filter 0.25s ease;
+}
+.lab-card:hover img{filter:grayscale(0) brightness(1)}
+.lab-card .lab-name{
+  font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#aaa;line-height:1.3;
+}
+.lab-card .lab-platform{
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:#555;
+}
+.labs-empty{
+  grid-column:1/-1;text-align:center;padding:2rem;color:#555;
+  font-family:'JetBrains Mono',monospace;font-size:0.8rem;
+}
+@media(max-width:700px){
+  .labs-controls{flex-direction:column;align-items:stretch}
+  #labs-search,#certs-search{max-width:none;font-size:16px;padding:0.6rem 1rem}
+  .labs-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+}
+
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));
+  gap:1.25rem;
+  margin-top:2rem;
+}
+.cert-card{
+  display:flex;flex-direction:column;gap:0.75rem;
+  padding:1.25rem;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.08);
+  text-decoration:none;
+  transition:all 0.25s ease;
+}
+.cert-card:hover{
+  border-color:rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.04);
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,0.35);
+}
+.cert-card-top{
+  display:flex;align-items:center;gap:0.65rem;
+}
+.cert-card-top img{width:22px;height:22px;filter:grayscale(1) brightness(1.4) contrast(0.6);opacity:0.75}
+.cert-issuer{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#666;
+}
+.cert-name{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.9rem;color:#eee;line-height:1.4;
+}
+.cert-link{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;color:#666;letter-spacing:0.05em;
+  margin-top:auto;
+}
+.cert-card:hover .cert-link{color:#aaa}
+</style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xuun9fz5z2");
+</script>
+</head>
+<body>
+
+<canvas id="noise"></canvas>
+<canvas id="cursorCanvas"></canvas>
+
+<a id="search-trigger" href="javascript:void(0)">
+  <span>&#9906;</span><span class="search-label">Search</span><kbd id="search-kbd">⌘K</kbd>
+</a>
+
+<div id="search-overlay">
+  <div id="search-box">
+    <div id="search-input-row">
+      <span>//</span>
+      <input id="search-input" type="text" placeholder="Search stack, labs, certs, contact..." autocomplete="off" spellcheck="false">
+    </div>
+    <div id="search-results"></div>
+    <div id="search-footer">
+      <span><kbd>&#8593;&#8595;</kbd>navigate</span>
+      <span><kbd>&#8629;</kbd>open</span>
+      <span><kbd>esc</kbd>close</span>
+    </div>
+  </div>
+</div>
+
+<div id="offline-indicator"><span class="dot"></span><span>Offline &mdash; cached view</span></div>
+
+<div id="pwa-install">
+  <span>Install this site as an app</span>
+  <button id="pwa-install-btn">Install</button>
+  <button class="dismiss" id="pwa-dismiss-btn">&times;</button>
+</div>
+
+<section id="hero">
+  <div class="orbit-sections-wrapper" style="justify-content:center;min-height:auto;padding:0;">
+
+    <div class="hero-center">
+      <h1 class="hero-name font-flip" style="font-family: Rajdhani, sans-serif;">
+        Nurdaulet
+        <span class="last">Bolat</span>
+      </h1>
+    </div>
+
+  </div>
+</section>
+
+<section id="certifications" class="reveal" style="max-width: 1100px; margin: 6rem auto; padding: 0 2rem; position: relative; z-index: 1;">
+  <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> certifications</div>
+  <div class="labs-stats" id="certs-stats"></div>
+  <div class="labs-controls">
+    <div class="labs-filter-tabs" id="certs-filter-tabs"></div>
+    <input id="certs-search" type="text" placeholder="Search certifications..." autocomplete="off" spellcheck="false">
+  </div>
+  <div class="cert-grid" id="certs-grid" data-items='[{"name": "OWASP Top 10", "issuer": "Snyk", "href": "./certifications/owasp-top10-snyk.pdf", "img": "https://cdn.simpleicons.org/owasp"}, {"name": "Cilium AI/ML Security", "issuer": "Isovalent", "href": "https://www.credly.com/badges/72dc398d-25b3-42bd-b47b-aab5e3806a51/", "img": "https://cdn.simpleicons.org/cilium"}, {"name": "Certified Calico Operator: eBPF", "issuer": "Tigera", "href": "https://courses.academy.tigera.io/certificates/6dbe730cb475457d950ab4b835ffe808", "img": "https://cdn.simpleicons.org/kubernetes"}, {"name": "Chaos Engineering", "issuer": "Gremlin", "href": "https://certification.gremlin.com/credentials/2cb26774-b77a-48f7-8324-a3bd2c2d0dba", "img": "https://cdn.simpleicons.org/linux"}, {"name": "SQL (Advanced)", "issuer": "HackerRank", "href": "https://www.hackerrank.com/certificates/243b1c73f324", "img": "https://cdn.simpleicons.org/hackerrank"}, {"name": "Docker Foundations Professional Certificate", "issuer": "Docker", "href": "https://www.linkedin.com/learning/certificates/0b3f4aafb30cf50506341a5b9fefc7269ec9397965e70b61b3598cfa6f5072af", "img": "https://cdn.simpleicons.org/docker"}, {"name": "Ubuntu Linux Professional Certificate", "issuer": "Canonical", "href": "https://www.linkedin.com/learning/certificates/252da2eda72d434d27c11ef47249229b4075698e330f78e951fe7fc12d10fa0e", "img": "https://cdn.simpleicons.org/canonical"}, {"name": "Go (Intermediate)", "issuer": "HackerRank", "href": "https://www.hackerrank.com/certificates/77f9736ad0f6", "img": "https://cdn.simpleicons.org/hackerrank"}, {"name": "Discovery: SecOps Engineer", "issuer": "Isovalent", "href": "https://www.credly.com/badges/f9969ae4-5b35-47dc-a1f6-f58b58f1fb4b/public_url", "img": "https://images.credly.com/images/d54799eb-d613-4113-affa-e89770b53689/tempfile20250605-59-ip94pl.png"}]'></div>
+</section>
+
+<section id="skills" class="reveal" style="max-width: 700px; margin: 7rem auto; padding: 0 2rem; position: relative; z-index: 1;">
+  <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> core</div>
+  <div class="sigil-wrap"
+    data-skills='[
+      {"name":"Engineering","pct":92},
+      {"name":"Cloud &amp; Kubernetes","pct":88},
+      {"name":"Security","pct":85},
+      {"name":"Architecture","pct":82},
+      {"name":"Automation","pct":84},
+      {"name":"Business &amp; FinOps","pct":78}
+    ]'>
+    <svg id="skill-sigil" viewBox="0 0 440 440"></svg>
+  </div>
+</section>
+
+<section id="stack" class="reveal" style="max-width: 1400px; margin: 6rem auto; padding: 0 2rem; position: relative; z-index: 1;">
+  <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> full stack</div>
+  <div class="skills-grid">
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/linux">Linux &amp; Systems</span><span class="pct">92%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="92"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://kernel.org" target="_blank"><img src="https://cdn.simpleicons.org/linux">Linux</a>
+        <a class="mini-tag" href="https://systemd.io" target="_blank">systemd</a>
+        <a class="mini-tag" href="https://sourceware.org/lvm2" target="_blank">LVM</a>
+        <a class="mini-tag" href="https://wiki.archlinux.org/title/Access_Control_Lists" target="_blank">ACL</a>
+        <a class="mini-tag" href="https://wiki.archlinux.org/title/Performance_tuning" target="_blank">Perf Tuning</a>
+        <a class="mini-tag" href="https://www.cyberciti.biz/tips/linux-security.html" target="_blank">Hardening</a>
+        <a class="mini-tag" href="https://strace.io" target="_blank">strace</a>
+        <a class="mini-tag" href="https://lsof.readthedocs.io" target="_blank">lsof</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">Load Average</a>
+        <a class="mini-tag" href="https://www.freedesktop.org/software/systemd/man/journalctl.html" target="_blank">journalctl</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Logrotate" target="_blank">logrotate</a>
+        <a class="mini-tag" href="https://man7.org/linux/man-pages/man5/limits.conf.5.html" target="_blank">limits.conf</a>
+        <a class="mini-tag" href="https://man7.org/linux/man-pages/man8/sysctl.8.html" target="_blank">sysctl</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/wireguard">Networking</span><span class="pct">85%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="85"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/OSI_model" target="_blank">OSI Model</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/TCP/IP" target="_blank">TCP/IP</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing" target="_blank">CIDR</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Network_address_translation" target="_blank">NAT</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Domain_Name_System" target="_blank">DNS</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Border_Gateway_Protocol" target="_blank">BGP</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/VLAN" target="_blank">VLAN</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">TLS</a>
+        <a class="mini-tag" href="https://letsencrypt.org" target="_blank">Let's Encrypt</a>
+        <a class="mini-tag" href="https://netfilter.org/projects/iptables" target="_blank">iptables</a>
+        <a class="mini-tag" href="https://netfilter.org/projects/nftables" target="_blank">nftables</a>
+        <a class="mini-tag" href="https://tcpdump.org" target="_blank">tcpdump</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Virtual_private_network" target="_blank">VPN</a>
+        <a class="mini-tag" href="https://wireguard.com" target="_blank"><img src="https://cdn.simpleicons.org/wireguard">WireGuard</a>
+        <a class="mini-tag" href="https://tailscale.com" target="_blank"><img src="https://cdn.simpleicons.org/tailscale">Tailscale</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/git">Git &amp; Version Control</span><span class="pct">88%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="88"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://git-scm.com" target="_blank"><img src="https://cdn.simpleicons.org/git">Git</a>
+        <a class="mini-tag" href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" target="_blank">GitFlow</a>
+        <a class="mini-tag" href="https://trunkbaseddevelopment.com" target="_blank">Trunk-based</a>
+        <a class="mini-tag" href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks" target="_blank">Hooks</a>
+        <a class="mini-tag" href="https://docs.github.com/en/pull-requests" target="_blank">Code Review</a>
+        <a class="mini-tag" href="https://gitlab.com" target="_blank"><img src="https://cdn.simpleicons.org/gitlab">GitLab</a>
+        <a class="mini-tag" href="https://github.com" target="_blank"><img src="https://cdn.simpleicons.org/github">GitHub</a>
+        <a class="mini-tag" href="https://about.gitlab.com/topics/version-control/protected-branch" target="_blank">Protected Branches</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/docker">Containers</span><span class="pct">88%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="88"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://docker.com" target="_blank"><img src="https://cdn.simpleicons.org/docker">Docker</a>
+        <a class="mini-tag" href="https://docs.docker.com/develop/develop-images/multistage-build" target="_blank">Multi-stage</a>
+        <a class="mini-tag" href="https://docs.docker.com/compose" target="_blank"><img src="https://cdn.simpleicons.org/docker">Compose</a>
+        <a class="mini-tag" href="https://containerd.io" target="_blank"><img src="https://cdn.simpleicons.org/containerd">containerd</a>
+        <a class="mini-tag" href="https://podman.io" target="_blank"><img src="https://cdn.simpleicons.org/podman">Podman</a>
+        <a class="mini-tag" href="https://docs.docker.com/storage/volumes" target="_blank">Volumes</a>
+        <a class="mini-tag" href="https://docs.docker.com/network" target="_blank">Networks</a>
+        <a class="mini-tag" href="https://distribution.github.io" target="_blank">Registry</a>
+        <a class="mini-tag" href="https://docs.docker.com/config/containers/resource_constraints" target="_blank">Resource Limits</a>
+        <a class="mini-tag" href="https://docs.docker.com/build/optimize-images" target="_blank">Image Optimization</a>
+        <a class="mini-tag" href="https://docs.docker.com/docker-hub/vulnerability-scanning" target="_blank">Vuln Scanning</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/kubernetes">Kubernetes</span><span class="pct">88%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="88"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://kubernetes.io" target="_blank"><img src="https://cdn.simpleicons.org/kubernetes">Kubernetes</a>
+        <a class="mini-tag" href="https://helm.sh" target="_blank"><img src="https://cdn.simpleicons.org/helm">Helm</a>
+        <a class="mini-tag" href="https://kustomize.io" target="_blank"><img src="https://cdn.simpleicons.org/kubernetes">Kustomize</a>
+        <a class="mini-tag" href="https://kubernetes.io/docs/concepts/services-networking/ingress" target="_blank">Ingress</a>
+        <a class="mini-tag" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes" target="_blank">Storage (PV/PVC)</a>
+        <a class="mini-tag" href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale" target="_blank">HPA / VPA</a>
+        <a class="mini-tag" href="https://kubernetes.io/docs/reference/access-authn-authz/rbac" target="_blank">RBAC</a>
+        <a class="mini-tag" href="https://kubernetes.io/docs/concepts/services-networking/network-policies" target="_blank">NetworkPolicy</a>
+        <a class="mini-tag" href="https://kubernetes.io/docs/concepts/security/pod-security-standards" target="_blank">Pod Security</a>
+        <a class="mini-tag" href="https://cilium.io" target="_blank"><img src="https://cdn.simpleicons.org/cilium">Cilium</a>
+        <a class="mini-tag" href="https://cert-manager.io" target="_blank"><img src="https://cdn.simpleicons.org/certmanager">cert-manager</a>
+        <a class="mini-tag" href="https://kyverno.io" target="_blank">Kyverno</a>
+        <a class="mini-tag" href="https://aws.amazon.com/eks" target="_blank"><img src="https://cdn.simpleicons.org/amazonwebservices">EKS</a>
+        <a class="mini-tag" href="https://azure.microsoft.com/products/kubernetes-service" target="_blank"><img src="https://cdn.simpleicons.org/microsoftazure">AKS</a>
+        <a class="mini-tag" href="https://cloud.google.com/kubernetes-engine" target="_blank"><img src="https://cdn.simpleicons.org/googlecloud">GKE</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/terraform">Infrastructure as Code</span><span class="pct">84%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="84"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://terraform.io" target="_blank"><img src="https://cdn.simpleicons.org/terraform">Terraform</a>
+        <a class="mini-tag" href="https://terragrunt.gruntwork.io" target="_blank"><img src="https://cdn.simpleicons.org/terraform">Terragrunt</a>
+        <a class="mini-tag" href="https://www.runatlantis.io" target="_blank">Atlantis</a>
+        <a class="mini-tag" href="https://ansible.com" target="_blank"><img src="https://cdn.simpleicons.org/ansible">Ansible</a>
+        <a class="mini-tag" href="https://packer.io" target="_blank"><img src="https://cdn.simpleicons.org/packer">Packer</a>
+        <a class="mini-tag" href="https://cloud-init.io" target="_blank">Cloud-init</a>
+        <a class="mini-tag" href="https://aws.amazon.com/cloudformation" target="_blank"><img src="https://cdn.simpleicons.org/amazonwebservices">CloudFormation</a>
+        <a class="mini-tag" href="https://learn.microsoft.com/azure/azure-resource-manager/bicep" target="_blank">Bicep / ARM</a>
+        <a class="mini-tag" href="https://openpolicyagent.org" target="_blank">OPA</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/githubactions">CI/CD</span><span class="pct">82%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="82"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://docs.gitlab.com/ee/ci" target="_blank"><img src="https://cdn.simpleicons.org/gitlab">GitLab CI</a>
+        <a class="mini-tag" href="https://github.com/features/actions" target="_blank"><img src="https://cdn.simpleicons.org/githubactions">GitHub Actions</a>
+        <a class="mini-tag" href="https://jenkins.io" target="_blank"><img src="https://cdn.simpleicons.org/jenkins">Jenkins</a>
+        <a class="mini-tag" href="https://azure.microsoft.com/products/devops/pipelines" target="_blank"><img src="https://cdn.simpleicons.org/azuredevops">Azure Pipelines</a>
+        <a class="mini-tag" href="https://circleci.com" target="_blank">CircleCI</a>
+        <a class="mini-tag" href="https://buildkite.com" target="_blank">Buildkite</a>
+        <a class="mini-tag" href="https://martinfowler.com/bliki/BlueGreenDeployment.html" target="_blank">Blue-Green</a>
+        <a class="mini-tag" href="https://martinfowler.com/bliki/CanaryRelease.html" target="_blank">Canary</a>
+        <a class="mini-tag" href="https://semver.org" target="_blank">SemVer</a>
+        <a class="mini-tag" href="https://owasp.org/www-community/Source_Code_Analysis_Tools" target="_blank">SAST / DAST</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/argo">GitOps</span><span class="pct">80%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="80"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://argoproj.github.io/cd" target="_blank"><img src="https://cdn.simpleicons.org/argo">ArgoCD</a>
+        <a class="mini-tag" href="https://fluxcd.io" target="_blank"><img src="https://cdn.simpleicons.org/flux">Flux CD</a>
+        <a class="mini-tag" href="https://argo-cd.readthedocs.io/en/stable/user-guide/drift-detection" target="_blank">Drift Detection</a>
+        <a class="mini-tag" href="https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options" target="_blank">Sync Policies</a>
+        <a class="mini-tag" href="https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup" target="_blank">Declarative Deploy</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/amazonwebservices">Cloud Platforms</span><span class="pct">85%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="85"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://aws.amazon.com" target="_blank"><img src="https://cdn.simpleicons.org/amazonwebservices">AWS</a>
+        <a class="mini-tag" href="https://aws.amazon.com/ec2" target="_blank">EC2</a>
+        <a class="mini-tag" href="https://aws.amazon.com/vpc" target="_blank">VPC</a>
+        <a class="mini-tag" href="https://aws.amazon.com/s3" target="_blank">S3</a>
+        <a class="mini-tag" href="https://aws.amazon.com/rds" target="_blank">RDS</a>
+        <a class="mini-tag" href="https://aws.amazon.com/elasticloadbalancing" target="_blank">ELB / ALB</a>
+        <a class="mini-tag" href="https://aws.amazon.com/route53" target="_blank">Route53</a>
+        <a class="mini-tag" href="https://aws.amazon.com/lambda" target="_blank">Lambda</a>
+        <a class="mini-tag" href="https://aws.amazon.com/iam" target="_blank">IAM</a>
+        <a class="mini-tag" href="https://aws.amazon.com/kms" target="_blank">KMS</a>
+        <a class="mini-tag" href="https://azure.microsoft.com" target="_blank"><img src="https://cdn.simpleicons.org/microsoftazure">Azure</a>
+        <a class="mini-tag" href="https://learn.microsoft.com/azure/virtual-network" target="_blank">VNet</a>
+        <a class="mini-tag" href="https://www.microsoft.com/security/business/microsoft-entra" target="_blank">Entra ID</a>
+        <a class="mini-tag" href="https://learn.microsoft.com/azure/key-vault" target="_blank">Key Vault</a>
+        <a class="mini-tag" href="https://cloud.google.com" target="_blank"><img src="https://cdn.simpleicons.org/googlecloud">GCP</a>
+        <a class="mini-tag" href="https://cloud.google.com/compute" target="_blank">GCE</a>
+        <a class="mini-tag" href="https://cloud.google.com/storage" target="_blank">Cloud Storage</a>
+        <a class="mini-tag" href="https://cloud.google.com/sql" target="_blank">Cloud SQL</a>
+        <a class="mini-tag" href="https://digitalocean.com" target="_blank"><img src="https://cdn.simpleicons.org/digitalocean">DigitalOcean</a>
+        <a class="mini-tag" href="https://hetzner.com" target="_blank"><img src="https://cdn.simpleicons.org/hetzner">Hetzner</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/gnubash">Scripting &amp; Automation</span><span class="pct">85%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="85"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://gnu.org/software/bash" target="_blank"><img src="https://cdn.simpleicons.org/gnubash">Bash</a>
+        <a class="mini-tag" href="https://python.org" target="_blank"><img src="https://cdn.simpleicons.org/python">Python</a>
+        <a class="mini-tag" href="https://golang.org" target="_blank"><img src="https://cdn.simpleicons.org/go">Go</a>
+        <a class="mini-tag" href="https://groovy-lang.org" target="_blank"><img src="https://cdn.simpleicons.org/apachegroovy">Groovy</a>
+        <a class="mini-tag" href="https://learn.microsoft.com/powershell" target="_blank"><img src="https://cdn.simpleicons.org/powershell">PowerShell</a>
+        <a class="mini-tag" href="https://nodejs.org" target="_blank"><img src="https://cdn.simpleicons.org/nodedotjs">Node.js</a>
+        <a class="mini-tag">REST APIs</a>
+        <a class="mini-tag">JSON / YAML</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Regular_expression" target="_blank">Regex</a>
+        <a class="mini-tag">Automation</a>
+        <a class="mini-tag">Unit Tests</a>
+        <a class="mini-tag">Cloud SDKs</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/go">Backend (Go / gRPC)</span><span class="pct">78%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="78"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://golang.org" target="_blank"><img src="https://cdn.simpleicons.org/go">Go</a>
+        <a class="mini-tag" href="https://grpc.io" target="_blank"><img src="https://cdn.simpleicons.org/grpc">gRPC</a>
+        <a class="mini-tag" href="https://protobuf.dev" target="_blank"><img src="https://cdn.simpleicons.org/protobuf">Protobuf</a>
+        <a class="mini-tag" href="https://golang.org/pkg/net/http" target="_blank">net/http</a>
+        <a class="mini-tag" href="https://github.com/stretchr/testify" target="_blank">testify</a>
+        <a class="mini-tag" href="https://testcontainers.com" target="_blank"><img src="https://cdn.simpleicons.org/docker">testcontainers</a>
+        <a class="mini-tag">REST API</a>
+        <a class="mini-tag" href="https://microservices.io" target="_blank">Microservices</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/postgresql">Databases</span><span class="pct">78%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="78"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://postgresql.org" target="_blank"><img src="https://cdn.simpleicons.org/postgresql">PostgreSQL</a>
+        <a class="mini-tag" href="https://www.postgresql.org/docs/current/backup-dump.html" target="_blank">pg_dump / pg_restore</a>
+        <a class="mini-tag" href="https://www.postgresql.org/docs/current/wal-intro.html" target="_blank">WAL</a>
+        <a class="mini-tag" href="https://www.postgresql.org/docs/current/high-availability.html" target="_blank">Replication</a>
+        <a class="mini-tag" href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-CONNECTION-POOLING" target="_blank">Connection Pooling</a>
+        <a class="mini-tag" href="https://www.postgresql.org/docs/current/performance-tips.html" target="_blank">Perf Tuning</a>
+        <a class="mini-tag" href="https://www.postgresql.org/docs/current/sql-vacuum.html" target="_blank">Vacuum / Autovacuum</a>
+        <a class="mini-tag" href="https://mysql.com" target="_blank"><img src="https://cdn.simpleicons.org/mysql">MySQL / MariaDB</a>
+        <a class="mini-tag" href="https://mongodb.com" target="_blank"><img src="https://cdn.simpleicons.org/mongodb">MongoDB</a>
+        <a class="mini-tag" href="https://redis.io" target="_blank"><img src="https://cdn.simpleicons.org/redis">Redis</a>
+        <a class="mini-tag" href="https://elastic.co" target="_blank"><img src="https://cdn.simpleicons.org/elasticsearch">Elasticsearch</a>
+        <a class="mini-tag" href="https://clickhouse.com" target="_blank"><img src="https://cdn.simpleicons.org/clickhouse">ClickHouse</a>
+        <a class="mini-tag" href="https://aws.amazon.com/rds" target="_blank">RDS</a>
+        <a class="mini-tag" href="https://cloud.google.com/sql" target="_blank">Cloud SQL</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/apachekafka">Message Brokers</span><span class="pct">74%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="74"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://kafka.apache.org" target="_blank"><img src="https://cdn.simpleicons.org/apachekafka">Kafka</a>
+        <a class="mini-tag" href="https://kafka.apache.org/documentation/#intro_topics" target="_blank">Topics / Partitions</a>
+        <a class="mini-tag" href="https://kafka.apache.org/documentation/#intro_consumers" target="_blank">Consumer Groups</a>
+        <a class="mini-tag" href="https://kafka.apache.org/documentation/#intro_offsets" target="_blank">Offsets / Lag</a>
+        <a class="mini-tag" href="https://kafka.apache.org/documentation/#replication" target="_blank">Replication</a>
+        <a class="mini-tag" href="https://strimzi.io" target="_blank"><img src="https://cdn.simpleicons.org/strimzi">Strimzi</a>
+        <a class="mini-tag" href="https://rabbitmq.com" target="_blank"><img src="https://cdn.simpleicons.org/rabbitmq">RabbitMQ</a>
+        <a class="mini-tag" href="https://www.rabbitmq.com/tutorials/amqp-concepts.html" target="_blank">Exchanges / Queues</a>
+        <a class="mini-tag" href="https://www.rabbitmq.com/dlx.html" target="_blank">Dead-letter Queues</a>
+        <a class="mini-tag" href="https://nats.io" target="_blank"><img src="https://cdn.simpleicons.org/natsdotio">NATS</a>
+        <a class="mini-tag" href="https://aws.amazon.com/sqs" target="_blank">SQS / SNS</a>
+        <a class="mini-tag">Event-driven</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/nginx">Web &amp; Traffic</span><span class="pct">78%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="78"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://nginx.org" target="_blank"><img src="https://cdn.simpleicons.org/nginx">nginx</a>
+        <a class="mini-tag" href="https://haproxy.org" target="_blank"><img src="https://cdn.simpleicons.org/haproxy">HAProxy</a>
+        <a class="mini-tag" href="https://httpd.apache.org" target="_blank">Apache</a>
+        <a class="mini-tag" href="https://www.iis.net" target="_blank">IIS</a>
+        <a class="mini-tag" href="https://traefik.io" target="_blank"><img src="https://cdn.simpleicons.org/traefikproxy">Traefik</a>
+        <a class="mini-tag">Reverse Proxy</a>
+        <a class="mini-tag">TLS Termination</a>
+        <a class="mini-tag">HTTP Caching</a>
+        <a class="mini-tag">Rate Limiting</a>
+        <a class="mini-tag">Load Balancing</a>
+        <a class="mini-tag" href="https://cloudflare.com" target="_blank"><img src="https://cdn.simpleicons.org/cloudflare">Cloudflare</a>
+        <a class="mini-tag" href="https://aws.amazon.com/cloudfront" target="_blank">CDN</a>
+        <a class="mini-tag" href="https://cloudflare.com/waf" target="_blank">WAF</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/prometheus">Monitoring &amp; Observability</span><span class="pct">82%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="82"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://prometheus.io" target="_blank"><img src="https://cdn.simpleicons.org/prometheus">Prometheus</a>
+        <a class="mini-tag" href="https://prometheus.io/docs/prometheus/latest/querying/basics" target="_blank"><img src="https://cdn.simpleicons.org/prometheus">PromQL</a>
+        <a class="mini-tag" href="https://prometheus.io/docs/alerting/latest/alertmanager" target="_blank"><img src="https://cdn.simpleicons.org/prometheus">Alertmanager</a>
+        <a class="mini-tag" href="https://grafana.com" target="_blank"><img src="https://cdn.simpleicons.org/grafana">Grafana</a>
+        <a class="mini-tag" href="https://grafana.com/oss/loki" target="_blank"><img src="https://cdn.simpleicons.org/grafana">Loki</a>
+        <a class="mini-tag" href="https://grafana.com/oss/tempo" target="_blank"><img src="https://cdn.simpleicons.org/grafana">Tempo</a>
+        <a class="mini-tag" href="https://opentelemetry.io" target="_blank"><img src="https://cdn.simpleicons.org/opentelemetry">OpenTelemetry</a>
+        <a class="mini-tag" href="https://elastic.co/what-is/elk-stack" target="_blank"><img src="https://cdn.simpleicons.org/elasticsearch">ELK / EFK</a>
+        <a class="mini-tag" href="https://datadoghq.com" target="_blank"><img src="https://cdn.simpleicons.org/datadog">Datadog</a>
+        <a class="mini-tag" href="https://victoriametrics.com" target="_blank">VictoriaMetrics</a>
+        <a class="mini-tag" href="https://www.zabbix.com" target="_blank">Zabbix</a>
+        <a class="mini-tag" href="https://sentry.io" target="_blank"><img src="https://cdn.simpleicons.org/sentry">Sentry</a>
+        <a class="mini-tag" href="https://www.pagerduty.com" target="_blank">PagerDuty</a>
+        <a class="mini-tag" href="https://backstage.io" target="_blank"><img src="https://cdn.simpleicons.org/backstage">Backstage</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/aquasecurity">Security &amp; DevSecOps</span><span class="pct">85%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="85"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://trivy.dev" target="_blank"><img src="https://cdn.simpleicons.org/aquasecurity">Trivy</a>
+        <a class="mini-tag" href="https://sonarqube.org" target="_blank"><img src="https://cdn.simpleicons.org/sonarqube">SonarQube</a>
+        <a class="mini-tag" href="https://vaultproject.io" target="_blank"><img src="https://cdn.simpleicons.org/vault">HashiCorp Vault</a>
+        <a class="mini-tag" href="https://openpolicyagent.org" target="_blank">OPA</a>
+        <a class="mini-tag" href="https://kyverno.io" target="_blank">Kyverno</a>
+        <a class="mini-tag" href="https://www.cloudflare.com/learning/security/zero-trust" target="_blank">Zero Trust</a>
+        <a class="mini-tag" href="https://attack.mitre.org" target="_blank"><img src="https://cdn.simpleicons.org/mitre">MITRE ATT&CK</a>
+        <a class="mini-tag" href="https://www.pcisecuritystandards.org" target="_blank">PCI DSS / SOC 2</a>
+        <a class="mini-tag" href="https://coraza.io" target="_blank">Coraza</a>
+        <a class="mini-tag" href="https://docs.gitlab.com/ee/user/application_security" target="_blank">Secure CI/CD</a>
+        <a class="mini-tag" href="https://aws.amazon.com/secrets-manager" target="_blank">AWS Secrets Manager</a>
+        <a class="mini-tag" href="https://learn.microsoft.com/azure/key-vault" target="_blank">Azure Key Vault</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/openid">IAM</span><span class="pct">75%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="75"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://freeipa.org" target="_blank">FreeIPA</a>
+        <a class="mini-tag" href="https://oauth.net/2" target="_blank">OAuth 2.0</a>
+        <a class="mini-tag" href="https://openid.net/connect" target="_blank">OpenID Connect</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/SAML_2.0" target="_blank">SAML 2.0</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol" target="_blank">LDAP</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Kerberos_(protocol)" target="_blank">Kerberos</a>
+        <a class="mini-tag" href="https://certbot.eff.org" target="_blank">Certbot</a>
+        <a class="mini-tag" href="https://www.ssh.com/academy/ssh/hardening" target="_blank">SSH Hardening</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/burpsuite">Cybersecurity / Offensive</span><span class="pct">72%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="72"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://portswigger.net/burp" target="_blank"><img src="https://cdn.simpleicons.org/burpsuite">BurpSuite</a>
+        <a class="mini-tag" href="https://github.com/trufflesecurity/trufflehog" target="_blank">Trufflehog</a>
+        <a class="mini-tag" href="https://nuclei.projectdiscovery.io" target="_blank"><img src="https://cdn.simpleicons.org/projectdiscovery">Nuclei</a>
+        <a class="mini-tag" href="https://nmap.org" target="_blank"><img src="https://cdn.simpleicons.org/nmap">Nmap</a>
+        <a class="mini-tag" href="https://www.fail2ban.org" target="_blank">fail2ban</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/pagerduty">SRE Practices</span><span class="pct">78%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="78"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://sre.google/sre-book/service-level-objectives" target="_blank">SLI / SLO</a>
+        <a class="mini-tag" href="https://sre.google/sre-book/error-budget" target="_blank">Error Budgets</a>
+        <a class="mini-tag" href="https://www.pagerduty.com/incident-management" target="_blank">Incident Management</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Root_cause_analysis" target="_blank">RCA</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Runbook" target="_blank">Runbooks</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Disaster_recovery" target="_blank">Disaster Recovery</a>
+        <a class="mini-tag">RTO / RPO</a>
+        <a class="mini-tag" href="https://principlesofchaos.org" target="_blank">Chaos Testing</a>
+        <a class="mini-tag">Capacity Planning</a>
+        <a class="mini-tag">High Availability</a>
+        <a class="mini-tag">Fault Tolerance</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/cncf">Architecture</span><span class="pct">76%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="76"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://microservices.io" target="_blank">Microservices</a>
+        <a class="mini-tag" href="https://cncf.io" target="_blank">Cloud-native</a>
+        <a class="mini-tag" href="https://istio.io" target="_blank">Service Mesh</a>
+        <a class="mini-tag" href="https://platformengineering.org" target="_blank">Platform Engineering</a>
+        <a class="mini-tag" href="https://aws.amazon.com/blogs/architecture/multi-region-architecture" target="_blank">Multi-region</a>
+        <a class="mini-tag" href="https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure" target="_blank">Immutable Infra</a>
+        <a class="mini-tag" href="https://12factor.net" target="_blank">12 Factor Apps</a>
+        <a class="mini-tag">ADR</a>
+        <a class="mini-tag">HLD / LLD</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/amazonwebservices">FinOps</span><span class="pct">65%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="65"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag">Cost Allocation</a>
+        <a class="mini-tag">Tagging</a>
+        <a class="mini-tag" href="https://aws.amazon.com/aws-cost-management" target="_blank">AWS Cost Explorer</a>
+        <a class="mini-tag" href="https://learn.microsoft.com/azure/cost-management-billing" target="_blank">Azure Cost Mgmt</a>
+        <a class="mini-tag">Rightsizing</a>
+        <a class="mini-tag" href="https://aws.amazon.com/ec2/pricing/reserved-instances" target="_blank">Reserved Instances</a>
+        <a class="mini-tag" href="https://aws.amazon.com/savingsplans" target="_blank">Savings Plans</a>
+        <a class="mini-tag" href="https://aws.amazon.com/ec2/spot" target="_blank">Spot Instances</a>
+        <a class="mini-tag">Cleanup Resources</a>
+        <a class="mini-tag">Budgets / Alerts</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/vmware">On-Premise / Virtualization</span><span class="pct">68%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="68"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag">Bare-metal</a>
+        <a class="mini-tag" href="https://vmware.com" target="_blank"><img src="https://cdn.simpleicons.org/vmware">VMware</a>
+        <a class="mini-tag" href="https://proxmox.com" target="_blank"><img src="https://cdn.simpleicons.org/proxmox">Proxmox</a>
+        <a class="mini-tag" href="https://learn.microsoft.com/windows-server/virtualization/hyper-v" target="_blank">Hyper-V</a>
+        <a class="mini-tag" href="https://www.redhat.com/en/technologies/cloud-computing/openshift" target="_blank"><img src="https://cdn.simpleicons.org/redhat">OpenShift</a>
+        <a class="mini-tag" href="https://tanzu.vmware.com" target="_blank"><img src="https://cdn.simpleicons.org/vmware">Tanzu</a>
+        <a class="mini-tag" href="https://www.microsoft.com/windows-server" target="_blank">Windows Server</a>
+        <a class="mini-tag">Active Directory</a>
+        <a class="mini-tag" href="https://www.veeam.com" target="_blank">Veeam</a>
+        <a class="mini-tag">SAN / NAS</a>
+        <a class="mini-tag">GPU Clusters</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/ollama">AI / ML &amp; LLMOps</span><span class="pct">55%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="55"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://ollama.com" target="_blank"><img src="https://cdn.simpleicons.org/ollama">Ollama</a>
+        <a class="mini-tag" href="https://docs.docker.com/config/containers/resource_constraints/#gpu" target="_blank"><img src="https://cdn.simpleicons.org/docker">Docker + CUDA</a>
+        <a class="mini-tag" href="https://en.wikipedia.org/wiki/Large_language_model" target="_blank">Local LLM</a>
+        <a class="mini-tag">Fine-tuning</a>
+        <a class="mini-tag">Prompt Engineering</a>
+        <a class="mini-tag">RAG</a>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/neovim">Tooling</span><span class="pct">80%</span></div>
+      <div class="skill-track"><div class="skill-fill" data-pct="80"></div></div>
+      <div class="skill-tags">
+        <a class="mini-tag" href="https://k9scli.io" target="_blank"><img src="https://cdn.simpleicons.org/kubernetes">k9s</a>
+        <a class="mini-tag" href="https://nvchad.com" target="_blank"><img src="https://cdn.simpleicons.org/neovim">NvChad</a>
+        <a class="mini-tag" href="https://github.com/tmux/tmux" target="_blank"><img src="https://cdn.simpleicons.org/tmux">tmux</a>
+        <a class="mini-tag" href="https://github.com/jesseduffield/lazygit" target="_blank"><img src="https://cdn.simpleicons.org/git">lazygit</a>
+        <a class="mini-tag" href="https://cloudflare.com/dns" target="_blank"><img src="https://cdn.simpleicons.org/cloudflare">Cloudflare</a>
+        <a class="mini-tag" href="https://atlassian.com/software/confluence" target="_blank"><img src="https://cdn.simpleicons.org/confluence">Confluence</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="battlegrounds" class="reveal" style="max-width: 1200px; margin: 6rem auto; padding: 0 2rem; position: relative; z-index: 1;">
+  <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> cyber labs</div>
+  <div class="labs-meta">
+    <a href="https://app.hackthebox.com/profile/019c9f3e-4b5a-7146-b937-c33ec584d620" target="_blank"><img src="https://cdn.simpleicons.org/hackthebox">HTB Profile // Apprentice</a>
+    <span>Level 30</span>
+    <span>Active Member</span>
+  </div>
+  <div class="labs-stats" id="labs-stats"></div>
+  <div class="labs-controls">
+    <div class="labs-filter-tabs" id="labs-filter-tabs"></div>
+    <input id="labs-search" type="text" placeholder="Search labs..." autocomplete="off" spellcheck="false">
+  </div>
+  <div class="labs-grid" id="labs-grid" data-items='[{"name": "Brutus", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/631", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9103-d723-4062-b57f-0a001833056e.png", "platform": "HTB"}, {"name": "CrownJewel-2", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/750", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-1318-436f-a707-ff8e40f40c1b.png", "platform": "HTB"}, {"name": "CrownJewel-1", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/751", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-0f4d-4320-a1a6-25845ed6169f.png", "platform": "HTB"}, {"name": "Reaper", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/749", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-16e3-4140-8ebd-fa81702141af.png", "platform": "HTB"}, {"name": "Noxious", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/747", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-1ea9-40f3-b4a7-7879c7533528.png", "platform": "HTB"}, {"name": "Campfire-2", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/736", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-4ab6-4804-99ce-2bfbbb9887e4.png", "platform": "HTB"}, {"name": "Campfire-1", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/737", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-46a7-4efb-918c-01ca0f1e2458.png", "platform": "HTB"}, {"name": "Unit42", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/632", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9103-d28e-4dba-b313-ac6255362411.png", "platform": "HTB"}, {"name": "SecretPictures", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/1033", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/a04499c1-f635-4b8b-bf18-3b12f35498b0.png", "platform": "HTB"}, {"name": "Web Attack Investigator", "href": "https://app.letsdefend.io/my-rewards/detail/18803afa-8fa3-458e-a382-364b1de7f748", "img": "https://app-ld-img.s3.amazonaws.com/badge/web-attacks-badge-2f7551ca-00ea-49e0-ae0c-a508c3c00552.png", "platform": "LetsDefend"}, {"name": "Linux Fan", "href": "https://app.letsdefend.io/my-rewards/detail/82d6fe7a-4012-48ca-8b61-ef5dd6089e8a", "img": "https://app-ld-img.s3.amazonaws.com/badge/badge-linux-101-01963665-e81b-45f9-aae0-f1a1b63392cb.png", "platform": "LetsDefend"}, {"name": "Brute Force", "href": "https://app.letsdefend.io/my-rewards/detail/6c157f07-3efe-4e49-9c8b-cf8fdbc62fe5", "img": "https://app-ld-img.s3.amazonaws.com/badge/brute-force-badge-48517643-fe50-4a92-b328-506c4208a6b1.png", "platform": "LetsDefend"}, {"name": "Web Server Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/a2715868-c227-4da6-b4c0-bfb2dc4e00c1", "img": "https://app-ld-img.s3.amazonaws.com/badge/hacked-analysis-badge-avatar-4c433f26-e83b-4e2a-8401-3fb32b1fa093.png", "platform": "LetsDefend"}, {"name": "MITRE ATT&CK", "href": "https://app.letsdefend.io/my-rewards/detail/4e8c5258-9dbb-4579-a7af-baa76f480c63", "img": "https://app-ld-img.s3.amazonaws.com/badge/mitre-badge-2-f8edfcce-62c1-4170-95cf-af5fd56562d0.png", "platform": "LetsDefend"}, {"name": "Web Hunter", "href": "https://app.letsdefend.io/my-rewards/detail/c8bfcf77-dd9b-461c-b225-d479d7b01551", "img": "https://app-ld-img.s3.amazonaws.com/badge/web-attacks-2-badge-5ab868c5-0140-4000-b386-f15e747614cf.png", "platform": "LetsDefend"}, {"name": "Go Writer", "href": "https://app.letsdefend.io/my-rewards/detail/2b757cc6-1847-4078-8050-e7436a56ddd0", "img": "https://app-ld-img.s3.amazonaws.com/badge/go-badge-avatar-f8a039ef-d328-49b1-89ad-2e2b4493cacc.png", "platform": "LetsDefend"}, {"name": "Secure Network Designer", "href": "https://app.letsdefend.io/my-rewards/detail/f20a34c4-c220-4361-9490-55d413992012", "img": "https://app-ld-img.s3.amazonaws.com/badge/secure-network-design-badge-8d746f5e-9ec2-4790-9227-f1c48207b21a.png", "platform": "LetsDefend"}, {"name": "JWT Attacks and Detection", "href": "https://app.letsdefend.io/my-rewards/detail/fbb234b2-556f-40c0-85db-979215f32f2f", "img": "https://app-ld-img.s3.amazonaws.com/badge/jwt-badge-38239eae-8bed-451b-911f-449144eafc7f.png", "platform": "LetsDefend"}, {"name": "AWS CloudWatch", "href": "https://app.letsdefend.io/my-rewards/detail/56a1ee10-4e59-4464-9dd2-f5d8cc4173f8", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-cloudwatch-badge.png", "platform": "LetsDefend"}, {"name": "Physical Security", "href": "https://app.letsdefend.io/my-rewards/detail/853bd553-4d60-4752-b551-7252b911ad3e", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/physical-sec-badge.png", "platform": "LetsDefend"}, {"name": "Red Team Hunter - 2", "href": "https://app.letsdefend.io/my-rewards/detail/5e3fb8a7-288b-4b4d-8c5a-7251bef11561", "img": "https://app-ld-img.s3.amazonaws.com/badge/red-team-tools-2-858e0eea-5707-460d-b176-3912fdd86aa4.png", "platform": "LetsDefend"}, {"name": "PDF Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/0726055f-bf06-497a-b6f0-f87708821244", "img": "https://app-ld-img.s3.amazonaws.com/badge/pdf-avatar-9a8f2e62-86dd-4032-a2d5-90ef42f5b04a.png", "platform": "LetsDefend"}, {"name": "Browser Extension Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/05a90ca0-4aa3-4a7b-8474-11f9b10fa4ad", "img": "https://app-ld-img.s3.amazonaws.com/badge/suspicious-browser-extension-badge-cd7872ab-e178-4a1e-91ee-92eccd0cf809.png", "platform": "LetsDefend"}, {"name": "Phishing Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/08923c86-d885-47ab-afe8-4c1fd91fe1e0", "img": "https://app-ld-img.s3.amazonaws.com/badge/phishing-challenge-avatart_vQ1645S-19e4e4cb-4f19-45ef-bb63-01c5260c8547.png", "platform": "LetsDefend"}, {"name": "AWS Responder", "href": "https://app.letsdefend.io/my-rewards/detail/5c2aff9c-45e1-48b3-abf9-b620e54b5f9a", "img": "https://app-ld-img.s3.amazonaws.com/badge/aws-badge-b665787c-af28-4502-bf99-8d88dd146e90.png", "platform": "LetsDefend"}, {"name": "AWS Incident Handler", "href": "https://app.letsdefend.io/my-rewards/detail/f81ee85b-afc8-43cf-80b1-bf7a102ffae1", "img": "https://app-ld-img.s3.amazonaws.com/badge/aws-persestence-badge-c5c8649b-0c46-46fd-a78d-34b87f8833e5.png", "platform": "LetsDefend"}, {"name": "Docker Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/dd2691a6-f489-413c-8715-09cfbc0fb568", "img": "https://app-ld-img.s3.amazonaws.com/badge/docker-badge-62df3f55-0589-4bb6-ba71-b344ceced720.png", "platform": "LetsDefend"}, {"name": "macOS Malware", "href": "https://app.letsdefend.io/my-rewards/detail/b36770ac-0b58-49fd-a490-5603290c3caf", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/macos-malware-badge.png", "platform": "LetsDefend"}, {"name": "Discord Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/51f72b7f-b714-45b9-a434-c20533c6cc12", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/discord-badge.png", "platform": "LetsDefend"}, {"name": "Golang Ransomware", "href": "https://app.letsdefend.io/my-rewards/detail/183d448f-a4aa-4703-8700-33dc415dec3f", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/go-ransom-badge.png", "platform": "LetsDefend"}, {"name": "AWS Bucketware", "href": "https://app.letsdefend.io/my-rewards/detail/fa25e80e-f523-46c8-872a-0ceb06d8ee97", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-bucketware-badge.png", "platform": "LetsDefend"}, {"name": "AWS Stacked", "href": "https://app.letsdefend.io/my-rewards/detail/7a43febd-d543-4d2c-9a7b-16f778e6ca8d", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-stacked-badge.png", "platform": "LetsDefend"}, {"name": "VoIP", "href": "https://app.letsdefend.io/my-rewards/detail/b636a9e8-8fa4-4dc6-a9cf-a875877d4d42", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/voip-challenge-badge.png", "platform": "LetsDefend"}, {"name": "USB Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/dc19c44e-3f48-45aa-85c1-95e482aafa2b", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/usb-forensics-challenge-badge.png", "platform": "LetsDefend"}, {"name": "TinyTurla Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/0601442e-6392-4fd2-b756-bd4d0a830866", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/TinyTurla+Backdoor-badge.png", "platform": "LetsDefend"}, {"name": "Samba Spy", "href": "https://app.letsdefend.io/my-rewards/detail/602e042c-481a-46bb-849b-9694e1d482a1", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/samba-spy-badge.png", "platform": "LetsDefend"}, {"name": "Mac Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/681cea81-e89f-4243-afc7-76c07f0dc678", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/mac+backdoor-challenge-badge.png", "platform": "LetsDefend"}, {"name": "Hidden Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/60b652ed-5bb1-4a78-a387-3e126e1aa538", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Hidden+Backdoor-challenge-badge.png", "platform": "LetsDefend"}, {"name": "Google Cloud Compromise", "href": "https://app.letsdefend.io/my-rewards/detail/e34cb954-5320-44a7-8ae2-3cc3428cdb31", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Google+Cloud+Compromise-badge.png", "platform": "LetsDefend"}, {"name": "Promptlock Ransomware", "href": "https://app.letsdefend.io/my-rewards/detail/46da6361-1397-49d6-b65a-3274f697f3c1", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Promptlock+Ransomware-badge.png", "platform": "LetsDefend"}, {"name": "Learn Sigma", "href": "https://app.letsdefend.io/my-rewards/detail/ae4ae87a-809c-46c6-8ee3-9a6afa62f167", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Learn+Sigma-challenge-badge.png", "platform": "LetsDefend"}, {"name": "First Blood", "href": "https://app.letsdefend.io/my-rewards/detail/d6353f1a-eb02-4524-88e5-204e68eb346e", "img": "https://app-ld-img.s3.amazonaws.com/badge/first-badge-6529e305-65c7-41fe-a929-c728f1bee986.png", "platform": "LetsDefend"}, {"name": "MemLoot", "href": "https://app.letsdefend.io/my-rewards/detail/e271b31b-f73e-408a-925f-f226d019d417", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/MemLoot-challenge-badge.png", "platform": "LetsDefend"}]'></div>
+</section>
+
+<section id="contact">
+  <div class="contact-grid reveal">
+    <a class="contact-link" href="https://github.com/nvimq" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      <span>GitHub</span>
+    </a>
+    <a class="contact-link" href="https://gitlab.com/nvimq" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M23.955 13.587l-1.342-4.135-2.664-8.189a.455.455 0 00-.867 0L16.418 9.45H7.582L4.918 1.263a.455.455 0 00-.867 0L1.386 9.45.044 13.587a.924.924 0 00.331 1.023L12 20.054l11.624-5.444a.924.924 0 00.331-1.023"/></svg>
+      <span>GitLab</span>
+    </a>
+    <a class="contact-link" href="https://www.linkedin.com/in/nurdauletbolat" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      <span>LinkedIn</span>
+    </a>
+    <a class="contact-link" href="mailto:nvimgolang@gmail.com">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      <span>Email</span>
+    </a>
+  </div>
+  <div class="footer-note reveal">
+    infrastructure as code · security by design · observability first
+  </div>
+</section>
+
+<script>
+(function(){
+const isMobile = window.innerWidth < 768;
+
+(function(){
+  const el = document.querySelector('.hero-name');
+  if(!el) return;
+  const fonts = ["'Orbitron', sans-serif", "'Chakra Petch', sans-serif", "'Rajdhani', sans-serif"];
+  let i = 0;
+  el.style.fontFamily = fonts[i];
+  function flip(){
+    i = (i + 1) % fonts.length;
+    el.style.fontFamily = fonts[i];
+    el.classList.remove('font-flip');
+    void el.offsetWidth;
+    el.classList.add('font-flip');
+  }
+  function schedule(){
+    const delay = 2500 + Math.random()*2500;
+    setTimeout(()=>{ flip(); schedule(); }, delay);
+  }
+  schedule();
+})();
+
+(function(){
+  const c = document.getElementById('noise');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  function resize(){c.width=window.innerWidth*0.5;c.height=window.innerHeight*0.5}
+  resize(); window.addEventListener('resize', resize);
+  function draw(){
+    const w=c.width,h=c.height,img=ctx.createImageData(w,h),d=img.data;
+    for(let i=0;i<d.length;i+=4){const v=Math.random()*255|0;d[i]=v;d[i+1]=v;d[i+2]=v;d[i+3]=50}
+    ctx.putImageData(img,0,0);
+    requestAnimationFrame(draw);
+  }
+  if(!isMobile) draw(); else c.style.display='none';
+})();
+
+(function(){
+  const c = document.getElementById('cursorCanvas');
+  if(!c||isMobile) { if(c) c.style.display='none'; return; }
+  const ctx = c.getContext('2d');
+  let w,h, mx, my;
+  function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}
+  resize(); window.addEventListener('resize', resize);
+  document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; });
+
+  function loop(){
+    ctx.clearRect(0,0,w,h);
+    if(mx!=null && my!=null){
+      const grad=ctx.createRadialGradient(mx,my,0,mx,my,14);
+      grad.addColorStop(0, 'rgba(255,255,255,0.45)');
+      grad.addColorStop(0.5, 'rgba(255,255,255,0.12)');
+      grad.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle=grad;
+      ctx.beginPath();
+      ctx.arc(mx,my,14,0,Math.PI*2);
+      ctx.fill();
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+(function(){
+  document.querySelectorAll('.orbit-label').forEach(label=>{
+    label.addEventListener('click', ()=>{
+      if (window.innerWidth < 768) {
+        label.closest('.orbit-section').classList.toggle('open');
+      }
+    });
+  });
+})();
+
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  if(!els.length) return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+  },{threshold:0.1});
+  els.forEach(el=>obs.observe(el));
+})();
+
+(function(){
+  const wrap=document.querySelector('.sigil-wrap');
+  const svg=document.getElementById('skill-sigil');
+  if(!wrap||!svg) return;
+  const skills=JSON.parse(wrap.dataset.skills);
+  const cx=220,cy=220,r=150;
+  const n=skills.length;
+  const angle=i=> -Math.PI/2 + i*(2*Math.PI/n);
+
+  let rings='';
+  [0.25,0.5,0.75,1].forEach(f=>{
+    const pts=skills.map((_,i)=>{const a=angle(i);return `${cx+r*f*Math.cos(a)},${cy+r*f*Math.sin(a)}`}).join(' ');
+    rings+=`<polygon points="${pts}" class="sigil-ring"/>`;
+  });
+  skills.forEach((_,i)=>{
+    const a=angle(i);
+    rings+=`<line x1="${cx}" y1="${cy}" x2="${cx+r*Math.cos(a)}" y2="${cy+r*Math.sin(a)}" class="sigil-axis"/>`;
+  });
+
+  const dataPts=skills.map((s,i)=>{const a=angle(i),f=s.pct/100;return `${cx+r*f*Math.cos(a)},${cy+r*f*Math.sin(a)}`}).join(' ');
+
+  let markers='';
+  skills.forEach((s,i)=>{
+    const a=angle(i),f=s.pct/100;
+    const px=cx+r*f*Math.cos(a), py=cy+r*f*Math.sin(a);
+    const lx=cx+(r+34)*Math.cos(a), ly=cy+(r+34)*Math.sin(a);
+    markers+=`<circle cx="${px}" cy="${py}" r="3.5" class="sigil-dot"/>`;
+    markers+=`<text x="${lx}" y="${ly}" class="sigil-label" text-anchor="middle" dominant-baseline="middle">${s.name}</text>`;
+    markers+=`<text x="${lx}" y="${ly+13}" class="sigil-pct" text-anchor="middle" dominant-baseline="middle">${s.pct}%</text>`;
+  });
+
+  svg.innerHTML = `<g class="sigil-rings">${rings}</g><polygon points="${dataPts}" class="sigil-fill" id="sigil-fill"/>${markers}`;
+
+  const fillEl=document.getElementById('sigil-fill');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ fillEl.classList.add('animate'); obs.unobserve(e.target); }
+    });
+  },{threshold:0.3});
+  obs.observe(svg);
+})();
+
+(function(){
+  const fills=document.querySelectorAll('.skill-fill');
+  if(!fills.length) return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.width=e.target.dataset.pct+'%';
+        obs.unobserve(e.target);
+      }
+    })
+  },{threshold:0.3});
+  fills.forEach(el=>obs.observe(el));
+})();
+
+(function(){
+  const grid=document.getElementById('labs-grid');
+  const statsEl=document.getElementById('labs-stats');
+  const tabsEl=document.getElementById('labs-filter-tabs');
+  const searchEl=document.getElementById('labs-search');
+  if(!grid||!statsEl||!tabsEl||!searchEl) return;
+
+  const items=JSON.parse(grid.dataset.items);
+  const platforms=[...new Set(items.map(i=>i.platform))];
+  const counts={};
+  platforms.forEach(p=>counts[p]=items.filter(i=>i.platform===p).length);
+
+  statsEl.innerHTML=`
+    <div class="labs-stat"><span class="n">${items.length}</span><span class="l">Total Badges</span></div>
+    <div class="labs-stat"><span class="n">${platforms.length}</span><span class="l">Platforms</span></div>
+    ${platforms.map(p=>`<div class="labs-stat"><span class="n">${counts[p]}</span><span class="l">${p}</span></div>`).join('')}
+  `;
+
+  let activeTab='All';
+  function renderTabs(){
+    tabsEl.innerHTML=`<div class="labs-tab${activeTab==='All'?' active':''}" data-p="All">All <span class="c">${items.length}</span></div>` +
+      platforms.map(p=>`<div class="labs-tab${activeTab===p?' active':''}" data-p="${p}">${p} <span class="c">${counts[p]}</span></div>`).join('');
+    tabsEl.querySelectorAll('.labs-tab').forEach(tab=>{
+      tab.addEventListener('click', ()=>{ activeTab=tab.dataset.p; renderTabs(); renderGrid(); });
+    });
+  }
+
+  function renderGrid(){
+    const q=searchEl.value.trim().toLowerCase();
+    const filtered=items.filter(i=>
+      (activeTab==='All'||i.platform===activeTab) &&
+      (!q||i.name.toLowerCase().includes(q))
+    );
+    if(!filtered.length){
+      grid.innerHTML='<div class="labs-empty">No matches</div>';
+      return;
+    }
+    grid.innerHTML=filtered.map(i=>{
+      const tag=i.href?`<a class="lab-card" href="${i.href}" target="_blank">`:'<div class="lab-card">';
+      const closeTag=i.href?'</a>':'</div>';
+      return `${tag}<img src="${i.img}" loading="lazy"><span class="lab-name">${i.name}</span><span class="lab-platform">${i.platform}</span>${closeTag}`;
+    }).join('');
+  }
+
+  renderTabs();
+  renderGrid();
+  searchEl.addEventListener('input', renderGrid);
+})();
+
+(function(){
+  const grid=document.getElementById('certs-grid');
+  const statsEl=document.getElementById('certs-stats');
+  const tabsEl=document.getElementById('certs-filter-tabs');
+  const searchEl=document.getElementById('certs-search');
+  if(!grid||!statsEl||!tabsEl||!searchEl) return;
+
+  const items=JSON.parse(grid.dataset.items);
+  const issuers=[...new Set(items.map(i=>i.issuer))];
+  const counts={};
+  issuers.forEach(iss=>counts[iss]=items.filter(i=>i.issuer===iss).length);
+
+  statsEl.innerHTML=`
+    <div class="labs-stat"><span class="n">${items.length}</span><span class="l">Total Certs</span></div>
+    <div class="labs-stat"><span class="n">${issuers.length}</span><span class="l">Issuers</span></div>
+    ${issuers.map(iss=>`<div class="labs-stat"><span class="n">${counts[iss]}</span><span class="l">${iss}</span></div>`).join('')}
+  `;
+
+  let activeTab='All';
+  function renderTabs(){
+    tabsEl.innerHTML=`<div class="labs-tab${activeTab==='All'?' active':''}" data-p="All">All <span class="c">${items.length}</span></div>` +
+      issuers.map(iss=>`<div class="labs-tab${activeTab===iss?' active':''}" data-p="${iss}">${iss} <span class="c">${counts[iss]}</span></div>`).join('');
+    tabsEl.querySelectorAll('.labs-tab').forEach(tab=>{
+      tab.addEventListener('click', ()=>{ activeTab=tab.dataset.p; renderTabs(); renderGrid(); });
+    });
+  }
+
+  function renderGrid(){
+    const q=searchEl.value.trim().toLowerCase();
+    const filtered=items.filter(i=>
+      (activeTab==='All'||i.issuer===activeTab) &&
+      (!q||i.name.toLowerCase().includes(q)||i.issuer.toLowerCase().includes(q))
+    );
+    if(!filtered.length){
+      grid.innerHTML='<div class="labs-empty">No matches</div>';
+      return;
+    }
+    grid.innerHTML=filtered.map(i=>`
+      <a class="cert-card" href="${i.href}" target="_blank">
+        <div class="cert-card-top">
+          <img src="${i.img}">
+          <span class="cert-issuer">${i.issuer}</span>
+        </div>
+        <div class="cert-name">${i.name}</div>
+        <span class="cert-link">view credential &rarr;</span>
+      </a>
+    `).join('');
+  }
+
+  renderTabs();
+  renderGrid();
+  searchEl.addEventListener('input', renderGrid);
+})();
+
+(function(){
+  const trigger=document.getElementById('search-trigger');
+  const overlay=document.getElementById('search-overlay');
+  const input=document.getElementById('search-input');
+  const resultsEl=document.getElementById('search-results');
+  const kbd=document.getElementById('search-kbd');
+  if(!trigger||!overlay||!input) return;
+
+  const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+  kbd.textContent = isMac ? '⌘K' : 'Ctrl K';
+
+  function buildIndex(){
+    const items=[];
+    document.querySelectorAll('.contact-link').forEach(link=>{
+      items.push({text:link.querySelector('span').textContent.trim(),group:'contact',href:link.getAttribute('href'),img:null});
+    });
+    const labsGrid=document.getElementById('labs-grid');
+    if(labsGrid){
+      JSON.parse(labsGrid.dataset.items).forEach(i=>{
+        items.push({text:`${i.name} (${i.platform})`,group:'cyber labs',href:i.href,img:i.img});
+      });
+    }
+    const certsGrid=document.getElementById('certs-grid');
+    if(certsGrid){
+      JSON.parse(certsGrid.dataset.items).forEach(i=>{
+        items.push({text:`${i.name} (${i.issuer})`,group:'certifications',href:i.href,img:i.img});
+      });
+    }
+    return items;
+  }
+  const index=buildIndex();
+  let active=-1;
+  let filtered=[];
+
+  function render(list){
+    filtered=list;
+    active=list.length?0:-1;
+    if(!list.length){
+      resultsEl.innerHTML='<div id="search-empty">No matches</div>';
+      return;
+    }
+    let lastGroup=null;
+    let html='';
+    list.forEach((item,i)=>{
+      if(item.group!==lastGroup){
+        html+=`<div class="search-group-label">// ${item.group}</div>`;
+        lastGroup=item.group;
+      }
+      html+=`<div class="search-result${i===active?' active':''}" data-i="${i}">${item.img?`<img src="${item.img}">`:''}<span>${item.text}</span><span class="rk">${item.href?'open &rarr;':''}</span></div>`;
+    });
+    resultsEl.innerHTML=html;
+  }
+
+  function updateActive(){
+    resultsEl.querySelectorAll('.search-result').forEach(el=>{
+      el.classList.toggle('active', Number(el.dataset.i)===active);
+    });
+    const activeEl=resultsEl.querySelector('.search-result.active');
+    if(activeEl) activeEl.scrollIntoView({block:'nearest'});
+  }
+
+  function openItem(item){
+    if(!item) return;
+    if(item.href){
+      window.open(item.href, item.href.startsWith('http')?'_blank':'_self');
+    }
+    close();
+  }
+
+  function open(){
+    overlay.classList.add('open');
+    input.value='';
+    render(index);
+    setTimeout(()=>input.focus(),10);
+    document.body.style.overflow='hidden';
+  }
+  function close(){
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+  }
+
+  trigger.addEventListener('click', open);
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) close(); });
+
+  input.addEventListener('input', ()=>{
+    const q=input.value.trim().toLowerCase();
+    if(!q){ render(index); return; }
+    render(index.filter(item=>item.text.toLowerCase().includes(q)||item.group.toLowerCase().includes(q)));
+  });
+
+  document.addEventListener('keydown', e=>{
+    const meta = (e.metaKey||e.ctrlKey) && e.key.toLowerCase()==='k';
+    if(meta){ e.preventDefault(); overlay.classList.contains('open') ? close() : open(); return; }
+    if(!overlay.classList.contains('open')) return;
+    if(e.key==='Escape'){ close(); return; }
+    if(e.key==='ArrowDown'){ e.preventDefault(); if(filtered.length){ active=(active+1)%filtered.length; updateActive(); } return; }
+    if(e.key==='ArrowUp'){ e.preventDefault(); if(filtered.length){ active=(active-1+filtered.length)%filtered.length; updateActive(); } return; }
+    if(e.key==='Enter'){ e.preventDefault(); openItem(filtered[active]); return; }
+  });
+
+  resultsEl.addEventListener('click', e=>{
+    const row=e.target.closest('.search-result');
+    if(!row) return;
+    openItem(filtered[Number(row.dataset.i)]);
+  });
+})();
+
+(function(){
+  const el=document.getElementById('offline-indicator');
+  if(!el) return;
+  function update(){
+    el.classList.toggle('show', !navigator.onLine);
+  }
+  window.addEventListener('online', update);
+  window.addEventListener('offline', update);
+  update();
+})();
+
+(function(){
+  const banner=document.getElementById('pwa-install');
+  const installBtn=document.getElementById('pwa-install-btn');
+  const dismissBtn=document.getElementById('pwa-dismiss-btn');
+  if(!banner||!installBtn||!dismissBtn) return;
+  if(localStorage.getItem('pwa-install-dismissed')==='1') return;
+
+  let deferredPrompt=null;
+  window.addEventListener('beforeinstallprompt', e=>{
+    e.preventDefault();
+    deferredPrompt=e;
+    banner.classList.add('show');
+  });
+  installBtn.addEventListener('click', async ()=>{
+    if(!deferredPrompt) return;
+    banner.classList.remove('show');
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt=null;
+  });
+  dismissBtn.addEventListener('click', ()=>{
+    banner.classList.remove('show');
+    localStorage.setItem('pwa-install-dismissed','1');
+  });
+  window.addEventListener('appinstalled', ()=>{ banner.classList.remove('show'); });
+})();
+
+})();
+</script>
+<style>
+.reveal{opacity:0;filter:blur(6px);transform:translateY(30px);transition:opacity 0.7s ease,filter 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;filter:blur(0);transform:translateY(0)}
+</style>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})});
+}
+</script>
+</body>
+</html>
