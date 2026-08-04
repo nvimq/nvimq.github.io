@@ -1,6 +1,6 @@
 /* nvimq - DevSecOps PWA service worker (GitHub Pages / GitLab Pages) */
-const CORE = 'nvimq-core-v1';
-const RUNTIME = 'nvimq-runtime-v1';
+const CORE = 'nvimq-core-v2';
+const RUNTIME = 'nvimq-runtime-v2';
 const PRECACHE = [
   '/',
   '/index.html',
