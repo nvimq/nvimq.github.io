@@ -1999,11 +1999,14 @@ if('serviceWorker' in navigator){
   });
 
   if (window.visualViewport) {
+    let lastHeight = window.visualViewport.height;
     window.visualViewport.addEventListener('resize', () => {
-      // If viewport grows to nearly full screen, keyboard is closed
-      if (window.visualViewport.height > window.innerHeight * 0.8) {
+      const currentHeight = window.visualViewport.height;
+      // If height increased significantly (>150px), keyboard was closed
+      if (currentHeight > lastHeight + 150) {
         chatInput.blur();
       }
+      lastHeight = currentHeight;
     });
   }
 
