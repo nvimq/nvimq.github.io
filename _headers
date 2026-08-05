@@ -2,3 +2,7 @@
   Cache-Control: no-cache, no-store, must-revalidate
   Pragma: no-cache
   Expires: 0
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.clarity.ms https://platform.linkedin.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.simpleicons.org https://app-ld-img.s3.amazonaws.com https://app-ld-img.s3.us-east-2.amazonaws.com https://cdn.services-k8s.prod.aws.htb.systems https://c.clarity.ms; connect-src 'self' https://ai-assistant.nvimgolang.workers.dev https://*.clarity.ms; frame-src 'self' https://www.linkedin.com; object-src 'none';

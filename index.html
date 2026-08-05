@@ -1339,7 +1339,7 @@ a,button,input,textarea{cursor:none}
 
 <!-- Hidden LinkedIn Badge for integration -->
 <div style="display: none;" aria-hidden="true">
-  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript" integrity="sha384-taaAVEItHWxiUOfn4xfDxzWv0TOqrUeHOfylOEyjn9oLTMxr0CZHlb6hhvxFMN9+" crossorigin="anonymous"></script>
   <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="nurdaulet-bolat" data-version="v1">
     <a class="badge-base__link LI-simple-link" href="https://fr.linkedin.com/in/nurdaulet-bolat?trk=profile-badge">Nurdaulet Bolat</a>
   </div>
@@ -1839,6 +1839,7 @@ if('serviceWorker' in navigator){
   line-height: 1.4;
   max-width: 85%;
   word-wrap: break-word;
+  white-space: pre-wrap;
 }
 .chat-msg.ai {
   background: rgba(255,255,255,0.08);
@@ -2027,13 +2028,13 @@ if('serviceWorker' in navigator){
       });
       
       const data = await res.json();
-      loadMsg.innerHTML = (data.reply || "Sorry, I couldn't understand that.").replace(/\n/g, '<br>');
+      loadMsg.innerText = data.reply || "Sorry, I couldn't understand that.";
     } catch(e) {
       console.error(e);
       if (e.message.includes('YOUR-SUBDOMAIN')) {
         loadMsg.innerHTML = 'Oops! Please setup your Cloudflare Worker and paste the URL in the <code>CF_WORKER_URL</code> variable inside index.html.';
       } else {
-        loadMsg.textContent = 'Error: The assistant is currently offline or unreachable.';
+        loadMsg.innerText = 'Error: The assistant is currently offline or unreachable.';
       }
     }
     chatBody.scrollTop = chatBody.scrollHeight;
