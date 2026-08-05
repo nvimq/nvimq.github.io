@@ -1999,6 +1999,24 @@ if('serviceWorker' in navigator){
       contentElements.forEach(el => {
         siteContext += (el.textContent || "") + "\n";
       });
+
+      // Explicitly include labs and certs from data-items to ensure they are available in context
+      const labsGrid = document.getElementById('labs-grid');
+      if (labsGrid && labsGrid.dataset.items) {
+        try {
+          const labs = JSON.parse(labsGrid.dataset.items);
+          siteContext += "\nLabs & Challenges:\n" + labs.map(l => `- ${l.name} (${l.platform})`).join('\n') + "\n";
+        } catch(e) {}
+      }
+
+      const certsGrid = document.getElementById('certs-grid');
+      if (certsGrid && certsGrid.dataset.items) {
+        try {
+          const certs = JSON.parse(certsGrid.dataset.items);
+          siteContext += "\nCertifications:\n" + certs.map(c => `- ${c.name} (${c.issuer})`).join('\n') + "\n";
+        } catch(e) {}
+      }
+
       siteContext = siteContext.replace(/\s+/g, ' ').substring(0, 15000); // collapse spaces and limit
       console.log("Extracted context length:", siteContext.length);
 
