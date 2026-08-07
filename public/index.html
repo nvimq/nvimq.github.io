@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Nurdaulet Bolat - Portfolio</title>
+<title>nvimq | Nurdaulet Bolat - Senior DevOps &amp; DevSecOps Engineer</title>
 <meta name="theme-color" content="#000000">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,10 +13,28 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<meta name="description" content="DevOps & Platform Engineer. Linux, Kubernetes, Cloud, IaC, CI/CD, Observability, Security.">
+<link rel="canonical" href="https://nvimq.gitlab.io/">
+<meta name="description" content="nvimq - portfolio of Nurdaulet Bolat, Senior DevOps &amp; DevSecOps Engineer: AWS, Kubernetes, Terraform, GitOps, CI/CD, certifications and hands-on labs.">
+<meta name="keywords" content="nvimq, Nurdaulet Bolat, DevSecOps, DevOps, Kubernetes, AWS, Terraform, GitOps, CI/CD">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="nvimq | Nurdaulet Bolat - Senior DevOps &amp; DevSecOps Engineer">
+<meta property="og:description" content="nvimq - portfolio of Nurdaulet Bolat, Senior DevOps &amp; DevSecOps Engineer: AWS, Kubernetes, Terraform, GitOps, CI/CD, certifications and hands-on labs.">
+<meta property="og:url" content="https://nvimq.gitlab.io/">
+<meta property="og:image" content="https://nvimq.gitlab.io/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nurdaulet Bolat",
+  "alternateName": ["Нурдаулет Болат", "Nurdaulet", "Нурдаулет", "nvimq"],
+  "url": "https://nvimq.gitlab.io/",
+  "image": "https://nvimq.gitlab.io/icon-512.png",
+  "sameAs": [
+    "https://github.com/nvimq",
+    "https://nvimq.github.io/"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@300;400;500&family=Orbitron:wght@700;900&family=Chakra+Petch:wght@700&family=Rajdhani:wght@700&display=swap" rel="stylesheet">
@@ -544,6 +562,7 @@ a,button,input,textarea{cursor:none}
   position:fixed;
   bottom:1.25rem;left:50%;
   transform:translate(-50%,150%);
+  opacity:0;pointer-events:none;
   z-index:9998;
   display:inline-flex;align-items:center;gap:0.5rem;
   padding:0.5rem 1rem;
@@ -552,40 +571,11 @@ a,button,input,textarea{cursor:none}
   color:#ff8080;
   font-family:'JetBrains Mono',monospace;
   font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
-  transition:transform 0.35s ease;
+  transition:transform 0.35s ease, opacity 0.35s ease;
 }
-#offline-indicator.show{transform:translate(-50%,0)}
+#offline-indicator.show{transform:translate(-50%,0);opacity:1;pointer-events:auto;}
 #offline-indicator .dot{width:6px;height:6px;border-radius:50%;background:#ff5050;animation:pulseDot 1.4s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:0.3}}
-
-#pwa-install{
-  position:fixed;
-  bottom:1.25rem;right:1.25rem;
-  z-index:9998;
-  display:none;align-items:center;gap:0.75rem;
-  padding:0.75rem 1rem;
-  background:rgba(10,10,10,0.95);
-  border:1px solid rgba(255,255,255,0.15);
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.75rem;color:#aaa;
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-#pwa-install.show{display:flex}
-#pwa-install button{
-  font-family:'JetBrains Mono',monospace;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.2);
-  color:#fff;
-  padding:0.4rem 0.8rem;
-  font-size:0.7rem;letter-spacing:0.05em;text-transform:uppercase;
-  cursor:pointer;transition:all 0.2s ease;
-}
-#pwa-install button:hover{background:rgba(255,255,255,0.12)}
-#pwa-install .dismiss{background:transparent;border-color:transparent;color:#555;padding:0.4rem 0.5rem}
-#pwa-install .dismiss:hover{color:#999;background:transparent}
-@media(max-width:768px){
-  #pwa-install{left:1rem;right:1rem;bottom:1rem}
-}
 
 .sigil-wrap{
   display:flex;justify-content:center;
@@ -783,7 +773,7 @@ a,button,input,textarea{cursor:none}
 }
 @media(max-width:700px){
   .labs-controls{flex-direction:column;align-items:stretch}
-  #labs-search,#certs-search{max-width:none;font-size:16px;padding:0.6rem 1rem}
+  #labs-search,#certs-search{flex:none;width:100%;max-width:none;font-size:16px;padding:0.6rem 1rem}
   .labs-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
 }
 
@@ -860,12 +850,9 @@ a,button,input,textarea{cursor:none}
 
 <div id="offline-indicator"><span class="dot"></span><span>Offline &mdash; cached view</span></div>
 
-<div id="pwa-install">
-  <span>Install this site as an app</span>
-  <button id="pwa-install-btn">Install</button>
-  <button class="dismiss" id="pwa-dismiss-btn">&times;</button>
-</div>
 
+
+<main>
 <section id="hero">
   <div class="orbit-sections-wrapper" style="justify-content:center;min-height:auto;padding:0;">
 
@@ -873,6 +860,7 @@ a,button,input,textarea{cursor:none}
       <h1 class="hero-name font-flip" style="font-family: Rajdhani, sans-serif;">
         Nurdaulet
         <span class="last">Bolat</span>
+        <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Нурдаулет Болат</span>
       </h1>
     </div>
 
@@ -886,19 +874,19 @@ a,button,input,textarea{cursor:none}
     <div class="labs-filter-tabs" id="certs-filter-tabs"></div>
     <input id="certs-search" type="text" placeholder="Search certifications..." autocomplete="off" spellcheck="false">
   </div>
-  <div class="cert-grid" id="certs-grid" data-items='[{"name": "OWASP Top 10", "issuer": "Snyk", "href": "./certifications/owasp-top10-snyk.pdf", "img": "https://cdn.simpleicons.org/owasp"}, {"name": "Cilium AI/ML Security", "issuer": "Isovalent", "href": "https://www.credly.com/badges/72dc398d-25b3-42bd-b47b-aab5e3806a51/", "img": "https://cdn.simpleicons.org/cilium"}, {"name": "Certified Calico Operator: eBPF", "issuer": "Tigera", "href": "https://courses.academy.tigera.io/certificates/6dbe730cb475457d950ab4b835ffe808", "img": "https://cdn.simpleicons.org/kubernetes"}, {"name": "Chaos Engineering", "issuer": "Gremlin", "href": "https://certification.gremlin.com/credentials/2cb26774-b77a-48f7-8324-a3bd2c2d0dba", "img": "https://cdn.simpleicons.org/linux"}, {"name": "SQL (Advanced)", "issuer": "HackerRank", "href": "https://www.hackerrank.com/certificates/243b1c73f324", "img": "https://cdn.simpleicons.org/hackerrank"}, {"name": "Docker Foundations Professional Certificate", "issuer": "Docker", "href": "https://www.linkedin.com/learning/certificates/0b3f4aafb30cf50506341a5b9fefc7269ec9397965e70b61b3598cfa6f5072af", "img": "https://cdn.simpleicons.org/docker"}, {"name": "Ubuntu Linux Professional Certificate", "issuer": "Canonical", "href": "https://www.linkedin.com/learning/certificates/252da2eda72d434d27c11ef47249229b4075698e330f78e951fe7fc12d10fa0e", "img": "https://cdn.simpleicons.org/canonical"}, {"name": "Go (Intermediate)", "issuer": "HackerRank", "href": "https://www.hackerrank.com/certificates/77f9736ad0f6", "img": "https://cdn.simpleicons.org/hackerrank"}, {"name": "Discovery: SecOps Engineer", "issuer": "Isovalent", "href": "https://www.credly.com/badges/f9969ae4-5b35-47dc-a1f6-f58b58f1fb4b/public_url", "img": "https://images.credly.com/images/d54799eb-d613-4113-affa-e89770b53689/tempfile20250605-59-ip94pl.png"}]'></div>
+  <div class="cert-grid" id="certs-grid" data-items='[{"name": "Certified Calico Operator: eBPF", "issuer": "Tigera", "href": "https://courses.academy.tigera.io/certificates/6dbe730cb475457d950ab4b835ffe808", "img": "https://cdn.simpleicons.org/kubernetes"}, {"name": "Cilium AI/ML Security", "issuer": "Isovalent", "href": "https://www.credly.com/badges/72dc398d-25b3-42bd-b47b-aab5e3806a51/", "img": "https://cdn.simpleicons.org/cilium"}, {"name": "Chaos Engineering", "issuer": "Gremlin", "href": "https://certification.gremlin.com/credentials/2cb26774-b77a-48f7-8324-a3bd2c2d0dba", "img": "https://cdn.simpleicons.org/linux"}, {"name": "OWASP Top 10", "issuer": "Snyk", "href": "./certifications/owasp-top10-snyk.pdf", "img": "https://cdn.simpleicons.org/owasp"}, {"name": "Discovery: SecOps Engineer", "issuer": "Isovalent", "href": "https://www.credly.com/badges/f9969ae4-5b35-47dc-a1f6-f58b58f1fb4b/public_url", "img": "/secops-discovery-badge.webp"}, {"name": "Go (Intermediate)", "issuer": "HackerRank", "href": "https://www.hackerrank.com/certificates/77f9736ad0f6", "img": "https://cdn.simpleicons.org/hackerrank"}, {"name": "SQL (Advanced)", "issuer": "HackerRank", "href": "https://www.hackerrank.com/certificates/243b1c73f324", "img": "https://cdn.simpleicons.org/hackerrank"}, {"name": "Docker Foundations Professional Certificate", "issuer": "Docker", "href": "https://www.linkedin.com/learning/certificates/0b3f4aafb30cf50506341a5b9fefc7269ec9397965e70b61b3598cfa6f5072af", "img": "https://cdn.simpleicons.org/docker"}, {"name": "Ubuntu Linux Professional Certificate", "issuer": "Canonical", "href": "https://www.linkedin.com/learning/certificates/252da2eda72d434d27c11ef47249229b4075698e330f78e951fe7fc12d10fa0e", "img": "https://cdn.simpleicons.org/canonical"}]'></div>
 </section>
 
 <section id="skills" class="reveal" style="max-width: 700px; margin: 7rem auto; padding: 0 2rem; position: relative; z-index: 1;">
   <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> core</div>
   <div class="sigil-wrap"
     data-skills='[
-      {"name":"Engineering","pct":92},
-      {"name":"Cloud &amp; Kubernetes","pct":88},
-      {"name":"Security","pct":85},
-      {"name":"Architecture","pct":82},
-      {"name":"Automation","pct":84},
-      {"name":"Business &amp; FinOps","pct":78}
+      {"name":"Engineering","pct":77},
+      {"name":"Cloud &amp; Kubernetes","pct":87},
+      {"name":"Security","pct":77},
+      {"name":"Architecture","pct":77},
+      {"name":"Automation","pct":83},
+      {"name":"Business &amp; FinOps","pct":65}
     ]'>
     <svg id="skill-sigil" viewBox="0 0 440 440"></svg>
   </div>
@@ -908,10 +896,10 @@ a,button,input,textarea{cursor:none}
   <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> full stack</div>
   <div class="skills-grid">
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/linux">Linux &amp; Systems</span><span class="pct">92%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/linux" alt="">Linux &amp; Systems</span><span class="pct">92%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="92"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://kernel.org" target="_blank"><img src="https://cdn.simpleicons.org/linux">Linux</a>
+        <a class="mini-tag" href="https://kernel.org" target="_blank"><img src="https://cdn.simpleicons.org/linux" alt="">Linux</a>
         <a class="mini-tag" href="https://systemd.io" target="_blank">systemd</a>
         <a class="mini-tag" href="https://sourceware.org/lvm2" target="_blank">LVM</a>
         <a class="mini-tag" href="https://wiki.archlinux.org/title/Access_Control_Lists" target="_blank">ACL</a>
@@ -927,7 +915,7 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/wireguard">Networking</span><span class="pct">85%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/wireguard" alt="">Networking</span><span class="pct">85%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="85"></div></div>
       <div class="skill-tags">
         <a class="mini-tag" href="https://en.wikipedia.org/wiki/OSI_model" target="_blank">OSI Model</a>
@@ -943,33 +931,33 @@ a,button,input,textarea{cursor:none}
         <a class="mini-tag" href="https://netfilter.org/projects/nftables" target="_blank">nftables</a>
         <a class="mini-tag" href="https://tcpdump.org" target="_blank">tcpdump</a>
         <a class="mini-tag" href="https://en.wikipedia.org/wiki/Virtual_private_network" target="_blank">VPN</a>
-        <a class="mini-tag" href="https://wireguard.com" target="_blank"><img src="https://cdn.simpleicons.org/wireguard">WireGuard</a>
-        <a class="mini-tag" href="https://tailscale.com" target="_blank"><img src="https://cdn.simpleicons.org/tailscale">Tailscale</a>
+        <a class="mini-tag" href="https://wireguard.com" target="_blank"><img src="https://cdn.simpleicons.org/wireguard" alt="">WireGuard</a>
+        <a class="mini-tag" href="https://tailscale.com" target="_blank"><img src="https://cdn.simpleicons.org/tailscale" alt="">Tailscale</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/git">Git &amp; Version Control</span><span class="pct">88%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/git" alt="">Git &amp; Version Control</span><span class="pct">88%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="88"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://git-scm.com" target="_blank"><img src="https://cdn.simpleicons.org/git">Git</a>
+        <a class="mini-tag" href="https://git-scm.com" target="_blank"><img src="https://cdn.simpleicons.org/git" alt="">Git</a>
         <a class="mini-tag" href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" target="_blank">GitFlow</a>
         <a class="mini-tag" href="https://trunkbaseddevelopment.com" target="_blank">Trunk-based</a>
         <a class="mini-tag" href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks" target="_blank">Hooks</a>
         <a class="mini-tag" href="https://docs.github.com/en/pull-requests" target="_blank">Code Review</a>
-        <a class="mini-tag" href="https://gitlab.com" target="_blank"><img src="https://cdn.simpleicons.org/gitlab">GitLab</a>
-        <a class="mini-tag" href="https://github.com" target="_blank"><img src="https://cdn.simpleicons.org/github">GitHub</a>
+        <a class="mini-tag" href="https://gitlab.com" target="_blank"><img src="https://cdn.simpleicons.org/gitlab" alt="">GitLab</a>
+        <a class="mini-tag" href="https://github.com" target="_blank"><img src="https://cdn.simpleicons.org/github" alt="">GitHub</a>
         <a class="mini-tag" href="https://about.gitlab.com/topics/version-control/protected-branch" target="_blank">Protected Branches</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/docker">Containers</span><span class="pct">88%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/docker" alt="">Containers</span><span class="pct">88%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="88"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://docker.com" target="_blank"><img src="https://cdn.simpleicons.org/docker">Docker</a>
+        <a class="mini-tag" href="https://docker.com" target="_blank"><img src="https://cdn.simpleicons.org/docker" alt="">Docker</a>
         <a class="mini-tag" href="https://docs.docker.com/develop/develop-images/multistage-build" target="_blank">Multi-stage</a>
-        <a class="mini-tag" href="https://docs.docker.com/compose" target="_blank"><img src="https://cdn.simpleicons.org/docker">Compose</a>
-        <a class="mini-tag" href="https://containerd.io" target="_blank"><img src="https://cdn.simpleicons.org/containerd">containerd</a>
-        <a class="mini-tag" href="https://podman.io" target="_blank"><img src="https://cdn.simpleicons.org/podman">Podman</a>
+        <a class="mini-tag" href="https://docs.docker.com/compose" target="_blank"><img src="https://cdn.simpleicons.org/docker" alt="">Compose</a>
+        <a class="mini-tag" href="https://containerd.io" target="_blank"><img src="https://cdn.simpleicons.org/containerd" alt="">containerd</a>
+        <a class="mini-tag" href="https://podman.io" target="_blank"><img src="https://cdn.simpleicons.org/podman" alt="">Podman</a>
         <a class="mini-tag" href="https://docs.docker.com/storage/volumes" target="_blank">Volumes</a>
         <a class="mini-tag" href="https://docs.docker.com/network" target="_blank">Networks</a>
         <a class="mini-tag" href="https://distribution.github.io" target="_blank">Registry</a>
@@ -979,49 +967,49 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/kubernetes">Kubernetes</span><span class="pct">88%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/kubernetes" alt="">Kubernetes</span><span class="pct">88%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="88"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://kubernetes.io" target="_blank"><img src="https://cdn.simpleicons.org/kubernetes">Kubernetes</a>
-        <a class="mini-tag" href="https://helm.sh" target="_blank"><img src="https://cdn.simpleicons.org/helm">Helm</a>
-        <a class="mini-tag" href="https://kustomize.io" target="_blank"><img src="https://cdn.simpleicons.org/kubernetes">Kustomize</a>
+        <a class="mini-tag" href="https://kubernetes.io" target="_blank"><img src="https://cdn.simpleicons.org/kubernetes" alt="">Kubernetes</a>
+        <a class="mini-tag" href="https://helm.sh" target="_blank"><img src="https://cdn.simpleicons.org/helm" alt="">Helm</a>
+        <a class="mini-tag" href="https://kustomize.io" target="_blank"><img src="https://cdn.simpleicons.org/kubernetes" alt="">Kustomize</a>
         <a class="mini-tag" href="https://kubernetes.io/docs/concepts/services-networking/ingress" target="_blank">Ingress</a>
         <a class="mini-tag" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes" target="_blank">Storage (PV/PVC)</a>
         <a class="mini-tag" href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale" target="_blank">HPA / VPA</a>
         <a class="mini-tag" href="https://kubernetes.io/docs/reference/access-authn-authz/rbac" target="_blank">RBAC</a>
         <a class="mini-tag" href="https://kubernetes.io/docs/concepts/services-networking/network-policies" target="_blank">NetworkPolicy</a>
         <a class="mini-tag" href="https://kubernetes.io/docs/concepts/security/pod-security-standards" target="_blank">Pod Security</a>
-        <a class="mini-tag" href="https://cilium.io" target="_blank"><img src="https://cdn.simpleicons.org/cilium">Cilium</a>
-        <a class="mini-tag" href="https://cert-manager.io" target="_blank"><img src="https://cdn.simpleicons.org/certmanager">cert-manager</a>
+        <a class="mini-tag" href="https://cilium.io" target="_blank"><img src="https://cdn.simpleicons.org/cilium" alt="">Cilium</a>
+        <a class="mini-tag" href="https://cert-manager.io" target="_blank"><img src="https://cdn.simpleicons.org/certmanager" alt="">cert-manager</a>
         <a class="mini-tag" href="https://kyverno.io" target="_blank">Kyverno</a>
-        <a class="mini-tag" href="https://aws.amazon.com/eks" target="_blank"><img src="https://cdn.simpleicons.org/amazonwebservices">EKS</a>
-        <a class="mini-tag" href="https://azure.microsoft.com/products/kubernetes-service" target="_blank"><img src="https://cdn.simpleicons.org/microsoftazure">AKS</a>
-        <a class="mini-tag" href="https://cloud.google.com/kubernetes-engine" target="_blank"><img src="https://cdn.simpleicons.org/googlecloud">GKE</a>
+        <a class="mini-tag" href="https://aws.amazon.com/eks" target="_blank"><img src="https://cdn.simpleicons.org/amazonwebservices" alt="">EKS</a>
+        <a class="mini-tag" href="https://azure.microsoft.com/products/kubernetes-service" target="_blank"><img src="https://cdn.simpleicons.org/microsoftazure" alt="">AKS</a>
+        <a class="mini-tag" href="https://cloud.google.com/kubernetes-engine" target="_blank"><img src="https://cdn.simpleicons.org/googlecloud" alt="">GKE</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/terraform">Infrastructure as Code</span><span class="pct">84%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/terraform" alt="">Infrastructure as Code</span><span class="pct">84%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="84"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://terraform.io" target="_blank"><img src="https://cdn.simpleicons.org/terraform">Terraform</a>
-        <a class="mini-tag" href="https://terragrunt.gruntwork.io" target="_blank"><img src="https://cdn.simpleicons.org/terraform">Terragrunt</a>
+        <a class="mini-tag" href="https://terraform.io" target="_blank"><img src="https://cdn.simpleicons.org/terraform" alt="">Terraform</a>
+        <a class="mini-tag" href="https://terragrunt.gruntwork.io" target="_blank"><img src="https://cdn.simpleicons.org/terraform" alt="">Terragrunt</a>
         <a class="mini-tag" href="https://www.runatlantis.io" target="_blank">Atlantis</a>
-        <a class="mini-tag" href="https://ansible.com" target="_blank"><img src="https://cdn.simpleicons.org/ansible">Ansible</a>
-        <a class="mini-tag" href="https://packer.io" target="_blank"><img src="https://cdn.simpleicons.org/packer">Packer</a>
+        <a class="mini-tag" href="https://ansible.com" target="_blank"><img src="https://cdn.simpleicons.org/ansible" alt="">Ansible</a>
+        <a class="mini-tag" href="https://packer.io" target="_blank"><img src="https://cdn.simpleicons.org/packer" alt="">Packer</a>
         <a class="mini-tag" href="https://cloud-init.io" target="_blank">Cloud-init</a>
-        <a class="mini-tag" href="https://aws.amazon.com/cloudformation" target="_blank"><img src="https://cdn.simpleicons.org/amazonwebservices">CloudFormation</a>
+        <a class="mini-tag" href="https://aws.amazon.com/cloudformation" target="_blank"><img src="https://cdn.simpleicons.org/amazonwebservices" alt="">CloudFormation</a>
         <a class="mini-tag" href="https://learn.microsoft.com/azure/azure-resource-manager/bicep" target="_blank">Bicep / ARM</a>
         <a class="mini-tag" href="https://openpolicyagent.org" target="_blank">OPA</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/githubactions">CI/CD</span><span class="pct">82%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/githubactions" alt="">CI/CD</span><span class="pct">82%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="82"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://docs.gitlab.com/ee/ci" target="_blank"><img src="https://cdn.simpleicons.org/gitlab">GitLab CI</a>
-        <a class="mini-tag" href="https://github.com/features/actions" target="_blank"><img src="https://cdn.simpleicons.org/githubactions">GitHub Actions</a>
-        <a class="mini-tag" href="https://jenkins.io" target="_blank"><img src="https://cdn.simpleicons.org/jenkins">Jenkins</a>
-        <a class="mini-tag" href="https://azure.microsoft.com/products/devops/pipelines" target="_blank"><img src="https://cdn.simpleicons.org/azuredevops">Azure Pipelines</a>
+        <a class="mini-tag" href="https://docs.gitlab.com/ee/ci" target="_blank"><img src="https://cdn.simpleicons.org/gitlab" alt="">GitLab CI</a>
+        <a class="mini-tag" href="https://github.com/features/actions" target="_blank"><img src="https://cdn.simpleicons.org/githubactions" alt="">GitHub Actions</a>
+        <a class="mini-tag" href="https://jenkins.io" target="_blank"><img src="https://cdn.simpleicons.org/jenkins" alt="">Jenkins</a>
+        <a class="mini-tag" href="https://azure.microsoft.com/products/devops/pipelines" target="_blank"><img src="https://cdn.simpleicons.org/azuredevops" alt="">Azure Pipelines</a>
         <a class="mini-tag" href="https://circleci.com" target="_blank">CircleCI</a>
         <a class="mini-tag" href="https://buildkite.com" target="_blank">Buildkite</a>
         <a class="mini-tag" href="https://martinfowler.com/bliki/BlueGreenDeployment.html" target="_blank">Blue-Green</a>
@@ -1031,21 +1019,21 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/argo">GitOps</span><span class="pct">80%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/argo" alt="">GitOps</span><span class="pct">80%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="80"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://argoproj.github.io/cd" target="_blank"><img src="https://cdn.simpleicons.org/argo">ArgoCD</a>
-        <a class="mini-tag" href="https://fluxcd.io" target="_blank"><img src="https://cdn.simpleicons.org/flux">Flux CD</a>
+        <a class="mini-tag" href="https://argoproj.github.io/cd" target="_blank"><img src="https://cdn.simpleicons.org/argo" alt="">ArgoCD</a>
+        <a class="mini-tag" href="https://fluxcd.io" target="_blank"><img src="https://cdn.simpleicons.org/flux" alt="">Flux CD</a>
         <a class="mini-tag" href="https://argo-cd.readthedocs.io/en/stable/user-guide/drift-detection" target="_blank">Drift Detection</a>
         <a class="mini-tag" href="https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options" target="_blank">Sync Policies</a>
         <a class="mini-tag" href="https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup" target="_blank">Declarative Deploy</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/amazonwebservices">Cloud Platforms</span><span class="pct">85%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/amazonwebservices" alt="">Cloud Platforms</span><span class="pct">85%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="85"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://aws.amazon.com" target="_blank"><img src="https://cdn.simpleicons.org/amazonwebservices">AWS</a>
+        <a class="mini-tag" href="https://aws.amazon.com" target="_blank"><img src="https://cdn.simpleicons.org/amazonwebservices" alt="">AWS</a>
         <a class="mini-tag" href="https://aws.amazon.com/ec2" target="_blank">EC2</a>
         <a class="mini-tag" href="https://aws.amazon.com/vpc" target="_blank">VPC</a>
         <a class="mini-tag" href="https://aws.amazon.com/s3" target="_blank">S3</a>
@@ -1055,28 +1043,28 @@ a,button,input,textarea{cursor:none}
         <a class="mini-tag" href="https://aws.amazon.com/lambda" target="_blank">Lambda</a>
         <a class="mini-tag" href="https://aws.amazon.com/iam" target="_blank">IAM</a>
         <a class="mini-tag" href="https://aws.amazon.com/kms" target="_blank">KMS</a>
-        <a class="mini-tag" href="https://azure.microsoft.com" target="_blank"><img src="https://cdn.simpleicons.org/microsoftazure">Azure</a>
+        <a class="mini-tag" href="https://azure.microsoft.com" target="_blank"><img src="https://cdn.simpleicons.org/microsoftazure" alt="">Azure</a>
         <a class="mini-tag" href="https://learn.microsoft.com/azure/virtual-network" target="_blank">VNet</a>
         <a class="mini-tag" href="https://www.microsoft.com/security/business/microsoft-entra" target="_blank">Entra ID</a>
         <a class="mini-tag" href="https://learn.microsoft.com/azure/key-vault" target="_blank">Key Vault</a>
-        <a class="mini-tag" href="https://cloud.google.com" target="_blank"><img src="https://cdn.simpleicons.org/googlecloud">GCP</a>
+        <a class="mini-tag" href="https://cloud.google.com" target="_blank"><img src="https://cdn.simpleicons.org/googlecloud" alt="">GCP</a>
         <a class="mini-tag" href="https://cloud.google.com/compute" target="_blank">GCE</a>
         <a class="mini-tag" href="https://cloud.google.com/storage" target="_blank">Cloud Storage</a>
         <a class="mini-tag" href="https://cloud.google.com/sql" target="_blank">Cloud SQL</a>
-        <a class="mini-tag" href="https://digitalocean.com" target="_blank"><img src="https://cdn.simpleicons.org/digitalocean">DigitalOcean</a>
-        <a class="mini-tag" href="https://hetzner.com" target="_blank"><img src="https://cdn.simpleicons.org/hetzner">Hetzner</a>
+        <a class="mini-tag" href="https://digitalocean.com" target="_blank"><img src="https://cdn.simpleicons.org/digitalocean" alt="">DigitalOcean</a>
+        <a class="mini-tag" href="https://hetzner.com" target="_blank"><img src="https://cdn.simpleicons.org/hetzner" alt="">Hetzner</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/gnubash">Scripting &amp; Automation</span><span class="pct">85%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/gnubash" alt="">Scripting &amp; Automation</span><span class="pct">85%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="85"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://gnu.org/software/bash" target="_blank"><img src="https://cdn.simpleicons.org/gnubash">Bash</a>
-        <a class="mini-tag" href="https://python.org" target="_blank"><img src="https://cdn.simpleicons.org/python">Python</a>
-        <a class="mini-tag" href="https://golang.org" target="_blank"><img src="https://cdn.simpleicons.org/go">Go</a>
-        <a class="mini-tag" href="https://groovy-lang.org" target="_blank"><img src="https://cdn.simpleicons.org/apachegroovy">Groovy</a>
-        <a class="mini-tag" href="https://learn.microsoft.com/powershell" target="_blank"><img src="https://cdn.simpleicons.org/powershell">PowerShell</a>
-        <a class="mini-tag" href="https://nodejs.org" target="_blank"><img src="https://cdn.simpleicons.org/nodedotjs">Node.js</a>
+        <a class="mini-tag" href="https://gnu.org/software/bash" target="_blank"><img src="https://cdn.simpleicons.org/gnubash" alt="">Bash</a>
+        <a class="mini-tag" href="https://python.org" target="_blank"><img src="https://cdn.simpleicons.org/python" alt="">Python</a>
+        <a class="mini-tag" href="https://golang.org" target="_blank" aria-label="Go scripting and automation"><img src="https://cdn.simpleicons.org/go" alt="">Go</a>
+        <a class="mini-tag" href="https://groovy-lang.org" target="_blank"><img src="https://cdn.simpleicons.org/apachegroovy" alt="">Groovy</a>
+        <a class="mini-tag" href="https://learn.microsoft.com/powershell" target="_blank"><img src="https://cdn.simpleicons.org/powershell" alt="">PowerShell</a>
+        <a class="mini-tag" href="https://nodejs.org" target="_blank"><img src="https://cdn.simpleicons.org/nodedotjs" alt="">Node.js</a>
         <a class="mini-tag">REST APIs</a>
         <a class="mini-tag">JSON / YAML</a>
         <a class="mini-tag" href="https://en.wikipedia.org/wiki/Regular_expression" target="_blank">Regex</a>
@@ -1086,107 +1074,107 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/go">Backend (Go / gRPC)</span><span class="pct">78%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/go" alt="">Backend (Go / gRPC)</span><span class="pct">78%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="78"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://golang.org" target="_blank"><img src="https://cdn.simpleicons.org/go">Go</a>
-        <a class="mini-tag" href="https://grpc.io" target="_blank"><img src="https://cdn.simpleicons.org/grpc">gRPC</a>
-        <a class="mini-tag" href="https://protobuf.dev" target="_blank"><img src="https://cdn.simpleicons.org/protobuf">Protobuf</a>
+        <a class="mini-tag" href="https://golang.org" target="_blank" aria-label="Go backend development"><img src="https://cdn.simpleicons.org/go" alt="">Go</a>
+        <a class="mini-tag" href="https://grpc.io" target="_blank"><img src="https://cdn.simpleicons.org/grpc" alt="">gRPC</a>
+        <a class="mini-tag" href="https://protobuf.dev" target="_blank"><img src="https://cdn.simpleicons.org/protobuf" alt="">Protobuf</a>
         <a class="mini-tag" href="https://golang.org/pkg/net/http" target="_blank">net/http</a>
         <a class="mini-tag" href="https://github.com/stretchr/testify" target="_blank">testify</a>
-        <a class="mini-tag" href="https://testcontainers.com" target="_blank"><img src="https://cdn.simpleicons.org/docker">testcontainers</a>
+        <a class="mini-tag" href="https://testcontainers.com" target="_blank"><img src="https://cdn.simpleicons.org/docker" alt="">testcontainers</a>
         <a class="mini-tag">REST API</a>
         <a class="mini-tag" href="https://microservices.io" target="_blank">Microservices</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/postgresql">Databases</span><span class="pct">78%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/postgresql" alt="">Databases</span><span class="pct">78%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="78"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://postgresql.org" target="_blank"><img src="https://cdn.simpleicons.org/postgresql">PostgreSQL</a>
+        <a class="mini-tag" href="https://postgresql.org" target="_blank"><img src="https://cdn.simpleicons.org/postgresql" alt="">PostgreSQL</a>
         <a class="mini-tag" href="https://www.postgresql.org/docs/current/backup-dump.html" target="_blank">pg_dump / pg_restore</a>
         <a class="mini-tag" href="https://www.postgresql.org/docs/current/wal-intro.html" target="_blank">WAL</a>
         <a class="mini-tag" href="https://www.postgresql.org/docs/current/high-availability.html" target="_blank">Replication</a>
         <a class="mini-tag" href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-CONNECTION-POOLING" target="_blank">Connection Pooling</a>
         <a class="mini-tag" href="https://www.postgresql.org/docs/current/performance-tips.html" target="_blank">Perf Tuning</a>
         <a class="mini-tag" href="https://www.postgresql.org/docs/current/sql-vacuum.html" target="_blank">Vacuum / Autovacuum</a>
-        <a class="mini-tag" href="https://mysql.com" target="_blank"><img src="https://cdn.simpleicons.org/mysql">MySQL / MariaDB</a>
-        <a class="mini-tag" href="https://mongodb.com" target="_blank"><img src="https://cdn.simpleicons.org/mongodb">MongoDB</a>
-        <a class="mini-tag" href="https://redis.io" target="_blank"><img src="https://cdn.simpleicons.org/redis">Redis</a>
-        <a class="mini-tag" href="https://elastic.co" target="_blank"><img src="https://cdn.simpleicons.org/elasticsearch">Elasticsearch</a>
-        <a class="mini-tag" href="https://clickhouse.com" target="_blank"><img src="https://cdn.simpleicons.org/clickhouse">ClickHouse</a>
+        <a class="mini-tag" href="https://mysql.com" target="_blank"><img src="https://cdn.simpleicons.org/mysql" alt="">MySQL / MariaDB</a>
+        <a class="mini-tag" href="https://mongodb.com" target="_blank"><img src="https://cdn.simpleicons.org/mongodb" alt="">MongoDB</a>
+        <a class="mini-tag" href="https://redis.io" target="_blank"><img src="https://cdn.simpleicons.org/redis" alt="">Redis</a>
+        <a class="mini-tag" href="https://elastic.co" target="_blank"><img src="https://cdn.simpleicons.org/elasticsearch" alt="">Elasticsearch</a>
+        <a class="mini-tag" href="https://clickhouse.com" target="_blank"><img src="https://cdn.simpleicons.org/clickhouse" alt="">ClickHouse</a>
         <a class="mini-tag" href="https://aws.amazon.com/rds" target="_blank">RDS</a>
         <a class="mini-tag" href="https://cloud.google.com/sql" target="_blank">Cloud SQL</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/apachekafka">Message Brokers</span><span class="pct">74%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/apachekafka" alt="">Message Brokers</span><span class="pct">74%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="74"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://kafka.apache.org" target="_blank"><img src="https://cdn.simpleicons.org/apachekafka">Kafka</a>
+        <a class="mini-tag" href="https://kafka.apache.org" target="_blank"><img src="https://cdn.simpleicons.org/apachekafka" alt="">Kafka</a>
         <a class="mini-tag" href="https://kafka.apache.org/documentation/#intro_topics" target="_blank">Topics / Partitions</a>
         <a class="mini-tag" href="https://kafka.apache.org/documentation/#intro_consumers" target="_blank">Consumer Groups</a>
         <a class="mini-tag" href="https://kafka.apache.org/documentation/#intro_offsets" target="_blank">Offsets / Lag</a>
         <a class="mini-tag" href="https://kafka.apache.org/documentation/#replication" target="_blank">Replication</a>
-        <a class="mini-tag" href="https://strimzi.io" target="_blank"><img src="https://cdn.simpleicons.org/strimzi">Strimzi</a>
-        <a class="mini-tag" href="https://rabbitmq.com" target="_blank"><img src="https://cdn.simpleicons.org/rabbitmq">RabbitMQ</a>
+        <a class="mini-tag" href="https://strimzi.io" target="_blank"><img src="https://cdn.simpleicons.org/strimzi" alt="">Strimzi</a>
+        <a class="mini-tag" href="https://rabbitmq.com" target="_blank"><img src="https://cdn.simpleicons.org/rabbitmq" alt="">RabbitMQ</a>
         <a class="mini-tag" href="https://www.rabbitmq.com/tutorials/amqp-concepts.html" target="_blank">Exchanges / Queues</a>
         <a class="mini-tag" href="https://www.rabbitmq.com/dlx.html" target="_blank">Dead-letter Queues</a>
-        <a class="mini-tag" href="https://nats.io" target="_blank"><img src="https://cdn.simpleicons.org/natsdotio">NATS</a>
+        <a class="mini-tag" href="https://nats.io" target="_blank"><img src="https://cdn.simpleicons.org/natsdotio" alt="">NATS</a>
         <a class="mini-tag" href="https://aws.amazon.com/sqs" target="_blank">SQS / SNS</a>
         <a class="mini-tag">Event-driven</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/nginx">Web &amp; Traffic</span><span class="pct">78%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/nginx" alt="">Web &amp; Traffic</span><span class="pct">78%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="78"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://nginx.org" target="_blank"><img src="https://cdn.simpleicons.org/nginx">nginx</a>
-        <a class="mini-tag" href="https://haproxy.org" target="_blank"><img src="https://cdn.simpleicons.org/haproxy">HAProxy</a>
+        <a class="mini-tag" href="https://nginx.org" target="_blank"><img src="https://cdn.simpleicons.org/nginx" alt="">nginx</a>
+        <a class="mini-tag" href="https://haproxy.org" target="_blank"><img src="https://cdn.simpleicons.org/haproxy" alt="">HAProxy</a>
         <a class="mini-tag" href="https://httpd.apache.org" target="_blank">Apache</a>
         <a class="mini-tag" href="https://www.iis.net" target="_blank">IIS</a>
-        <a class="mini-tag" href="https://traefik.io" target="_blank"><img src="https://cdn.simpleicons.org/traefikproxy">Traefik</a>
+        <a class="mini-tag" href="https://traefik.io" target="_blank"><img src="https://cdn.simpleicons.org/traefikproxy" alt="">Traefik</a>
         <a class="mini-tag">Reverse Proxy</a>
         <a class="mini-tag">TLS Termination</a>
         <a class="mini-tag">HTTP Caching</a>
         <a class="mini-tag">Rate Limiting</a>
         <a class="mini-tag">Load Balancing</a>
-        <a class="mini-tag" href="https://cloudflare.com" target="_blank"><img src="https://cdn.simpleicons.org/cloudflare">Cloudflare</a>
+        <a class="mini-tag" href="https://cloudflare.com" target="_blank"><img src="https://cdn.simpleicons.org/cloudflare" alt="">Cloudflare</a>
         <a class="mini-tag" href="https://aws.amazon.com/cloudfront" target="_blank">CDN</a>
         <a class="mini-tag" href="https://cloudflare.com/waf" target="_blank">WAF</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/prometheus">Monitoring &amp; Observability</span><span class="pct">82%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/prometheus" alt="">Monitoring &amp; Observability</span><span class="pct">82%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="82"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://prometheus.io" target="_blank"><img src="https://cdn.simpleicons.org/prometheus">Prometheus</a>
-        <a class="mini-tag" href="https://prometheus.io/docs/prometheus/latest/querying/basics" target="_blank"><img src="https://cdn.simpleicons.org/prometheus">PromQL</a>
-        <a class="mini-tag" href="https://prometheus.io/docs/alerting/latest/alertmanager" target="_blank"><img src="https://cdn.simpleicons.org/prometheus">Alertmanager</a>
-        <a class="mini-tag" href="https://grafana.com" target="_blank"><img src="https://cdn.simpleicons.org/grafana">Grafana</a>
-        <a class="mini-tag" href="https://grafana.com/oss/loki" target="_blank"><img src="https://cdn.simpleicons.org/grafana">Loki</a>
-        <a class="mini-tag" href="https://grafana.com/oss/tempo" target="_blank"><img src="https://cdn.simpleicons.org/grafana">Tempo</a>
-        <a class="mini-tag" href="https://opentelemetry.io" target="_blank"><img src="https://cdn.simpleicons.org/opentelemetry">OpenTelemetry</a>
-        <a class="mini-tag" href="https://elastic.co/what-is/elk-stack" target="_blank"><img src="https://cdn.simpleicons.org/elasticsearch">ELK / EFK</a>
-        <a class="mini-tag" href="https://datadoghq.com" target="_blank"><img src="https://cdn.simpleicons.org/datadog">Datadog</a>
+        <a class="mini-tag" href="https://prometheus.io" target="_blank"><img src="https://cdn.simpleicons.org/prometheus" alt="">Prometheus</a>
+        <a class="mini-tag" href="https://prometheus.io/docs/prometheus/latest/querying/basics" target="_blank"><img src="https://cdn.simpleicons.org/prometheus" alt="">PromQL</a>
+        <a class="mini-tag" href="https://prometheus.io/docs/alerting/latest/alertmanager" target="_blank"><img src="https://cdn.simpleicons.org/prometheus" alt="">Alertmanager</a>
+        <a class="mini-tag" href="https://grafana.com" target="_blank"><img src="https://cdn.simpleicons.org/grafana" alt="">Grafana</a>
+        <a class="mini-tag" href="https://grafana.com/oss/loki" target="_blank"><img src="https://cdn.simpleicons.org/grafana" alt="">Loki</a>
+        <a class="mini-tag" href="https://grafana.com/oss/tempo" target="_blank"><img src="https://cdn.simpleicons.org/grafana" alt="">Tempo</a>
+        <a class="mini-tag" href="https://opentelemetry.io" target="_blank"><img src="https://cdn.simpleicons.org/opentelemetry" alt="">OpenTelemetry</a>
+        <a class="mini-tag" href="https://elastic.co/what-is/elk-stack" target="_blank"><img src="https://cdn.simpleicons.org/elasticsearch" alt="">ELK / EFK</a>
+        <a class="mini-tag" href="https://datadoghq.com" target="_blank"><img src="https://cdn.simpleicons.org/datadog" alt="">Datadog</a>
         <a class="mini-tag" href="https://victoriametrics.com" target="_blank">VictoriaMetrics</a>
         <a class="mini-tag" href="https://www.zabbix.com" target="_blank">Zabbix</a>
-        <a class="mini-tag" href="https://sentry.io" target="_blank"><img src="https://cdn.simpleicons.org/sentry">Sentry</a>
+        <a class="mini-tag" href="https://sentry.io" target="_blank"><img src="https://cdn.simpleicons.org/sentry" alt="">Sentry</a>
         <a class="mini-tag" href="https://www.pagerduty.com" target="_blank">PagerDuty</a>
-        <a class="mini-tag" href="https://backstage.io" target="_blank"><img src="https://cdn.simpleicons.org/backstage">Backstage</a>
+        <a class="mini-tag" href="https://backstage.io" target="_blank"><img src="https://cdn.simpleicons.org/backstage" alt="">Backstage</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/aquasecurity">Security &amp; DevSecOps</span><span class="pct">85%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/aquasecurity" alt="">Security &amp; DevSecOps</span><span class="pct">85%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="85"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://trivy.dev" target="_blank"><img src="https://cdn.simpleicons.org/aquasecurity">Trivy</a>
-        <a class="mini-tag" href="https://sonarqube.org" target="_blank"><img src="https://cdn.simpleicons.org/sonarqube">SonarQube</a>
-        <a class="mini-tag" href="https://vaultproject.io" target="_blank"><img src="https://cdn.simpleicons.org/vault">HashiCorp Vault</a>
+        <a class="mini-tag" href="https://trivy.dev" target="_blank"><img src="https://cdn.simpleicons.org/aquasecurity" alt="">Trivy</a>
+        <a class="mini-tag" href="https://sonarqube.org" target="_blank"><img src="https://cdn.simpleicons.org/sonarqube" alt="">SonarQube</a>
+        <a class="mini-tag" href="https://vaultproject.io" target="_blank"><img src="https://cdn.simpleicons.org/vault" alt="">HashiCorp Vault</a>
         <a class="mini-tag" href="https://openpolicyagent.org" target="_blank">OPA</a>
         <a class="mini-tag" href="https://kyverno.io" target="_blank">Kyverno</a>
         <a class="mini-tag" href="https://www.cloudflare.com/learning/security/zero-trust" target="_blank">Zero Trust</a>
-        <a class="mini-tag" href="https://attack.mitre.org" target="_blank"><img src="https://cdn.simpleicons.org/mitre">MITRE ATT&CK</a>
+        <a class="mini-tag" href="https://attack.mitre.org" target="_blank"><img src="https://cdn.simpleicons.org/mitre" alt="">MITRE ATT&CK</a>
         <a class="mini-tag" href="https://www.pcisecuritystandards.org" target="_blank">PCI DSS / SOC 2</a>
         <a class="mini-tag" href="https://coraza.io" target="_blank">Coraza</a>
         <a class="mini-tag" href="https://docs.gitlab.com/ee/user/application_security" target="_blank">Secure CI/CD</a>
@@ -1195,7 +1183,7 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/openid">IAM</span><span class="pct">75%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/openid" alt="">IAM</span><span class="pct">75%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="75"></div></div>
       <div class="skill-tags">
         <a class="mini-tag" href="https://freeipa.org" target="_blank">FreeIPA</a>
@@ -1209,18 +1197,18 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/burpsuite">Cybersecurity / Offensive</span><span class="pct">72%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/burpsuite" alt="">Cybersecurity / Offensive</span><span class="pct">72%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="72"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://portswigger.net/burp" target="_blank"><img src="https://cdn.simpleicons.org/burpsuite">BurpSuite</a>
+        <a class="mini-tag" href="https://portswigger.net/burp" target="_blank"><img src="https://cdn.simpleicons.org/burpsuite" alt="">BurpSuite</a>
         <a class="mini-tag" href="https://github.com/trufflesecurity/trufflehog" target="_blank">Trufflehog</a>
-        <a class="mini-tag" href="https://nuclei.projectdiscovery.io" target="_blank"><img src="https://cdn.simpleicons.org/projectdiscovery">Nuclei</a>
-        <a class="mini-tag" href="https://nmap.org" target="_blank"><img src="https://cdn.simpleicons.org/nmap">Nmap</a>
+        <a class="mini-tag" href="https://nuclei.projectdiscovery.io" target="_blank"><img src="https://cdn.simpleicons.org/projectdiscovery" alt="">Nuclei</a>
+        <a class="mini-tag" href="https://nmap.org" target="_blank"><img src="https://cdn.simpleicons.org/nmap" alt="">Nmap</a>
         <a class="mini-tag" href="https://www.fail2ban.org" target="_blank">fail2ban</a>
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/pagerduty">SRE Practices</span><span class="pct">78%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/pagerduty" alt="">SRE Practices</span><span class="pct">78%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="78"></div></div>
       <div class="skill-tags">
         <a class="mini-tag" href="https://sre.google/sre-book/service-level-objectives" target="_blank">SLI / SLO</a>
@@ -1237,7 +1225,7 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/cncf">Architecture</span><span class="pct">76%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/cncf" alt="">Architecture</span><span class="pct">76%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="76"></div></div>
       <div class="skill-tags">
         <a class="mini-tag" href="https://microservices.io" target="_blank">Microservices</a>
@@ -1252,7 +1240,7 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/amazonwebservices">FinOps</span><span class="pct">65%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/amazonwebservices" alt="">FinOps</span><span class="pct">65%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="65"></div></div>
       <div class="skill-tags">
         <a class="mini-tag">Cost Allocation</a>
@@ -1268,15 +1256,15 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/vmware">On-Premise / Virtualization</span><span class="pct">68%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/vmware" alt="">On-Premise / Virtualization</span><span class="pct">68%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="68"></div></div>
       <div class="skill-tags">
         <a class="mini-tag">Bare-metal</a>
-        <a class="mini-tag" href="https://vmware.com" target="_blank"><img src="https://cdn.simpleicons.org/vmware">VMware</a>
-        <a class="mini-tag" href="https://proxmox.com" target="_blank"><img src="https://cdn.simpleicons.org/proxmox">Proxmox</a>
+        <a class="mini-tag" href="https://vmware.com" target="_blank"><img src="https://cdn.simpleicons.org/vmware" alt="">VMware</a>
+        <a class="mini-tag" href="https://proxmox.com" target="_blank"><img src="https://cdn.simpleicons.org/proxmox" alt="">Proxmox</a>
         <a class="mini-tag" href="https://learn.microsoft.com/windows-server/virtualization/hyper-v" target="_blank">Hyper-V</a>
-        <a class="mini-tag" href="https://www.redhat.com/en/technologies/cloud-computing/openshift" target="_blank"><img src="https://cdn.simpleicons.org/redhat">OpenShift</a>
-        <a class="mini-tag" href="https://tanzu.vmware.com" target="_blank"><img src="https://cdn.simpleicons.org/vmware">Tanzu</a>
+        <a class="mini-tag" href="https://www.redhat.com/en/technologies/cloud-computing/openshift" target="_blank"><img src="https://cdn.simpleicons.org/redhat" alt="">OpenShift</a>
+        <a class="mini-tag" href="https://tanzu.vmware.com" target="_blank"><img src="https://cdn.simpleicons.org/vmware" alt="">Tanzu</a>
         <a class="mini-tag" href="https://www.microsoft.com/windows-server" target="_blank">Windows Server</a>
         <a class="mini-tag">Active Directory</a>
         <a class="mini-tag" href="https://www.veeam.com" target="_blank">Veeam</a>
@@ -1285,11 +1273,11 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/ollama">AI / ML &amp; LLMOps</span><span class="pct">55%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/ollama" alt="">AI / ML &amp; LLMOps</span><span class="pct">55%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="55"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://ollama.com" target="_blank"><img src="https://cdn.simpleicons.org/ollama">Ollama</a>
-        <a class="mini-tag" href="https://docs.docker.com/config/containers/resource_constraints/#gpu" target="_blank"><img src="https://cdn.simpleicons.org/docker">Docker + CUDA</a>
+        <a class="mini-tag" href="https://ollama.com" target="_blank"><img src="https://cdn.simpleicons.org/ollama" alt="">Ollama</a>
+        <a class="mini-tag" href="https://docs.docker.com/config/containers/resource_constraints/#gpu" target="_blank"><img src="https://cdn.simpleicons.org/docker" alt="">Docker + CUDA</a>
         <a class="mini-tag" href="https://en.wikipedia.org/wiki/Large_language_model" target="_blank">Local LLM</a>
         <a class="mini-tag">Fine-tuning</a>
         <a class="mini-tag">Prompt Engineering</a>
@@ -1297,33 +1285,30 @@ a,button,input,textarea{cursor:none}
       </div>
     </div>
     <div class="skill-row">
-      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/neovim">Tooling</span><span class="pct">80%</span></div>
+      <div class="skill-head"><span><img src="https://cdn.simpleicons.org/neovim" alt="">Tooling</span><span class="pct">80%</span></div>
       <div class="skill-track"><div class="skill-fill" data-pct="80"></div></div>
       <div class="skill-tags">
-        <a class="mini-tag" href="https://k9scli.io" target="_blank"><img src="https://cdn.simpleicons.org/kubernetes">k9s</a>
-        <a class="mini-tag" href="https://nvchad.com" target="_blank"><img src="https://cdn.simpleicons.org/neovim">NvChad</a>
-        <a class="mini-tag" href="https://github.com/tmux/tmux" target="_blank"><img src="https://cdn.simpleicons.org/tmux">tmux</a>
-        <a class="mini-tag" href="https://github.com/jesseduffield/lazygit" target="_blank"><img src="https://cdn.simpleicons.org/git">lazygit</a>
-        <a class="mini-tag" href="https://cloudflare.com/dns" target="_blank"><img src="https://cdn.simpleicons.org/cloudflare">Cloudflare</a>
-        <a class="mini-tag" href="https://atlassian.com/software/confluence" target="_blank"><img src="https://cdn.simpleicons.org/confluence">Confluence</a>
+        <a class="mini-tag" href="https://k9scli.io" target="_blank"><img src="https://cdn.simpleicons.org/kubernetes" alt="">k9s</a>
+        <a class="mini-tag" href="https://nvchad.com" target="_blank"><img src="https://cdn.simpleicons.org/neovim" alt="">NvChad</a>
+        <a class="mini-tag" href="https://github.com/tmux/tmux" target="_blank"><img src="https://cdn.simpleicons.org/tmux" alt="">tmux</a>
+        <a class="mini-tag" href="https://github.com/jesseduffield/lazygit" target="_blank"><img src="https://cdn.simpleicons.org/git" alt="">lazygit</a>
+        <a class="mini-tag" href="https://cloudflare.com/dns" target="_blank"><img src="https://cdn.simpleicons.org/cloudflare" alt="">Cloudflare</a>
+        <a class="mini-tag" href="https://atlassian.com/software/confluence" target="_blank"><img src="https://cdn.simpleicons.org/confluence" alt="">Confluence</a>
       </div>
     </div>
   </div>
 </section>
 
 <section id="battlegrounds" class="reveal" style="max-width: 1200px; margin: 6rem auto; padding: 0 2rem; position: relative; z-index: 1;">
-  <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> cyber labs</div>
-  <div class="labs-meta">
-    <a href="https://app.hackthebox.com/profile/019c9f3e-4b5a-7146-b937-c33ec584d620" target="_blank"><img src="https://cdn.simpleicons.org/hackthebox">HTB Profile // Apprentice</a>
-    <span>Level 30</span>
-    <span>Active Member</span>
-  </div>
+  <div class="orbit-label" style="justify-content: center; text-align: center;"><span>//</span> Labs & Challenges</div>
+  
+
   <div class="labs-stats" id="labs-stats"></div>
   <div class="labs-controls">
     <div class="labs-filter-tabs" id="labs-filter-tabs"></div>
     <input id="labs-search" type="text" placeholder="Search labs..." autocomplete="off" spellcheck="false">
   </div>
-  <div class="labs-grid" id="labs-grid" data-items='[{"name": "Brutus", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/631", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9103-d723-4062-b57f-0a001833056e.png", "platform": "HTB"}, {"name": "CrownJewel-2", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/750", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-1318-436f-a707-ff8e40f40c1b.png", "platform": "HTB"}, {"name": "CrownJewel-1", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/751", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-0f4d-4320-a1a6-25845ed6169f.png", "platform": "HTB"}, {"name": "Reaper", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/749", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-16e3-4140-8ebd-fa81702141af.png", "platform": "HTB"}, {"name": "Noxious", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/747", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-1ea9-40f3-b4a7-7879c7533528.png", "platform": "HTB"}, {"name": "Campfire-2", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/736", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-4ab6-4804-99ce-2bfbbb9887e4.png", "platform": "HTB"}, {"name": "Campfire-1", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/737", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-46a7-4efb-918c-01ca0f1e2458.png", "platform": "HTB"}, {"name": "Unit42", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/632", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9103-d28e-4dba-b313-ac6255362411.png", "platform": "HTB"}, {"name": "SecretPictures", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/1033", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/a04499c1-f635-4b8b-bf18-3b12f35498b0.png", "platform": "HTB"}, {"name": "Web Attack Investigator", "href": "https://app.letsdefend.io/my-rewards/detail/18803afa-8fa3-458e-a382-364b1de7f748", "img": "https://app-ld-img.s3.amazonaws.com/badge/web-attacks-badge-2f7551ca-00ea-49e0-ae0c-a508c3c00552.png", "platform": "LetsDefend"}, {"name": "Linux Fan", "href": "https://app.letsdefend.io/my-rewards/detail/82d6fe7a-4012-48ca-8b61-ef5dd6089e8a", "img": "https://app-ld-img.s3.amazonaws.com/badge/badge-linux-101-01963665-e81b-45f9-aae0-f1a1b63392cb.png", "platform": "LetsDefend"}, {"name": "Brute Force", "href": "https://app.letsdefend.io/my-rewards/detail/6c157f07-3efe-4e49-9c8b-cf8fdbc62fe5", "img": "https://app-ld-img.s3.amazonaws.com/badge/brute-force-badge-48517643-fe50-4a92-b328-506c4208a6b1.png", "platform": "LetsDefend"}, {"name": "Web Server Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/a2715868-c227-4da6-b4c0-bfb2dc4e00c1", "img": "https://app-ld-img.s3.amazonaws.com/badge/hacked-analysis-badge-avatar-4c433f26-e83b-4e2a-8401-3fb32b1fa093.png", "platform": "LetsDefend"}, {"name": "MITRE ATT&CK", "href": "https://app.letsdefend.io/my-rewards/detail/4e8c5258-9dbb-4579-a7af-baa76f480c63", "img": "https://app-ld-img.s3.amazonaws.com/badge/mitre-badge-2-f8edfcce-62c1-4170-95cf-af5fd56562d0.png", "platform": "LetsDefend"}, {"name": "Web Hunter", "href": "https://app.letsdefend.io/my-rewards/detail/c8bfcf77-dd9b-461c-b225-d479d7b01551", "img": "https://app-ld-img.s3.amazonaws.com/badge/web-attacks-2-badge-5ab868c5-0140-4000-b386-f15e747614cf.png", "platform": "LetsDefend"}, {"name": "Go Writer", "href": "https://app.letsdefend.io/my-rewards/detail/2b757cc6-1847-4078-8050-e7436a56ddd0", "img": "https://app-ld-img.s3.amazonaws.com/badge/go-badge-avatar-f8a039ef-d328-49b1-89ad-2e2b4493cacc.png", "platform": "LetsDefend"}, {"name": "Secure Network Designer", "href": "https://app.letsdefend.io/my-rewards/detail/f20a34c4-c220-4361-9490-55d413992012", "img": "https://app-ld-img.s3.amazonaws.com/badge/secure-network-design-badge-8d746f5e-9ec2-4790-9227-f1c48207b21a.png", "platform": "LetsDefend"}, {"name": "JWT Attacks and Detection", "href": "https://app.letsdefend.io/my-rewards/detail/fbb234b2-556f-40c0-85db-979215f32f2f", "img": "https://app-ld-img.s3.amazonaws.com/badge/jwt-badge-38239eae-8bed-451b-911f-449144eafc7f.png", "platform": "LetsDefend"}, {"name": "AWS CloudWatch", "href": "https://app.letsdefend.io/my-rewards/detail/56a1ee10-4e59-4464-9dd2-f5d8cc4173f8", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-cloudwatch-badge.png", "platform": "LetsDefend"}, {"name": "Physical Security", "href": "https://app.letsdefend.io/my-rewards/detail/853bd553-4d60-4752-b551-7252b911ad3e", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/physical-sec-badge.png", "platform": "LetsDefend"}, {"name": "Red Team Hunter - 2", "href": "https://app.letsdefend.io/my-rewards/detail/5e3fb8a7-288b-4b4d-8c5a-7251bef11561", "img": "https://app-ld-img.s3.amazonaws.com/badge/red-team-tools-2-858e0eea-5707-460d-b176-3912fdd86aa4.png", "platform": "LetsDefend"}, {"name": "PDF Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/0726055f-bf06-497a-b6f0-f87708821244", "img": "https://app-ld-img.s3.amazonaws.com/badge/pdf-avatar-9a8f2e62-86dd-4032-a2d5-90ef42f5b04a.png", "platform": "LetsDefend"}, {"name": "Browser Extension Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/05a90ca0-4aa3-4a7b-8474-11f9b10fa4ad", "img": "https://app-ld-img.s3.amazonaws.com/badge/suspicious-browser-extension-badge-cd7872ab-e178-4a1e-91ee-92eccd0cf809.png", "platform": "LetsDefend"}, {"name": "Phishing Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/08923c86-d885-47ab-afe8-4c1fd91fe1e0", "img": "https://app-ld-img.s3.amazonaws.com/badge/phishing-challenge-avatart_vQ1645S-19e4e4cb-4f19-45ef-bb63-01c5260c8547.png", "platform": "LetsDefend"}, {"name": "AWS Responder", "href": "https://app.letsdefend.io/my-rewards/detail/5c2aff9c-45e1-48b3-abf9-b620e54b5f9a", "img": "https://app-ld-img.s3.amazonaws.com/badge/aws-badge-b665787c-af28-4502-bf99-8d88dd146e90.png", "platform": "LetsDefend"}, {"name": "AWS Incident Handler", "href": "https://app.letsdefend.io/my-rewards/detail/f81ee85b-afc8-43cf-80b1-bf7a102ffae1", "img": "https://app-ld-img.s3.amazonaws.com/badge/aws-persestence-badge-c5c8649b-0c46-46fd-a78d-34b87f8833e5.png", "platform": "LetsDefend"}, {"name": "Docker Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/dd2691a6-f489-413c-8715-09cfbc0fb568", "img": "https://app-ld-img.s3.amazonaws.com/badge/docker-badge-62df3f55-0589-4bb6-ba71-b344ceced720.png", "platform": "LetsDefend"}, {"name": "macOS Malware", "href": "https://app.letsdefend.io/my-rewards/detail/b36770ac-0b58-49fd-a490-5603290c3caf", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/macos-malware-badge.png", "platform": "LetsDefend"}, {"name": "Discord Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/51f72b7f-b714-45b9-a434-c20533c6cc12", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/discord-badge.png", "platform": "LetsDefend"}, {"name": "Golang Ransomware", "href": "https://app.letsdefend.io/my-rewards/detail/183d448f-a4aa-4703-8700-33dc415dec3f", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/go-ransom-badge.png", "platform": "LetsDefend"}, {"name": "AWS Bucketware", "href": "https://app.letsdefend.io/my-rewards/detail/fa25e80e-f523-46c8-872a-0ceb06d8ee97", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-bucketware-badge.png", "platform": "LetsDefend"}, {"name": "AWS Stacked", "href": "https://app.letsdefend.io/my-rewards/detail/7a43febd-d543-4d2c-9a7b-16f778e6ca8d", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-stacked-badge.png", "platform": "LetsDefend"}, {"name": "VoIP", "href": "https://app.letsdefend.io/my-rewards/detail/b636a9e8-8fa4-4dc6-a9cf-a875877d4d42", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/voip-challenge-badge.png", "platform": "LetsDefend"}, {"name": "USB Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/dc19c44e-3f48-45aa-85c1-95e482aafa2b", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/usb-forensics-challenge-badge.png", "platform": "LetsDefend"}, {"name": "TinyTurla Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/0601442e-6392-4fd2-b756-bd4d0a830866", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/TinyTurla+Backdoor-badge.png", "platform": "LetsDefend"}, {"name": "Samba Spy", "href": "https://app.letsdefend.io/my-rewards/detail/602e042c-481a-46bb-849b-9694e1d482a1", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/samba-spy-badge.png", "platform": "LetsDefend"}, {"name": "Mac Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/681cea81-e89f-4243-afc7-76c07f0dc678", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/mac+backdoor-challenge-badge.png", "platform": "LetsDefend"}, {"name": "Hidden Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/60b652ed-5bb1-4a78-a387-3e126e1aa538", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Hidden+Backdoor-challenge-badge.png", "platform": "LetsDefend"}, {"name": "Google Cloud Compromise", "href": "https://app.letsdefend.io/my-rewards/detail/e34cb954-5320-44a7-8ae2-3cc3428cdb31", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Google+Cloud+Compromise-badge.png", "platform": "LetsDefend"}, {"name": "Promptlock Ransomware", "href": "https://app.letsdefend.io/my-rewards/detail/46da6361-1397-49d6-b65a-3274f697f3c1", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Promptlock+Ransomware-badge.png", "platform": "LetsDefend"}, {"name": "Learn Sigma", "href": "https://app.letsdefend.io/my-rewards/detail/ae4ae87a-809c-46c6-8ee3-9a6afa62f167", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Learn+Sigma-challenge-badge.png", "platform": "LetsDefend"}, {"name": "First Blood", "href": "https://app.letsdefend.io/my-rewards/detail/d6353f1a-eb02-4524-88e5-204e68eb346e", "img": "https://app-ld-img.s3.amazonaws.com/badge/first-badge-6529e305-65c7-41fe-a929-c728f1bee986.png", "platform": "LetsDefend"}, {"name": "MemLoot", "href": "https://app.letsdefend.io/my-rewards/detail/e271b31b-f73e-408a-925f-f226d019d417", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/MemLoot-challenge-badge.png", "platform": "LetsDefend"}]'></div>
+  <div class="labs-grid" id="labs-grid" data-items='[{"name": "Cyber Apocalypse 2026", "desc": "Top 7.7% (#519 of 6,743)", "href": "https://ctf.hackthebox.com/event/details/cyber-apocalypse-ctf-2026-the-salt-crown-3432", "img": "https://cdn.simpleicons.org/hackthebox/9FEF00", "platform": "HTB"}, {"name": "Project Euler+", "desc": "Top 0.02% (#50 of 256,115)", "href": "https://www.hackerrank.com/results/projecteuler/nvimq", "img": "https://cdn.simpleicons.org/hackerrank", "platform": "HackerRank"}, {"name": "Orchestrate Hackathon", "desc": "#72 of 1,983 (72.9/100)", "href": "https://www.hackerrank.com/contests/hackerrank-orchestrate-august26/challenges/message-notification-router/leaderboard?username=nvimq", "img": "https://cdn.simpleicons.org/hackerrank", "platform": "HackerRank"}, {"name": "Brutus", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/631", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9103-d723-4062-b57f-0a001833056e.png", "platform": "HTB"}, {"name": "CrownJewel-2", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/750", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-1318-436f-a707-ff8e40f40c1b.png", "platform": "HTB"}, {"name": "CrownJewel-1", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/751", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-0f4d-4320-a1a6-25845ed6169f.png", "platform": "HTB"}, {"name": "Reaper", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/749", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-16e3-4140-8ebd-fa81702141af.png", "platform": "HTB"}, {"name": "Noxious", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/747", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-1ea9-40f3-b4a7-7879c7533528.png", "platform": "HTB"}, {"name": "Campfire-2", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/736", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-4ab6-4804-99ce-2bfbbb9887e4.png", "platform": "HTB"}, {"name": "Campfire-1", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/737", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9101-46a7-4efb-918c-01ca0f1e2458.png", "platform": "HTB"}, {"name": "Unit42", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/632", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/9e4d9103-d28e-4dba-b313-ac6255362411.png", "platform": "HTB"}, {"name": "SecretPictures", "href": "https://labs.hackthebox.com/achievement/sherlock/2541400/1033", "img": "https://cdn.services-k8s.prod.aws.htb.systems/content/sherlocks/avatar/a04499c1-f635-4b8b-bf18-3b12f35498b0.png", "platform": "HTB"}, {"name": "Web Attack Investigator", "href": "https://app.letsdefend.io/my-rewards/detail/18803afa-8fa3-458e-a382-364b1de7f748", "img": "https://app-ld-img.s3.amazonaws.com/badge/web-attacks-badge-2f7551ca-00ea-49e0-ae0c-a508c3c00552.png", "platform": "LetsDefend"}, {"name": "Linux Fan", "href": "https://app.letsdefend.io/my-rewards/detail/82d6fe7a-4012-48ca-8b61-ef5dd6089e8a", "img": "https://app-ld-img.s3.amazonaws.com/badge/badge-linux-101-01963665-e81b-45f9-aae0-f1a1b63392cb.png", "platform": "LetsDefend"}, {"name": "Brute Force", "href": "https://app.letsdefend.io/my-rewards/detail/6c157f07-3efe-4e49-9c8b-cf8fdbc62fe5", "img": "https://app-ld-img.s3.amazonaws.com/badge/brute-force-badge-48517643-fe50-4a92-b328-506c4208a6b1.png", "platform": "LetsDefend"}, {"name": "Web Server Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/a2715868-c227-4da6-b4c0-bfb2dc4e00c1", "img": "https://app-ld-img.s3.amazonaws.com/badge/hacked-analysis-badge-avatar-4c433f26-e83b-4e2a-8401-3fb32b1fa093.png", "platform": "LetsDefend"}, {"name": "MITRE ATT&CK", "href": "https://app.letsdefend.io/my-rewards/detail/4e8c5258-9dbb-4579-a7af-baa76f480c63", "img": "https://app-ld-img.s3.amazonaws.com/badge/mitre-badge-2-f8edfcce-62c1-4170-95cf-af5fd56562d0.png", "platform": "LetsDefend"}, {"name": "Web Hunter", "href": "https://app.letsdefend.io/my-rewards/detail/c8bfcf77-dd9b-461c-b225-d479d7b01551", "img": "https://app-ld-img.s3.amazonaws.com/badge/web-attacks-2-badge-5ab868c5-0140-4000-b386-f15e747614cf.png", "platform": "LetsDefend"}, {"name": "Go Writer", "href": "https://app.letsdefend.io/my-rewards/detail/2b757cc6-1847-4078-8050-e7436a56ddd0", "img": "https://app-ld-img.s3.amazonaws.com/badge/go-badge-avatar-f8a039ef-d328-49b1-89ad-2e2b4493cacc.png", "platform": "LetsDefend"}, {"name": "Secure Network Designer", "href": "https://app.letsdefend.io/my-rewards/detail/f20a34c4-c220-4361-9490-55d413992012", "img": "https://app-ld-img.s3.amazonaws.com/badge/secure-network-design-badge-8d746f5e-9ec2-4790-9227-f1c48207b21a.png", "platform": "LetsDefend"}, {"name": "JWT Attacks and Detection", "href": "https://app.letsdefend.io/my-rewards/detail/fbb234b2-556f-40c0-85db-979215f32f2f", "img": "https://app-ld-img.s3.amazonaws.com/badge/jwt-badge-38239eae-8bed-451b-911f-449144eafc7f.png", "platform": "LetsDefend"}, {"name": "AWS CloudWatch", "href": "https://app.letsdefend.io/my-rewards/detail/56a1ee10-4e59-4464-9dd2-f5d8cc4173f8", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-cloudwatch-badge.png", "platform": "LetsDefend"}, {"name": "Physical Security", "href": "https://app.letsdefend.io/my-rewards/detail/853bd553-4d60-4752-b551-7252b911ad3e", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/physical-sec-badge.png", "platform": "LetsDefend"}, {"name": "Red Team Hunter - 2", "href": "https://app.letsdefend.io/my-rewards/detail/5e3fb8a7-288b-4b4d-8c5a-7251bef11561", "img": "https://app-ld-img.s3.amazonaws.com/badge/red-team-tools-2-858e0eea-5707-460d-b176-3912fdd86aa4.png", "platform": "LetsDefend"}, {"name": "PDF Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/0726055f-bf06-497a-b6f0-f87708821244", "img": "https://app-ld-img.s3.amazonaws.com/badge/pdf-avatar-9a8f2e62-86dd-4032-a2d5-90ef42f5b04a.png", "platform": "LetsDefend"}, {"name": "Browser Extension Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/05a90ca0-4aa3-4a7b-8474-11f9b10fa4ad", "img": "https://app-ld-img.s3.amazonaws.com/badge/suspicious-browser-extension-badge-cd7872ab-e178-4a1e-91ee-92eccd0cf809.png", "platform": "LetsDefend"}, {"name": "Phishing Analyzer", "href": "https://app.letsdefend.io/my-rewards/detail/08923c86-d885-47ab-afe8-4c1fd91fe1e0", "img": "https://app-ld-img.s3.amazonaws.com/badge/phishing-challenge-avatart_vQ1645S-19e4e4cb-4f19-45ef-bb63-01c5260c8547.png", "platform": "LetsDefend"}, {"name": "AWS Responder", "href": "https://app.letsdefend.io/my-rewards/detail/5c2aff9c-45e1-48b3-abf9-b620e54b5f9a", "img": "https://app-ld-img.s3.amazonaws.com/badge/aws-badge-b665787c-af28-4502-bf99-8d88dd146e90.png", "platform": "LetsDefend"}, {"name": "AWS Incident Handler", "href": "https://app.letsdefend.io/my-rewards/detail/f81ee85b-afc8-43cf-80b1-bf7a102ffae1", "img": "https://app-ld-img.s3.amazonaws.com/badge/aws-persestence-badge-c5c8649b-0c46-46fd-a78d-34b87f8833e5.png", "platform": "LetsDefend"}, {"name": "Docker Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/dd2691a6-f489-413c-8715-09cfbc0fb568", "img": "https://app-ld-img.s3.amazonaws.com/badge/docker-badge-62df3f55-0589-4bb6-ba71-b344ceced720.png", "platform": "LetsDefend"}, {"name": "macOS Malware", "href": "https://app.letsdefend.io/my-rewards/detail/b36770ac-0b58-49fd-a490-5603290c3caf", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/macos-malware-badge.png", "platform": "LetsDefend"}, {"name": "Discord Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/51f72b7f-b714-45b9-a434-c20533c6cc12", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/discord-badge.png", "platform": "LetsDefend"}, {"name": "Golang Ransomware", "href": "https://app.letsdefend.io/my-rewards/detail/183d448f-a4aa-4703-8700-33dc415dec3f", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/go-ransom-badge.png", "platform": "LetsDefend"}, {"name": "AWS Bucketware", "href": "https://app.letsdefend.io/my-rewards/detail/fa25e80e-f523-46c8-872a-0ceb06d8ee97", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-bucketware-badge.png", "platform": "LetsDefend"}, {"name": "AWS Stacked", "href": "https://app.letsdefend.io/my-rewards/detail/7a43febd-d543-4d2c-9a7b-16f778e6ca8d", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/aws-stacked-badge.png", "platform": "LetsDefend"}, {"name": "VoIP", "href": "https://app.letsdefend.io/my-rewards/detail/b636a9e8-8fa4-4dc6-a9cf-a875877d4d42", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/voip-challenge-badge.png", "platform": "LetsDefend"}, {"name": "USB Forensics", "href": "https://app.letsdefend.io/my-rewards/detail/dc19c44e-3f48-45aa-85c1-95e482aafa2b", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/usb-forensics-challenge-badge.png", "platform": "LetsDefend"}, {"name": "TinyTurla Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/0601442e-6392-4fd2-b756-bd4d0a830866", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/TinyTurla+Backdoor-badge.png", "platform": "LetsDefend"}, {"name": "Samba Spy", "href": "https://app.letsdefend.io/my-rewards/detail/602e042c-481a-46bb-849b-9694e1d482a1", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/samba-spy-badge.png", "platform": "LetsDefend"}, {"name": "Mac Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/681cea81-e89f-4243-afc7-76c07f0dc678", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/mac+backdoor-challenge-badge.png", "platform": "LetsDefend"}, {"name": "Hidden Backdoor", "href": "https://app.letsdefend.io/my-rewards/detail/60b652ed-5bb1-4a78-a387-3e126e1aa538", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Hidden+Backdoor-challenge-badge.png", "platform": "LetsDefend"}, {"name": "Google Cloud Compromise", "href": "https://app.letsdefend.io/my-rewards/detail/e34cb954-5320-44a7-8ae2-3cc3428cdb31", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Google+Cloud+Compromise-badge.png", "platform": "LetsDefend"}, {"name": "Promptlock Ransomware", "href": "https://app.letsdefend.io/my-rewards/detail/46da6361-1397-49d6-b65a-3274f697f3c1", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Promptlock+Ransomware-badge.png", "platform": "LetsDefend"}, {"name": "Learn Sigma", "href": "https://app.letsdefend.io/my-rewards/detail/ae4ae87a-809c-46c6-8ee3-9a6afa62f167", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/Learn+Sigma-challenge-badge.png", "platform": "LetsDefend"}, {"name": "First Blood", "href": "https://app.letsdefend.io/my-rewards/detail/d6353f1a-eb02-4524-88e5-204e68eb346e", "img": "https://app-ld-img.s3.amazonaws.com/badge/first-badge-6529e305-65c7-41fe-a929-c728f1bee986.png", "platform": "LetsDefend"}, {"name": "MemLoot", "href": "https://app.letsdefend.io/my-rewards/detail/e271b31b-f73e-408a-925f-f226d019d417", "img": "https://app-ld-img.s3.us-east-2.amazonaws.com/badge/MemLoot-challenge-badge.png", "platform": "LetsDefend"}, {"name": "Introduction to OSINT", "desc": "15/15 topics, 1/1 quizzes", "href": "./certifications/osint-centri.pdf", "img": "https://cdn.simpleicons.org/centri", "platform": "Centri"}]'></div>
 </section>
 
 <section id="contact">
@@ -1336,7 +1321,7 @@ a,button,input,textarea{cursor:none}
       <svg viewBox="0 0 24 24"><path d="M23.955 13.587l-1.342-4.135-2.664-8.189a.455.455 0 00-.867 0L16.418 9.45H7.582L4.918 1.263a.455.455 0 00-.867 0L1.386 9.45.044 13.587a.924.924 0 00.331 1.023L12 20.054l11.624-5.444a.924.924 0 00.331-1.023"/></svg>
       <span>GitLab</span>
     </a>
-    <a class="contact-link" href="https://www.linkedin.com/in/nurdauletbolat" target="_blank">
+    <a class="contact-link" href="https://www.linkedin.com/in/nurdaulet-bolat" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
       <span>LinkedIn</span>
     </a>
@@ -1344,11 +1329,22 @@ a,button,input,textarea{cursor:none}
       <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       <span>Email</span>
     </a>
+    <a class="contact-link" id="pwa-install-btn" style="display: none; cursor: pointer;">
+      <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      <span>Install App</span>
+    </a>
   </div>
-  <div class="footer-note reveal">
-    infrastructure as code · security by design · observability first
-  </div>
+
 </section>
+
+<!-- Hidden LinkedIn Badge for integration -->
+<div style="display: none;" aria-hidden="true">
+  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript" integrity="sha384-taaAVEItHWxiUOfn4xfDxzWv0TOqrUeHOfylOEyjn9oLTMxr0CZHlb6hhvxFMN9+" crossorigin="anonymous"></script>
+  <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="nurdaulet-bolat" data-version="v1">
+    <a class="badge-base__link LI-simple-link" href="https://fr.linkedin.com/in/nurdaulet-bolat?trk=profile-badge">Nurdaulet Bolat</a>
+  </div>
+</div>
+</main>
 
 <script>
 (function(){
@@ -1530,7 +1526,8 @@ const isMobile = window.innerWidth < 768;
     grid.innerHTML=filtered.map(i=>{
       const tag=i.href?`<a class="lab-card" href="${i.href}" target="_blank">`:'<div class="lab-card">';
       const closeTag=i.href?'</a>':'</div>';
-      return `${tag}<img src="${i.img}" loading="lazy"><span class="lab-name">${i.name}</span><span class="lab-platform">${i.platform}</span>${closeTag}`;
+      const desc = i.desc ? `<span class="lab-desc" style="display:block; font-family:'JetBrains Mono',monospace; font-size:0.55rem; color:#555; margin-top:0.4rem; letter-spacing:0.05em;">${i.desc}</span>` : '';
+      return `${tag}<img src="${i.img}" loading="lazy" alt=""><span class="lab-name">${i.name}${desc}</span><span class="lab-platform">${i.platform}</span>${closeTag}`;
     }).join('');
   }
 
@@ -1579,7 +1576,7 @@ const isMobile = window.innerWidth < 768;
     grid.innerHTML=filtered.map(i=>`
       <a class="cert-card" href="${i.href}" target="_blank">
         <div class="cert-card-top">
-          <img src="${i.img}">
+          <img src="${i.img}" alt="${i.issuer} logo">
           <span class="cert-issuer">${i.issuer}</span>
         </div>
         <div class="cert-name">${i.name}</div>
@@ -1712,30 +1709,24 @@ const isMobile = window.innerWidth < 768;
 })();
 
 (function(){
-  const banner=document.getElementById('pwa-install');
   const installBtn=document.getElementById('pwa-install-btn');
-  const dismissBtn=document.getElementById('pwa-dismiss-btn');
-  if(!banner||!installBtn||!dismissBtn) return;
-  if(localStorage.getItem('pwa-install-dismissed')==='1') return;
+  if(!installBtn) return;
 
   let deferredPrompt=null;
   window.addEventListener('beforeinstallprompt', e=>{
     e.preventDefault();
     deferredPrompt=e;
-    banner.classList.add('show');
+    if(isMobile) installBtn.style.display='flex';
   });
-  installBtn.addEventListener('click', async ()=>{
+  installBtn.addEventListener('click', async (e)=>{
+    e.preventDefault();
     if(!deferredPrompt) return;
-    banner.classList.remove('show');
     deferredPrompt.prompt();
     await deferredPrompt.userChoice;
     deferredPrompt=null;
+    installBtn.style.display='none';
   });
-  dismissBtn.addEventListener('click', ()=>{
-    banner.classList.remove('show');
-    localStorage.setItem('pwa-install-dismissed','1');
-  });
-  window.addEventListener('appinstalled', ()=>{ banner.classList.remove('show'); });
+  window.addEventListener('appinstalled', ()=>{ installBtn.style.display='none'; });
 })();
 
 })();
@@ -1748,6 +1739,312 @@ const isMobile = window.innerWidth < 768;
 if('serviceWorker' in navigator){
   window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})});
 }
+</script>
+<style>
+/* AI Chat Widget */
+#ai-chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  font-family: inherit;
+}
+#ai-chat-btn {
+  height: 50px;
+  padding: 0 20px;
+  border-radius: 25px;
+  background: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#ai-chat-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(255,255,255,0.3);
+}
+#ai-chat-btn svg {
+  width: 20px;
+  height: 20px;
+}
+.ai-chat-btn-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+#ai-chat-panel {
+  display: none;
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 320px;
+  height: 400px;
+  background: rgba(15,15,15,0.98);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+#ai-chat-panel.show {
+  display: flex;
+}
+.chat-header {
+  background: rgba(255,255,255,0.05);
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+#ai-chat-close {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+#ai-chat-close:hover {
+  color: #fff;
+}
+.chat-body {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+.chat-body::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-body::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+}
+.chat-msg {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  max-width: 85%;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.chat-msg.ai {
+  background: rgba(255,255,255,0.08);
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+.chat-msg.user {
+  background: #fff;
+  color: #000;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+.chat-footer {
+  padding: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  gap: 8px;
+  background: rgba(15,15,15,0.98);
+}
+#ai-chat-input {
+  flex: 1;
+  background: #000;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.85rem;
+  outline: none;
+}
+#ai-chat-input:focus {
+  border-color: #fff;
+}
+#ai-chat-send {
+  background: #fff;
+  color: #000;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#ai-chat-send svg {
+  width: 18px;
+  height: 18px;
+}
+@media (max-width: 600px) {
+  #ai-chat-panel {
+    position: fixed;
+    bottom: 80px;
+    top: auto;
+    left: 20px;
+    right: 20px;
+    width: auto;
+    height: 380px;
+    max-height: 60vh;
+  }
+  #ai-chat-panel.keyboard-open {
+    bottom: auto;
+    top: 10px;
+    height: 260px;
+    max-height: 260px;
+  }
+}
+</style>
+
+<div id="ai-chat-widget">
+  <div id="ai-chat-panel">
+    <div class="chat-header">
+      <span>AI Assistant</span>
+      <button id="ai-chat-close">&times;</button>
+    </div>
+    <div class="chat-body" id="ai-chat-body">
+      <div class="chat-msg ai">Hi! I'm Nurdaulet's AI assistant. Ask me anything about his skills, experience, or projects.</div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="ai-chat-input" placeholder="Type a message..." autocomplete="off">
+      <button id="ai-chat-send" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+  </div>
+  <button id="ai-chat-btn" aria-label="Open AI Assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    <span class="ai-chat-btn-text">AI assistant</span>
+  </button>
+</div>
+
+<script>
+(function(){
+  // TODO: Replace with your deployed Cloudflare Worker URL
+  const CF_WORKER_URL = 'https://ai-assistant.nvimgolang.workers.dev/';
+
+  const chatBtn = document.getElementById('ai-chat-btn');
+  const chatPanel = document.getElementById('ai-chat-panel');
+  const chatClose = document.getElementById('ai-chat-close');
+  const chatInput = document.getElementById('ai-chat-input');
+  const chatSend = document.getElementById('ai-chat-send');
+  const chatBody = document.getElementById('ai-chat-body');
+
+  chatBtn.addEventListener('click', () => {
+    chatPanel.classList.toggle('show');
+    if (chatPanel.classList.contains('show')) {
+      chatInput.focus();
+    }
+  });
+
+  chatClose.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    chatPanel.classList.remove('show');
+    chatPanel.classList.remove('keyboard-open');
+    chatInput.blur();
+  });
+
+  chatInput.addEventListener('focus', () => {
+    chatPanel.classList.add('keyboard-open');
+  });
+  
+  chatInput.addEventListener('blur', () => {
+    chatPanel.classList.remove('keyboard-open');
+  });
+
+  if (window.visualViewport) {
+    let lastHeight = window.visualViewport.height;
+    window.visualViewport.addEventListener('resize', () => {
+      const currentHeight = window.visualViewport.height;
+      // If height increased significantly (>150px), keyboard was closed
+      if (currentHeight > lastHeight + 150) {
+        chatInput.blur();
+      }
+      lastHeight = currentHeight;
+    });
+  }
+
+  async function sendMessage() {
+    const text = chatInput.value.trim();
+    if(!text) return;
+    chatInput.value = '';
+    
+    const uMsg = document.createElement('div');
+    uMsg.className = 'chat-msg user';
+    uMsg.textContent = text;
+    chatBody.appendChild(uMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    
+    const loadMsg = document.createElement('div');
+    loadMsg.className = 'chat-msg ai';
+    loadMsg.textContent = 'Thinking...';
+    chatBody.appendChild(loadMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    try {
+      // Extract textual content from all sections
+      let siteContext = "";
+      const contentElements = document.querySelectorAll('section');
+      contentElements.forEach(el => {
+        siteContext += (el.textContent || "") + "\n";
+      });
+
+      // Explicitly include labs and certs from data-items to ensure they are available in context
+      const labsGrid = document.getElementById('labs-grid');
+      if (labsGrid && labsGrid.dataset.items) {
+        try {
+          const labs = JSON.parse(labsGrid.dataset.items);
+          siteContext += "\nLabs & Challenges:\n" + labs.map(l => `- ${l.name} (${l.platform})`).join('\n') + "\n";
+        } catch(e) {}
+      }
+
+      const certsGrid = document.getElementById('certs-grid');
+      if (certsGrid && certsGrid.dataset.items) {
+        try {
+          const certs = JSON.parse(certsGrid.dataset.items);
+          siteContext += "\nCertifications:\n" + certs.map(c => `- ${c.name} (${c.issuer})`).join('\n') + "\n";
+        } catch(e) {}
+      }
+
+      siteContext = siteContext.replace(/\s+/g, ' ').substring(0, 15000); // collapse spaces and limit
+      console.log("Extracted context length:", siteContext.length);
+
+      const res = await fetch(CF_WORKER_URL, {
+        method: 'POST',
+        body: JSON.stringify({ message: text, context: siteContext }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      
+      const data = await res.json();
+      loadMsg.innerText = data.reply || "Sorry, I couldn't understand that.";
+    } catch(e) {
+      console.error(e);
+      if (e.message.includes('YOUR-SUBDOMAIN')) {
+        loadMsg.innerHTML = 'Oops! Please setup your Cloudflare Worker and paste the URL in the <code>CF_WORKER_URL</code> variable inside index.html.';
+      } else {
+        loadMsg.innerText = 'Error: The assistant is currently offline or unreachable.';
+      }
+    }
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  chatSend.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keypress', (e) => {
+    if(e.key === 'Enter') sendMessage();
+  });
+})();
 </script>
 </body>
 </html>
