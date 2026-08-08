@@ -2009,6 +2009,7 @@ if('serviceWorker' in navigator){
   const chatInput = document.getElementById('ai-chat-input');
   const chatSend = document.getElementById('ai-chat-send');
   const chatBody = document.getElementById('ai-chat-body');
+  let chatHistory = []; // {role:'user'|'assistant', content:string}, last 10 kept
 
   chatBtn.addEventListener('click', () => {
     chatPanel.classList.toggle('show');
@@ -2096,12 +2097,17 @@ if('serviceWorker' in navigator){
 
       const res = await fetch(CF_WORKER_URL, {
         method: 'POST',
-        body: JSON.stringify({ message: text, context: siteContext }),
+        body: JSON.stringify({ message: text, context: siteContext, history: chatHistory }),
         headers: { 'Content-Type': 'application/json' }
       });
-      
+
       const data = await res.json();
-      loadMsg.innerText = data.reply || "Sorry, I couldn't understand that.";
+      const replyText = data.reply || "Sorry, I couldn't understand that.";
+      loadMsg.innerText = replyText;
+
+      chatHistory.push({ role: 'user', content: text });
+      chatHistory.push({ role: 'assistant', content: replyText });
+      chatHistory = chatHistory.slice(-10);
     } catch(e) {
       console.error(e);
       if (e.message.includes('YOUR-SUBDOMAIN')) {
