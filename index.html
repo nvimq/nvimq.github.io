@@ -1592,7 +1592,6 @@ const isMobile = window.innerWidth < 768;
   statsEl.innerHTML=`
     <div class="labs-stat"><span class="n">${items.length}</span><span class="l">Total Certs</span></div>
     <div class="labs-stat"><span class="n">${issuers.length}</span><span class="l">Issuers</span></div>
-    ${issuers.map(iss=>`<div class="labs-stat"><span class="n">${counts[iss]}</span><span class="l">${iss}</span></div>`).join('')}
   `;
 
   let activeTab='All';
