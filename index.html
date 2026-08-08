@@ -1456,9 +1456,11 @@ const isMobile = window.innerWidth < 768;
   function loop(){
     ctx.clearRect(0,0,w,h);
     if(mx!=null && my!=null){
+      const light=document.documentElement.classList.contains('light-theme');
+      const a=light?0.7:0.45, b=light?0.3:0.12;
       const grad=ctx.createRadialGradient(mx,my,0,mx,my,14);
-      grad.addColorStop(0, 'rgba(255,255,255,0.45)');
-      grad.addColorStop(0.5, 'rgba(255,255,255,0.12)');
+      grad.addColorStop(0, `rgba(255,255,255,${a})`);
+      grad.addColorStop(0.5, `rgba(255,255,255,${b})`);
       grad.addColorStop(1, 'rgba(255,255,255,0)');
       ctx.fillStyle=grad;
       ctx.beginPath();
