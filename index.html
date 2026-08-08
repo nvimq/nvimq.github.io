@@ -1542,7 +1542,6 @@ const isMobile = window.innerWidth < 768;
   statsEl.innerHTML=`
     <div class="labs-stat"><span class="n">${items.length}</span><span class="l">Total Badges</span></div>
     <div class="labs-stat"><span class="n">${platforms.length}</span><span class="l">Platforms</span></div>
-    ${platforms.map(p=>`<div class="labs-stat"><span class="n">${counts[p]}</span><span class="l">${p}</span></div>`).join('')}
   `;
 
   let activeTab='All';
