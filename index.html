@@ -810,6 +810,13 @@ html.light-theme .cert-card-top img{filter:grayscale(1) brightness(1.4) contrast
   #labs-search,#certs-search{flex:none;width:100%;max-width:none;font-size:16px;padding:0.6rem 1rem}
   .labs-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
 }
+@media(max-width:480px){
+  .labs-grid{grid-template-columns:repeat(5,1fr);gap:0.4rem}
+  .lab-card{padding:0.4rem 0.2rem;gap:0.3rem}
+  .lab-card img{width:24px;height:24px}
+  .lab-card .lab-name{font-size:0.5rem}
+  .lab-card .lab-platform{font-size:0.38rem}
+}
 
 .cert-grid{
   display:grid;
